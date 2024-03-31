@@ -1,0 +1,84 @@
+.patient1{
+    display: grid;
+    grid-template-columns:550px 1fr;
+    margin-top: 110px;
+    background-color: rgb(241, 233, 233);
+}
+/* .general-info{
+    border-right: 2px;
+    border-right-style: solid;
+} */
+.imag{
+    height: 350px;
+    width: 350px;
+}
+.basic-info p{
+    font-size: 25px;
+}
+.det{
+    font-size: 25px;
+}
+.detail-info{
+    margin-left: 50px;
+    display: grid;
+    grid-template-rows:50px 1fr;
+}
+.save-container{
+    display: flex;
+    justify-content: center;
+    align-self: center;
+}
+.save{
+    height: 40px;
+    width: 80px;
+    border-radius: 5px;
+    background-color: rgb(58, 8, 8);
+    font-size: 17px;
+    cursor: pointer;
+    border-width: 1px;
+    font-family: "montserrat";
+    color: white;
+    transition: opacity 0.15s;
+}
+.save:hover{            
+    opacity: 0.8;
+}
+/* when you click into button */
+.save:active{            
+    opacity: 0.4;
+}
+.gen{
+    cursor: pointer;
+}
+.det{
+    cursor: pointer;
+}
+.primary-container{
+    display: flex;
+    justify-content: right;
+    align-self: flex-end;
+}
+.primary{
+    height: 40px;
+    width: 80px;
+    border-radius: 5px;
+    background-color: rgb(58, 8, 8);
+    font-size: 17px;
+    cursor: pointer;
+    border-width: 1px;
+    font-family: "montserrat";
+    color: white;
+    transition: opacity 0.15s;
+}
+.primary:hover{            
+    opacity: 0.8;
+}
+/* when you click into button */
+.primary:active{            
+    opacity: 0.4;
+}
+select{
+    font-size: 25px;
+    border-radius: 20px;
+    height: 50px;
+}

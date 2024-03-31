@@ -1,0 +1,42 @@
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Domine:wght@400..700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Tapestry&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lobster+Two:ital,wght@0,400;0,700;1,400;1,700&family=Tapestry&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+.contactTitle{
+    padding-left: 166.4px;
+    padding-right: 166.4px;
+    margin-top: 110px;
+}
+h1{
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 36px;
+}
+.main, .sub{
+    height: 100%;
+    width: 100%;
+    display: grid;
+    grid-template-columns:550px 1fr;
+}
+.main-picture{
+    height: 350px;
+    width: 350px; 
+}
+h2{
+    margin-bottom: 50px;
+}
+.main p, .sub p{
+    font-family: system-ui, -apple-system, 'SFProDisplay', Arial, sans-serif;
+    margin-bottom: 30px;
+    font-size: 14px;
+}
+.phone-contact, .email{
+    cursor: pointer;
+    color: blue;
+}
+.phone-contact:hover, .email:hover{
+    text-decoration: underline;
+}
