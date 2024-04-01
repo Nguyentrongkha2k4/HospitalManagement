@@ -14,6 +14,9 @@ if(!isset($_SESSION['user'])){
         <link rel="stylesheet" href="patient.css">
         <link rel="stylesheet" href="general.css">
         <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
 
     </head>
     <body>
@@ -66,13 +69,13 @@ if(!isset($_SESSION['user'])){
                 </script>
             </div>
             <div class="right">
-                <div class="login"><span><?php  echo $_SESSION['user']['Username']?></span> <a class="logout" href="logout.php">Thoát</a></div>
+                <div class="login"><span><?php  echo $_SESSION['user']['Username']?>,</span> <a class="logout" href="logout.php">Thoát</a></div>
             </div>
         </div>
         <div class="find">
-            <h2>THÔNG TIN BỆNH NHÂN</h2> <br> <br>
-            <p>Vui lòng nhập thông tin cá nhân để tìm kiếm nhanh hơn</p> <br>
-            <form action="/patient.php" method="post">
+            <h2>THÔNG TIN BỆNH NHÂN</h2>
+            <p>Vui lòng nhập thông tin bệnh nhân để tìm kiếm nhanh hơn</p> <br>
+            <form class="search-form" action="patientSearch.php" method="post">
                 <input type = "text" placeholder="Nhập CCCD" name="Nhập CCCD">
                 <input type = "date" name="Ngày sinh bệnh nhân">
                 <input type = "text" placeholder="Tìm kiếm tên bệnh nhân" name="Tìm kiếm tên bệnh nhân">
@@ -81,71 +84,121 @@ if(!isset($_SESSION['user'])){
                 </button>
             </form>
         </div>
-        <br> <br> <br>
-        <div class="add-container">
+        <!-- <br> <br> <br> -->
+        <!-- <div class="add-container">
             <button class="add">Thêm</button>
-        </div>
-        <div class="patient-info-container">
-            <img class="patient-info" src="imagine/patient1.jpg" >
-            <div class="info">
-                <br>
-                <h3>Thông tin cá nhân</h3> <br>
-                <p class="name">Tên: Nguyễn Phúc Hưng</p> <br>
-                <p>CCCD: 03845730459384</p> <br>
-                <p>Địa chỉ: Ký túc xá khu B Đại học quốc gia</p> <br>
-                <p>Lịch sử bệnh án: Chưa từng khám trước đây</p> <br>
-                <ol>Kết quả xét nghiệm:</ol> <br>
-                <li>Siêu âm:  Kích thước và cấu trúc gan bình thường, 
-                    không có dấu hiệu của sỏi hoặc khối u.
-                    Túi mật có hình dạng bình thường và không có 
-                    dấu hiệu của sỏi hoặc vi khuẩn.
-                    Kích thước và hình dạng tụy bình thường, không có dấu hiệu của viêm hoặc khối u. </li> <br>
-                <li>Nội soi: Niêm mạc của dạ dày trông khá trơn tru và
-                     không có dấu hiệu của viêm loét hoặc polyp.  Niêm mạc ruột non trông mịn và 
-                     không có dấu hiệu của viêm loét, sưng tấy hoặc polyp. Niêm mạc ruột già cũng 
-                     trông mịn và không có dấu hiệu của viêm loét, sưng tấy hoặc polyp. </li> <br>
-                <li>Xét nghiệm máu: Số lượng hồng cầu trong mẫu máu nằm trong phạm vi bình thường, 
-                    chỉ ra khả năng vận chuyển oxy đến các mô và cơ quan trong cơ thể. Mức độ hemoglobin
-                    trong máu cũng ở mức bình thường, đảm bảo khả năng vận chuyển oxy hiệu quả.
-                    Tỷ lệ của thể tích hồng cầu so với tổng thể tích máu cũng ở mức bình thường.</li> <br>
+        </div> -->
+        <div class="insertMedicine">
+        <button type="button" class="insert-but" data-bs-toggle="modal" data-bs-target="#addpatient" data-bs-whatever="Tên thuốc">Thêm bệnh nhân</button>
+            <div class="modal fade" id="addpatient" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Thêm bệnh nhân mới</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form action="patientInsert.php" method="post">
+                    <div class="mb-3">
+                        <label for="recipient-name" class="col-form-label">Họ và tên:</label>
+                        <input type="text" class="form-control" id="recipient-name" name="patientName" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="recipient-name" class="col-form-label">CCCD:</label>
+                        <input type="text" class="form-control" id="recipient-name" name="CCCD" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="recipient-name" class="col-form-label">Ngày sinh:</label>
+                        <input type="date" class="form-control" id="recipient-name" name="dateofborn" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="recipient-name" class="col-form-label">Địa chỉ:</label>
+                        <input type="text" class="form-control" id="recipient-name" name="address" required>
+                    </div>
+                    
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                    <button type="submit" class="btn btn-primary">Lưu</button>
+                </div></form>
+                </div>
+            </div>
             </div>
         </div>
-        <div class="delete-container">
-            <button class="delete">xóa</button>
-        </div> 
-        <br><br><br>
-        <div class="patient-info-container">
-<a href="patientInfo.php">chuyen</a>
-            <img class="patient-info" src="imagine/patient2.jpg" >
-            <div class="info">
-                <br>
-                <h3>Thông tin cá nhân</h3> <br>
-                <p class="name">Tên: Nguyễn Thị Kha</p> <br>
-                <p>CCCD: 0325984578345</p> <br>
-                <p>Địa chỉ: Ký túc xá khu A Đại học quốc gia</p> <br>
-                <p>Lịch sử bệnh án: Chưa từng khám trước đây</p> <br>
-                <ol>Kết quả xét nghiệm:</ol> <br>
-                <li>Siêu âm:  Kích thước và cấu trúc của thận bình thường, 
-                    không có sỏi thận hoặc dấu hiệu của các vấn đề khác như 
-                    viêm nhiễm. Có thể thấy buồng trứng bình thường mà không có dấu hiệu 
-                    của polyp hoặc các vấn đề khác. Kích thước và hình dạng tử cung bình thường, 
-                    không có dấu hiệu của polyp, u hoặc các vấn đề khác. </li> <br>
-                <li>Nội soi: Niêm mạc của lá lách không có dấu hiệu của viêm loét hoặc khối u. 
-                    Niêm mạc trực tràng có thể được đánh giá để xác 
-                    định sự hiện diện của các vấn đề như viêm loét, polyp hoặc khối u. </li> <br>
-                <li>Xét nghiệm máu: Số lượng bạch cầu trong máu, 
-                    bao gồm các loại như bạch cầu cụ thể (neutrophils, eosinophils, basophils), 
-                    lymphocytes và monocytes, cũng đều trong phạm vi bình thường,
-                    gợi ý về khả năng phòng ngừa nhiễm trùng và bảo vệ cơ thể khỏi các tác nhân gây bệnh.
-                    Các chỉ số như MCV (mean corpuscular volume), MCH (mean corpuscular hemoglobin), và MCHC (mean corpuscular hemoglobin concentration) 
-                    đều ở mức bình thường, cho thấy các thông số 
-                    quan trọng về kích thước và hàm lượng của các tế bào máu.</li> <br>
+
+        <div class="box-list">
+            <div class="listbox">
+                <div class="infoPatient">
+                    <div class="patient1">
+                        <h2>Nguyễn Phúc Hưng</h2>
+                        <p>CCCD: 03845730459384</p>
+                        <p>Địa chỉ: Ký túc xá khu B Đại học quốc gia</p>
+                    </div>
+                </div>
+                <div class="buttonFunc">
+                    <button type="button" class="insert-but" data-bs-toggle="modal" onclick ="patientInfo()">Thông tin chi tiết</button>
+                <script> function patientInfo(){window.location = "patientInfo.php";} </script>
+                
+                </div>
             </div>
+            <div class="listbox">
+                <div class="infoPatient">
+                    <div class="patient1">
+                        <h2>Nguyễn Phúc Hưng</h2>
+                        <p>CCCD: 03845730459384</p>
+                        <p>Địa chỉ: Ký túc xá khu B Đại học quốc gia</p>
+                    </div>
+                </div>
+                <div class="buttonFunc">
+                    <button type="button" class="insert-but" data-bs-toggle="modal" onclick ="patientInfo()">Thông tin chi tiết</button>
+                <script> function patientInfo(){window.location = "patientInfo.php";} </script>
+                
+                </div>
+            </div>
+            <div class="listbox">
+                <div class="infoPatient">
+                    <div class="patient1">
+                        <h2>Nguyễn Phúc Hưng</h2>
+                        <p>CCCD: 03845730459384</p>
+                        <p>Địa chỉ: Ký túc xá khu B Đại học quốc gia</p>
+                    </div>
+                </div>
+                <div class="buttonFunc">
+                    <button type="button" class="insert-but" data-bs-toggle="modal" onclick ="patientInfo()">Thông tin chi tiết</button>
+                <script> function patientInfo(){window.location = "patientInfo.php";} </script>
+                
+                </div>
+            </div>
+            <div class="listbox">
+                <div class="infoPatient">
+                    <div class="patient1">
+                        <h2>Nguyễn Phúc Hưng</h2>
+                        <p>CCCD: 03845730459384</p>
+                        <p>Địa chỉ: Ký túc xá khu B Đại học quốc gia</p>
+                    </div>
+                </div>
+                <div class="buttonFunc">
+                    <button type="button" class="insert-but" data-bs-toggle="modal" onclick ="patientInfo()">Thông tin chi tiết</button>
+                <script> function patientInfo(){window.location = "patientInfo.php";} </script>
+                
+                </div>
+            </div>
+            <div class="listbox">
+                <div class="infoPatient">
+                    <div class="patient1">
+                        <h2>Nguyễn Phúc Hưng</h2>
+                        <p>CCCD: 03845730459384</p>
+                        <p>Địa chỉ: Ký túc xá khu B Đại học quốc gia</p>
+                    </div>
+                </div>
+                <div class="buttonFunc">
+                    <button type="button" class="insert-but" data-bs-toggle="modal" onclick ="patientInfo()">Thông tin chi tiết</button>
+                <script> function patientInfo(){window.location = "patientInfo.php";} </script>
+                
+                </div>
+            </div>
+            
         </div>
-        <div class="delete-container">
-            <button class="delete">xóa</button>
-        </div> 
-        </div> <br> <br>
         <div class="end-of-page">
             <div class="modern">
                 <i class='bx bxs-devices'></i>

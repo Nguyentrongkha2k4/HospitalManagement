@@ -11,7 +11,7 @@ if($medicineName == ""){
     header("location: medicine.php");
 }else{
     $rdb = new firebaseRDB($databaseURL);
-    $retrieve = $rdb->retrieve("/medicineManager", "medicineName", "LIKE", $medicineName);
+    $retrieve = $rdb->retrieve("/medicineManager", "medicineName", "EQUAL", $medicineName);
     $data = json_decode($retrieve, 1);
     if(count($data) == 0){
         $_SESSION['undefind'] = "undefind";

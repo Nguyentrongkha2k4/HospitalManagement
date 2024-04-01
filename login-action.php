@@ -22,11 +22,11 @@ if(count($data) == 0){
         header("location: login.php");
     }
 }
-if (isset($_SESSION['wrong'])) {
-    echo '<script type="text/javascript">',
-    'document.getElementById("errorMessage").innerText = "'.$_SESSION['wrong'].'";',
-    '$("#loginFailedModal").modal("show");',
-    '</script>';
-    unset($_SESSION['wrong']);
-}
+// if (isset($_SESSION['wrong'])) {
+//     echo '<script type="text/javascript">',
+//     'document.getElementById("errorMessage").innerText = "'.$_SESSION['wrong'].'";',
+//     '$("#loginFailedModal").modal("show");',
+//     '</script>';
+//     unset($_SESSION['wrong']);
+// }
 ?>

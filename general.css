@@ -7,6 +7,7 @@
     padding: 0;
     box-sizing: border-box;
     font-family: "Roboto", sans-serif;
+    font-size: 15px;
 }
 body{
     display: flex;
@@ -71,7 +72,7 @@ body{
     font-size: 17px;
     color: rgb(58, 8, 8);
     height: 30px;
-    width: 90px;
+    width: 100%;
     display:flex;
     justify-content: center;
     align-items: center;
@@ -81,7 +82,8 @@ body{
     font-weight: bold;
 }
 .logout{
-    margin-left: 10px;
+    color: rgb(58, 8, 8);
+    margin: 0 5px;
     text-decoration: underline;
     font-weight: 16px !important;
 }
@@ -150,8 +152,44 @@ body{
 .search-form{
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
-    padding: 0 35%;
+    /* padding: 0 20px; */
     box-sizing: border-box;
+}
+.search-form input, button{
+    
+    margin: 0 10px;
+}
+.insertMedicine{
+    height: 50px;
+    margin: 15px 2%;
+    display: flex;
+    justify-content: right;
+    align-items: center;
+}
+/* .insertMedicine{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0 20%;
+} */
+
+.insert-but{
+    color: white;
+    background-color: rgb(58, 8, 8);
+    padding: 5px 10px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 18px;
+    cursor: pointer;
+}
+.insert-but:hover{
+    color: rgb(255, 255, 255);
+    background-color: rgb(87, 26, 26);
 }

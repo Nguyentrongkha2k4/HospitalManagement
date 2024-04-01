@@ -1,3 +1,7 @@
+<?php 
+include("config.php");
+include("firebaseRDB.php");
+?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -11,8 +15,25 @@
     </head>
     <body>
         <div class="wrapper">
+            
             <form name="loginForm" action="login-action.php" method="post">
                 <h1>Login</h1>
+                <?php
+                    if(isset($_SESSION['wrong'])){?>
+                        <div class="alert alert-danger" style="width: 90%; border-radius: 10px;" role="alert">
+                        <?php echo $_SESSION['wrong'];?>
+                        </div>
+                    <?php }
+                    unset($_SESSION['wrong']);
+                    if(isset($_SESSION['info'])){?>
+                        <div class="alert alert-success" style="width: 90%; border-radius: 10px;" role="alert">
+                        <?php echo $_SESSION['info'];?>
+                        </div>
+                    <?php }
+                    unset($_SESSION['info']);
+                    
+                ?>
+                
                 <div class="input-box">
                     <input type="text" placeholder="Username" required name="Username"> 
                     <i class='bx bxs-user'></i>

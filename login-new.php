@@ -18,7 +18,7 @@
                 e.preventDefault(); 
                 var username = $('input[name="Username"]').val();
                 var password = $('input[name="Password"]').val();
-                if (username !== "admin" || password !== "password") {
+                if (<?php isset($_SESSION['wrong']) ?>) {
                     showLoginFailedModal("Incorrect username or password. Please try again."); // Show the modal with error message
                 } else {
                     this.submit();
@@ -33,7 +33,7 @@
         <h1>Login</h1>
         <div class="input-box">
             <input type="email" placeholder="Email" required name="Username">
-            <i class='bx bxs-user'></i>
+            <i class='bx bxs-envelope'></i>
         </div>
         <div class="input-box">
             <input type="password" placeholder="Password" required name="Password">

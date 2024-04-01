@@ -1,3 +1,12 @@
+<?php 
+include("config.php");
+include("firebaseRDB.php");
+
+if(!isset($_SESSION['user'])){
+    header("location: login.php");
+}
+?>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -93,7 +102,7 @@
                 </script>
             </div>
             <div class="right">
-                <div class="login"><span><?php  echo $_SESSION['user']['Username']?></span> <a class="logout" href="logout.php">Thoát</a></div>
+                <div class="login"><span><?php  echo $_SESSION['user']['Username']?>,</span> <a class="logout" href="logout.php">Thoát</a></div>
             </div>
         </div>
         <div class="find">
