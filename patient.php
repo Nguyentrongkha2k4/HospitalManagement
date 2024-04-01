@@ -77,8 +77,17 @@ if(!isset($_SESSION['user'])){
             <p>Vui lòng nhập thông tin bệnh nhân để tìm kiếm nhanh hơn</p> <br>
             <form class="search-form" action="patientSearch.php" method="post">
                 <input type = "text" placeholder="Nhập CCCD" name="Nhập CCCD">
-                <input type = "date" name="Ngày sinh bệnh nhân">
                 <input type = "text" placeholder="Tìm kiếm tên bệnh nhân" name="Tìm kiếm tên bệnh nhân">
+                <input type = "date" name="Ngày sinh bệnh nhân">
+                <select name="khoa">
+                    <option >Khoa điều trị</option>
+                    <option value="khoa ngoại tổng hợp">Khoa ngoại tổng hợp</option>
+                    <option value="khoa nội tổng hợp">Khoa nội tổng hợp</option>
+                    <option value="khoa răng-hàm-mặt">Khoa răng-hàm-mặt</option>
+                    <option value="khoa tai-mũi-họng">Khoa tai-mũi-họng</option>
+                    <option value="khoa da liễu">Khoa da liễu</option>
+                    <option value="khoa thần kinh">Khoa thần kinh</option>
+                </select>
                 <button class="search-button">
                     <img class="search-icon" src="icon/search-replace.png">
                 </button>
@@ -115,6 +124,17 @@ if(!isset($_SESSION['user'])){
                         <label for="recipient-name" class="col-form-label">Địa chỉ:</label>
                         <input type="text" class="form-control" id="recipient-name" name="address" required>
                     </div>
+                    <div class="mb-3">
+                        <label for="recipient-name" class="col-form-label">Khoa điều trị:</label>
+                        <select name="khoa" class="form-control" id="recipient-name">
+                            <option value="khoa ngoại tổng hợp">Khoa ngoại tổng hợp</option>
+                            <option value="khoa nội tổng hợp">Khoa nội tổng hợp</option>
+                            <option value="khoa răng-hàm-mặt">Khoa răng-hàm-mặt</option>
+                            <option value="khoa tai-mũi-họng">Khoa tai-mũi-họng</option>
+                            <option value="khoa da liễu">Khoa da liễu</option>
+                            <option value="khoa thần kinh">Khoa thần kinh</option>
+                        </select>
+                    </div>
                     
                 </div>
                 <div class="modal-footer">
@@ -147,6 +167,7 @@ if(!isset($_SESSION['user'])){
                         <h2>Nguyễn Phúc Hưng</h2>
                         <p>CCCD: 03845730459384</p>
                         <p>Địa chỉ: Ký túc xá khu B Đại học quốc gia</p>
+                        <p>Khoa điều trị: </p>
                     </div>
                 </div>
                 <div class="buttonFunc">

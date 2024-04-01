@@ -65,40 +65,40 @@ if(!isset($_SESSION['user'])){
                     function device(){
                         window.location = "device.php";
                     }
-                    $(document).ready(function(){
-                    // Bắt sự kiện click vào nút chỉnh sửa
-                    $("#editButton").click(function(){
-                        // Lấy nội dung hiện tại của phần tử bạn muốn chỉnh sửa
-                        var doctor_name = $(".doctor_name_modal").text().trim();
-                        var subject = $(".subject_modal").text().trim()
-                        var schedul = $(".time_modal").text().trim()
-                        // Hiển thị input để người dùng chỉnh sửa
-                        $(".doctor_name_modal").html("<input type='text' id='editDocterName' class='form-control' value='" + doctor_name + "'>");
-                        $(".subject_modal").html("<input type='text' id='editSubject' class='form-control' value='" + subject + "'>");
-                        $(".time_modal").html("<input type='text' id='editSchedul' class='form-control' value='" + schedul + "'>");
-                        // Ẩn nút chỉnh sửa và hiển thị nút lưu
-                        $("#editButton").hide();
-                        $("#saveButton").show();
-                    });
+                //     $(document).ready(function(){
+                //     // Bắt sự kiện click vào nút chỉnh sửa
+                //     $("#editButton").click(function(){
+                //         // Lấy nội dung hiện tại của phần tử bạn muốn chỉnh sửa
+                //         var doctor_name = $(".doctor_name_modal").text().trim();
+                //         var subject = $(".subject_modal").text().trim()
+                //         var schedul = $(".time_modal").text().trim()
+                //         // Hiển thị input để người dùng chỉnh sửa
+                //         $(".doctor_name_modal").html("<input type='text' id='editDocterName' class='form-control' value='" + doctor_name + "'>");
+                //         $(".subject_modal").html("<input type='text' id='editSubject' class='form-control' value='" + subject + "'>");
+                //         $(".time_modal").html("<input type='text' id='editSchedul' class='form-control' value='" + schedul + "'>");
+                //         // Ẩn nút chỉnh sửa và hiển thị nút lưu
+                //         $("#editButton").hide();
+                //         $("#saveButton").show();
+                //     });
 
-                    // Bắt sự kiện click vào nút lưu
-                    $("#saveButton").click(function(){
-                        // Lấy giá trị mới từ input
-                        var newName = $("#editDocterName").val();
-                        var newSubject = $("#editSubject").val();
-                        var newSchedule = $("#editSchedul").val();
-                        // Hiển thị giá trị mới trong phần tử
-                        $(".doctor_name_modal").html("<h2>" + newName + "</h2>");
-                        $("#doctor_name").html("<h2>" + newName + "</h2>");
-                        $(".subject_modal").html("<p>" +newSubject+ "<\p>")
-                        $(".subject").html("<p>" +newSubject+ "<\p>")
-                        $(".time_modal").html("<p>" +newSchedule+ "<\p>")
-                        $(".time").html("<p>" +newSchedule+ "<\p>")
-                        // Ẩn nút lưu và hiển thị nút chỉnh sửa
-                        $("#editButton").show();
-                        $("#saveButton").hide();
-                    });
-                });
+                //     // Bắt sự kiện click vào nút lưu
+                //     $("#saveButton").click(function(){
+                //         // Lấy giá trị mới từ input
+                //         var newName = $("#editDocterName").val();
+                //         var newSubject = $("#editSubject").val();
+                //         var newSchedule = $("#editSchedul").val();
+                //         // Hiển thị giá trị mới trong phần tử
+                //         $(".doctor_name_modal").html("<h2>" + newName + "</h2>");
+                //         $("#doctor_name").html("<h2>" + newName + "</h2>");
+                //         $(".subject_modal").html("<p>" +newSubject+ "<\p>")
+                //         $(".subject").html("<p>" +newSubject+ "<\p>")
+                //         $(".time_modal").html("<p>" +newSchedule+ "<\p>")
+                //         $(".time").html("<p>" +newSchedule+ "<\p>")
+                //         // Ẩn nút lưu và hiển thị nút chỉnh sửa
+                //         $("#editButton").show();
+                //         $("#saveButton").hide();
+                //     });
+                // });
                 </script>
             </div>
             <div class="right">
@@ -177,7 +177,7 @@ if(!isset($_SESSION['user'])){
         <div class="find">
             <h2>TÌM Y TÁ</h2> <br> <br>
             <p>Vui lòng chọn chuyên khoa cần khám hoặc tìm kiếm để nhanh hơn</p> <br>
-            <form action="/doctor.php" method="get">
+            <form class="search-form" action="/doctor.php" method="get">
                 <select class="select" name="specialty-nurse-select">
                     <option value="All" class="nurse">Tìm kiếm chuyên ngành</option>
                     <option value="Y tá phẫu thuật" class="nurse">Y tá phẫu thuật</option>
