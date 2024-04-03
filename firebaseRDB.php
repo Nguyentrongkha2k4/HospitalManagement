@@ -67,5 +67,5 @@ class firebaseRDB{
       $grab = $this->grab($path, "GET");
       return $grab;
    }
-
+   
 }

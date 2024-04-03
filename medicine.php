@@ -150,10 +150,9 @@ if(!isset($_SESSION['user'])){
                                 </div>
                                 <div class="buttonFunc">
                                     <button type="button" class="insert-but" data-bs-toggle="modal" data-bs-target="#change" data-bs-whatever="@mdo">Nhập/xuất kho</button>
-                                    <form action="medicineDelete.php" method="post"><button type="submit" class="insert-but" value="<?php echo $medicine ?>" name="medicineName">Xóa</button></form>
+                                    
+                                    <button type="button" class="insert-but" data-bs-toggle="modal" data-bs-target="#dele" data-bs-whatever="@getbootstrap">Xoa</button>
                                     <button type="button" class="insert-but" data-bs-toggle="modal" data-bs-target="#info" data-bs-whatever="@getbootstrap">Thông tin chi tiết</button>
-                                    </div>
-                                    </div>
                                 </div>
                             </div>
                             <?php
@@ -178,9 +177,8 @@ if(!isset($_SESSION['user'])){
                                 </div>
                                 <div class="buttonFunc">
                                     <button type="button" class="insert-but" data-bs-toggle="modal" data-bs-target="#change" data-bs-whatever="@mdo">Nhập/xuất kho</button>
-                                    <form action="medicineDelete.php" method="post"><button type="submit" class="insert-but" value="<?php echo $medicine['medicineName'] ?>" name="medicineName">Xóa</button></form>
+                                    <button type="button" class="insert-but" data-bs-toggle="modal" data-bs-target="#dele" data-bs-whatever="@getbootstrap">Xoa</button>
                                     <button type="button" class="insert-but" data-bs-toggle="modal" data-bs-target="#info" data-bs-whatever="@getbootstrap">Thông tin chi tiết</button>
-
                                     
                                 </div>
                             </div>
@@ -245,6 +243,25 @@ if(!isset($_SESSION['user'])){
                                 </div>
                         
                            </form>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+            <div class="modal fade" id="dele" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="exampleModalLabel">Xóa thuốc</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="mb-3">Xác nhận xóa </div>
+                            <div class="modal-footer">
+                                <form action="medicineDelete.php" method="post">
+                                    <button type="submit" class="btn btn-primary" value="<?php echo $medicine['medicineName'] ?>" name="medicineName">Xóa</button>
+                                </form>      
+                            </div>
                         </div>
                         
                     </div>

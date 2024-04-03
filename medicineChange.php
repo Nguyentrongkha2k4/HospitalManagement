@@ -26,15 +26,14 @@ if($choice == 1){
         ]);
 }else{
     $amount = $data[$id]['amount'] - $amount;
-    echo $amount;
     if($amount < 0){
         $_SESSION['wrong'] = "Số lượng không hợp lệ!";
-        // header("location: medicine.php");
+        header("location: medicine.php");
     }
     $rdb->update("/medicineManager", $id, 
     [
         "amount" => $amount
     ]);
 }
-// header("location: medicine.php");
+header("location: medicine.php");
 ?>
