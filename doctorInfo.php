@@ -3,8 +3,11 @@
 <head>
     <title>detail-doctor</title>
     <link rel="stylesheet" href="general.css">
-    <link rel="stylesheet" href="detail-doctor.css">
+    <link rel="stylesheet" href="doctorInfo.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
 </head>
 <body>
     <div class="header"> 
@@ -59,74 +62,35 @@
             <div class="login"><span><?php  echo $_SESSION['user']['Username']?>,</span> <a class="logout" href="logout.php">Thoát</a></div>
     </div>
 </div>
-<div class="patient1">
-    <div class="general-info">
-        <img src="/imagine/doctor.jpg" class="imag">
-        <div class="basic-info">
-            <br>
-            <p class="gen name" contenteditable="false">Tên: Nguyễn Phúc Hưng</p> <br>
-            <p class="gen ID" contenteditable="false">ID: 056283612873</p> <br>
-            <p class="gen major" contenteditable="false">Chức vụ: Tổng giám đốc công ti</p> <br>
-            <p class="gen diploma" contenteditable="false"></p> <br>
-            <div class="primary-container">
-                <button class="primary" onclick="editGeneral('.gen')">Chỉnh sửa</button>
+    <div class="bodyPage">
+        <div class="info">
+            <div class="info basic">
+                <div><img src="" alt="none" width="120px" height="120px" style="border-radius: 100%;"></div>
+                <div>ID: </div>
+                <div>Họ và tên: </div>
+                <div>CCCD:</div>
+                <div>Năm sinh: </div>
+                <div>Địa chỉ:</div>
+                <div>Khoa điều trị: </div>
+                <div>Chức vụ: </div>
+                <div>Bằng cấp: </div>
+            </div>
+            <div class="info button">
+                <button type="button" data-bs-toggle="modal" data-bs-target="#change-info">Chỉnh sửa</button>
+                <button type="button" data-bs-toggle="modal" data-bs-target="#dele">Xóa</button>
+            </div>
+        </div>
+        <div class="detail">
+            <div>
+                <h5>Bệnh nhân đang chữa trị:</h5>
+                <div>asdad</div>
+            </div>
+            <div>
+                <h5>Lịch làm việc:</h5>
+                <div>dasda</div>
             </div>
         </div>
     </div>
-    <div class="detail-info" >
-        <div>
-            <p class="det work" contenteditable="false">Quản lí lịch trình làm việc: Thứ 2, 3, 5</p> <br>
-            <p class="det info-patient"> Bệnh nhân làm việc: Huỳnh Văn A</p>
-        </div>
-        <div class="primary-container">
-        <button class="primary" onclick="editDetail('.det')">Chỉnh sửa</button>
-        </div>
-    </div>
-</div>
-<br><br>
-<div class="save-container">
-    <button class="save" onclick="saveButton()">Lưu</button>
-</div>
-<br> <br>
-<script>
-    // var editG = false;
-    // var editD = false;
-    // var i = 0;
-    // var j = 0;
-    function editGeneral(classSelector) {
-        // i++;
-        var gen = document.querySelectorAll(classSelector);
-        // editG = !editG;
-        gen.forEach(function(element){
-            element.contentEditable = true;
-        });
-    }
-    function editDetail(classSelector) {
-        // j++;
-        var det = document.querySelectorAll(classSelector);
-        // editD = !editD;
-        det.forEach(function(element){
-            element.contentEditable = true;
-        });
-    }
-    function saveButton(){
-        var saveG = document.querySelectorAll('.gen');
-        var saveD = document.querySelectorAll('.det');
-        var content1 = "";
-        var content2 = "";
-        saveG.forEach(function(element){
-            element.contentEditable = false;
-            content1 += element.innerHTML + "\n";
-        });
-        saveD.forEach(function(element){
-            element.contentEditable = false;
-            content2 += element.innerHTML + "\n";
-        });
-        console.log("Nội dung đã lưu: ", content1);
-        console.log("Nội dung đã lưu: ", content2);
-        alert("Nội dung đã được lưu!");
-    }
-</script>
 <div class="end-of-page">
     <div class="modern">
         <i class='bx bxs-devices'></i>
@@ -149,5 +113,72 @@
         <p class="adver-detail">Kết nối chăm sóc sức khỏe mọi lúc, mọi nơi: Bệnh viện luôn sẵn lòng lắng nghe và hỗ trợ.</p>
     </div>
 </div>
+<!-- modal -->
+            <div class="modal fade" id="dele" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="exampleModalLabel">Xóa bác sĩ</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="mb-3">Xác nhận xóa</div>
+                            <div class="modal-footer">
+                                <form action="doctorDelete.php" method="post">
+                                    <button type="submit" class="btn btn-primary" value="<?php echo $doctor['ID']; ?>" name="ID">Xóa</button>
+                                </form>      
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal fade" id="change-info" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-xl modal-dialog-scrollable">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="exampleModalLabel">Chỉnh sửa thông tin bác sĩ</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form action="doctorChange.php" method="post">
+                                <div class="mb-3">
+                                    <label class="col-form-label">Họ và tên:</label>
+                                    <input type="text" class="form-control" id="recipient-name" name="doctorName" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="col-form-label">CCCD:</label>
+                                    <input type="text" class="form-control" id="recipient-name" name="CCCD" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="col-form-label">Năm sinh:</label>
+                                    <input type="text" class="form-control" id="recipient-name" name="dateofborn" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="col-form-label">Địa chỉ:</label>
+                                    <input type="text" class="form-control" id="recipient-name" name="address" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="col-form-label">Khoa điều trị:</label>
+                                    <input type="text" class="form-control" id="recipient-name" name="khoa" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="col-form-label">Chức vụ:</label>
+                                    <input type="text" class="form-control" id="recipient-name" name="position" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="col-form-label">Bằng cấp:</label>
+                                    <input type="text" class="form-control" id="recipient-name" name="degree" required>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="submit" class="btn btn-primary" value="<?php echo $doctor['ID'] ?>" name="ID">Lưu thay đổi</button>
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
 </body>
 </html>

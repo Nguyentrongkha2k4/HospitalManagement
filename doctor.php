@@ -172,7 +172,7 @@ if(!isset($_SESSION['user'])){
                 <div class="infoStaff">
                     <div class="staff1">
                         <h2>Nguyễn Phúc Hưng</h2>
-                        <p>CCCD: 03845730459384</p>
+                        <p>CCCD: 03845730459383</p>
                         <p>Địa chỉ: Ký túc xá khu B Đại học quốc gia</p>
                     </div>
                 </div>
@@ -386,8 +386,9 @@ if(!isset($_SESSION['user'])){
                     </div>
                 </div>
                 <div class="buttonFunc">
-                    <button type="button" class="insert-but" data-bs-toggle="modal" onclick ="patientInfo()">Thông tin chi tiết</button>
-                <script> function patientInfo(){window.location = "patientInfo.php";} </script>
+                    <form action="doctorInfo.php">
+                        <button type="submit" class="insert-but" data-bs-toggle="modal">Thông tin chi tiết</button>
+                    </form>
                 
                 </div>
             </div>
