@@ -17,7 +17,6 @@ if(count($data) > 0){
         "medicineName" => $medicineName,
         "uses" => $uses,
         "amount" => 0,
-        "kho"
     ]);
     $result = json_decode($insert, 1);
     if(isset($result['name'])){

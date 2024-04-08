@@ -201,7 +201,7 @@ body{
     background-color: rgb(87, 26, 26);
 }
 .box-list{
-    max-height: 377px;
+    max-height: 500px;
     overflow-x: hidden;
     overflow-y: scroll;
     display: flex;

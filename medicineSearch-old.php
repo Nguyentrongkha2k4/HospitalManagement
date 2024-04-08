@@ -11,17 +11,12 @@ if($medicineName == ""){
     header("location: medicine.php");
 }else{
     $rdb = new firebaseRDB($databaseURL);
-    $retrieve = $rdb->retrieve("/medicineManager");
+    $retrieve = $rdb->retrieve("/medicineManager", "medicineName", "EQUAL", $medicineName);
     $data = json_decode($retrieve, 1);
-    $_SESSION['medicineList'] = $data;
-    foreach ($_SESSION["medicineList"] as $key => $val){
-        if (!str_contains(strtolower($val["medicineName"]),$medicineName)) {
-            unset($_SESSION["medicineList"][$key]);
-        }
-    }
-    if(count($_SESSION['medicineList']) == 0){
+    if(count($data) == 0){
         $_SESSION['undefind'] = "undefind";
     }
+    $_SESSION['medicineList'] = $data;
     header("location: medicine.php");
 }
 

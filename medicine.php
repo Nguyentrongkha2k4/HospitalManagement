@@ -126,11 +126,76 @@ if(!isset($_SESSION['user'])){
                                     </div> 
                                 </div>
                                 <div class="buttonFunc">
-                                    <button type="button" class="insert-but" data-bs-toggle="modal" data-bs-target="#change" data-bs-whatever="@mdo">Nhập/xuất kho</button>
-                                    <form action="medicineDelete.php" method="post">
-                                        <button type="submit" class="insert-but" value="<?php echo $medicine['medicineName'] ?>" name="medicineName">Xóa</button>
-                                    </form>   
-                                    <button type="button" class="insert-but" data-bs-toggle="modal" data-bs-target="#info" data-bs-whatever="@getbootstrap">Thông tin chi tiết</button>
+                                    <button type="button" class="insert-but" data-bs-toggle="modal" data-bs-target="#<?php echo md5($medicine['medicineName'])."change"; ?>">Nhập/xuất kho</button>
+                                    <button type="button" class="insert-but" data-bs-toggle="modal" data-bs-target="#<?php echo md5($medicine['medicineName'])."delete"; ?>">Xóa</button>
+                                    <button type="button" class="insert-but" data-bs-toggle="modal" data-bs-target="#<?php echo md5($medicine['medicineName'])."info"; ?>">Thông tin chi tiết</button>
+                                </div>
+                            </div>
+<!-- modal                   -->
+                            <div class="modal fade" id="<?php echo md5($medicine['medicineName'])."change";?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h1 class="modal-title fs-5" id="exampleModalLabel">Nhập xuất kho</h1>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <form action="medicineChange.php" method="post">
+                                                <div class="mb-3">
+                                                    <select class="mb-3" name="choice">
+                                                        <option value=1>Nhập kho</option>
+                                                        <option value=2>Xuất kho</option>
+                                                    </select>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="recipient-name" class="col-form-label">Số lượng:</label>
+                                                    <input type="text" class="form-control" id="recipient-name" name="amount" required>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="message-text" class="col-form-label">Ngày nhập/xuất kho:</label>
+                                                    <input type="date" class="form-control" id="message-text" name="date" required></input>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                                                    <button type="submit" class="btn btn-primary" value="<?php echo $medicine['medicineName']; ?>" name="medicineName">Lưu thay đổi</button>
+                                                </div>
+                                        
+                                           </form>
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal fade" id="<?php echo md5($medicine['medicineName'])."delete"; ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h1 class="modal-title fs-5" id="exampleModalLabel">Xóa thuốc <?php echo $medicine['medicineName']; ?></h1>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-footer">
+                                                <form action="medicineDelete.php" method="post">
+                                                    <button type="submit" class="btn btn-primary" value="<?php echo $medicine['medicineName']; ?>" name="medicineName">Xác nhận</button>
+                                                </form>      
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal fade" id="<?php echo md5($medicine['medicineName'])."info"; ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog modal-xl">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h1 class="modal-title fs-5" id="exampleModalLabel">Thông tin <?php echo $medicine['medicineName']; ?></h1>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             <?php
@@ -154,12 +219,77 @@ if(!isset($_SESSION['user'])){
                                     </div> 
                                 </div>
                                 <div class="buttonFunc">
-                                    <button type="button" class="insert-but" data-bs-toggle="modal" data-bs-target="#change">Nhập/xuất kho</button>
-                                    <form action="medicineDelete.php" method="post">
-                                        <button type="submit" class="insert-but" value="<?php echo $medicine['medicineName'] ?>" name="medicineName">Xóa</button>
-                                    </form>   
-                                    <button type="button" class="insert-but" data-bs-toggle="modal" data-bs-target="#info">Thông tin chi tiết</button>
+                                    <button type="button" class="insert-but" data-bs-toggle="modal" data-bs-target="#<?php echo md5($medicine['medicineName'])."change"; ?>">Nhập/xuất kho</button>
+                                    <button type="button" class="insert-but" data-bs-toggle="modal" data-bs-target="#<?php echo md5($medicine['medicineName'])."delete"; ?>">Xóa</button>
+                                    <button type="button" class="insert-but" data-bs-toggle="modal" data-bs-target="#<?php echo md5($medicine['medicineName'])."info"; ?>">Thông tin chi tiết</button>
                                     
+                                </div>
+                            </div>
+<!-- modal                             -->
+                            <div class="modal fade" id="<?php echo md5($medicine['medicineName'])."change"; ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h1 class="modal-title fs-5" id="exampleModalLabel">Nhập xuất kho <?php echo $medicine['medicineName']; ?></h1>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <form action="medicineChange.php" method="post">
+                                                <div class="mb-3">
+                                                    <select class="mb-3" name="choice">
+                                                        <option value="Nhập">Nhập kho</option>
+                                                        <option value="Xuất">Xuất kho</option>
+                                                    </select>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="recipient-name" class="col-form-label">Số lượng:</label>
+                                                    <input type="text" class="form-control" id="recipient-name" name="amount" required>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="message-text" class="col-form-label">Ngày nhập/xuất kho:</label>
+                                                    <input type="date" class="form-control" id="message-text" name="date" required></input>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                                                    <button type="submit" class="btn btn-primary" value="<?php echo $medicine['medicineName']; ?>" name="medicineName">Lưu thay đổi</button>
+                                                </div>
+                                        
+                                           </form>
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal fade" id="<?php echo md5($medicine['medicineName'])."delete"; ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h1 class="modal-title fs-5" id="exampleModalLabel">Xóa thuốc <?php echo $medicine['medicineName']; ?></h1>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-footer">
+                                                <form action="medicineDelete.php" method="post">
+                                                    <button type="submit" class="btn btn-primary" value="<?php echo $medicine['medicineName']; ?>" name="medicineName">Xác nhận</button>
+                                                </form>      
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal fade" id="<?php echo md5($medicine['medicineName'])."info"; ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog modal-xl">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h1 class="modal-title fs-5" id="exampleModalLabel">Thông tin <?php echo $medicine['medicineName']; ?></h1>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         <?php
@@ -193,75 +323,5 @@ if(!isset($_SESSION['user'])){
                 <p class="adver-detail">Kết nối chăm sóc sức khỏe mọi lúc, mọi nơi: Bệnh viện luôn sẵn lòng lắng nghe và hỗ trợ.</p>
             </div>
         </div>
-<!-- button nhap xuat kho -->
-            <div class="modal fade" id="change" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h1 class="modal-title fs-5" id="exampleModalLabel">Nhập xuất kho</h1>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                            <form action="medicineChange.php" method="post">
-                                <div class="mb-3">
-                                    <select class="mb-3" name="choice">
-                                        <option value=1>Nhập kho</option>
-                                        <option value=2>Xuất kho</option>
-                                    </select>
-                                </div>
-                                <div class="mb-3">
-                                    <label for="recipient-name" class="col-form-label">Số lượng:</label>
-                                    <input type="text" class="form-control" id="recipient-name" name="amount" required>
-                                </div>
-                                <div class="mb-3">
-                                    <label for="message-text" class="col-form-label">Ngày nhập/xuất kho:</label>
-                                    <input type="date" class="form-control" id="message-text" name="date" required></input>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
-                                    <button type="submit" class="btn btn-primary" value="<?php echo $medicine['medicineName']; ?>" name="medicineName">Lưu thay đổi</button>
-                                </div>
-                        
-                           </form>
-                        </div>
-                        
-                    </div>
-                </div>
-            </div>
-            <!-- <div class="modal fade" id="dele" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h1 class="modal-title fs-5" id="exampleModalLabel">Xóa thuốc</h1>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                            <div class="mb-3">Xác nhận xóa </div>
-                            <div class="modal-footer">
-                                <form action="medicineDelete.php" method="post">
-                                    <button type="submit" class="btn btn-primary" value="<?php echo $medicine['medicineName'] ?>" name="medicineName">Xóa</button>
-                                </form>      
-                            </div>
-                        </div>
-                        
-                    </div>
-                </div>
-            </div> -->
-            <div class="modal fade" id="info" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog modal-xl">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h1 class="modal-title fs-5" id="exampleModalLabel">Thông tin</h1>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                            
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
     </body>
     </html>
