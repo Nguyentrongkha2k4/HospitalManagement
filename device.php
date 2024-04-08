@@ -99,9 +99,9 @@ function locdautiengviet($str){
             <h2>TÌM THIẾT BỊ Y TẾ</h2>
             <p>Vui lòng chọn loại thiết bị y tế cần tìm, viết ra tên thiết bị để tìm nhanh hơn</p> <br>
             <form class="search-form" action="deviceSearch.php" method="post">
-                <input type = "text" placeholder="Tìm kiếm tên thiết bị">
+                <input type = "text" placeholder="Tìm kiếm tên thiết bị" name = "deviceName">
                 <select name="devicePurpose">
-                    <option >Theo mục đích sử dụng</option>
+                    <option value = "">Theo mục đích sử dụng</option>
                     <option value="Chẩn đoán" >Chẩn đoán</option>
                     <option value="Điều trị" >Điều trị</option>
                     <option value="Hỗ trợ" >Hỗ trợ</option>
@@ -346,7 +346,7 @@ function locdautiengviet($str){
                     }
                 }
                 unset($_SESSION['undefind']);
-                unset($_SESSION['medicineList']);
+                unset($_SESSION['deviceList']);
                 ?> 
         </div>            
 
