@@ -36,10 +36,10 @@ if(!isset($_SESSION['user'])){
                     <div>THÔNG TIN LIÊN HỆ</div>
                 </button>
                 <button onclick="treatment()" class="treatment">
-                    <div>QUẢN LÝ NHÂN VIÊN</div>
+                    <div>QUẢN LÝ BÁC SĨ</div>
                 </button>
                 <button onclick="patient()" class="patient">
-                    <div>QUẢN LÝ BỆNH NHÂN</div>
+                    <div>QUẢN LÝ NGƯỜI BỆNH</div>
                 </button>
                 <button onclick="medicine()" class="medicine">
                     <div>QUẢN LÝ THUỐC</div>
@@ -76,11 +76,11 @@ if(!isset($_SESSION['user'])){
             <h2>THÔNG TIN BỆNH NHÂN</h2>
             <p>Vui lòng nhập thông tin bệnh nhân để tìm kiếm nhanh hơn</p> <br>
             <form class="search-form" action="patientSearch.php" method="post">
-                <input type = "text" placeholder="Nhập CCCD" name="CCCD">
-                <input type = "text" placeholder="Tìm kiếm tên bệnh nhân" name="patientName">
-                <input type = "date" name="dateofborn">
-                <select name="recipient-name">
-                    <option value = "">Khoa điều trị</option>
+                <input type = "text" placeholder="Nhập CCCD" name="Nhập CCCD">
+                <input type = "text" placeholder="Tìm kiếm tên bệnh nhân" name="Tìm kiếm tên bệnh nhân">
+                <input type = "date" name="Ngày sinh bệnh nhân">
+                <select name="khoa">
+                    <option >Khoa điều trị</option>
                     <option value="khoa ngoại tổng hợp">Khoa ngoại tổng hợp</option>
                     <option value="khoa nội tổng hợp">Khoa nội tổng hợp</option>
                     <option value="khoa răng-hàm-mặt">Khoa răng-hàm-mặt</option>
@@ -88,7 +88,7 @@ if(!isset($_SESSION['user'])){
                     <option value="khoa da liễu">Khoa da liễu</option>
                     <option value="khoa thần kinh">Khoa thần kinh</option>
                 </select>
-                <button type="submit" class="search-button">
+                <button class="search-button">
                     <img class="search-icon" src="icon/search-replace.png">
                 </button>
             </form>
@@ -126,7 +126,7 @@ if(!isset($_SESSION['user'])){
                     </div>
                     <div class="mb-3">
                         <label for="recipient-name" class="col-form-label">Khoa điều trị:</label>
-                        <select name="recipient-name" class="form-control" id="recipient-name">
+                        <select name="khoa" class="form-control" id="recipient-name">
                             <option value="khoa ngoại tổng hợp">Khoa ngoại tổng hợp</option>
                             <option value="khoa nội tổng hợp">Khoa nội tổng hợp</option>
                             <option value="khoa răng-hàm-mặt">Khoa răng-hàm-mặt</option>
@@ -147,20 +147,12 @@ if(!isset($_SESSION['user'])){
         </div>
 
         <div class="box-list">
-            <?php
-            if(isset($_SESSION['patientList'])){
-                if(isset($_SESSION['undefind'])){?>
-                <div class="listbox"><h2><?php echo $_SESSION['undefind']; ?></h2></div><?php
-            } else{
-                foreach($_SESSION['patientList'] as $patient){?>
-                <!-- <?php echo $patient; ?> -->
             <div class="listbox">
                 <div class="infoPatient">
                     <div class="patient1">
-                        <h2><?php echo $patient['patientName']; ?></h2> 
-                        <p>CCCD: <?php echo $patient['CCCD']; ?> </p>
-                        <p>Năm sinh: <?php echo $patient['dateofborn']?></p>
-                        <p>Khoa điều trị: <?php echo $patient['recipient-name'] ?></p>
+                        <h2>Nguyễn Phúc Hưng</h2>
+                        <p>CCCD: 03845730459384</p>
+                        <p>Địa chỉ: Ký túc xá khu B Đại học quốc gia</p>
                     </div>
                 </div>
                 <div class="buttonFunc">
@@ -169,44 +161,65 @@ if(!isset($_SESSION['user'])){
                 
                 </div>
             </div>
-            <?php
-                }
-            }
-        }
-        else{
-            $rdb = new firebaseRDB($databaseURL);
-            $retrieve = $rdb->retrieve('/vicManager');
-            $data = json_decode($retrieve,1);
-            if($data == ""){?>
-                <div class="listbox"><h2>Undefind</h2></div><?php
-            }
-            else{
-                foreach($data as $patient){?>
-                    <div class="listbox">
-                        <div class="infoPatient">
-                            <div class="patient1">
-                                <h2><?php echo $patient['patientName']; ?></h2> 
-                                <p>CCCD: <?php echo $patient['CCCD']; ?> </p>
-                                <p>Năm sinh: <?php echo $patient['dateofborn']?></p>
-                                <p>Khoa điều trị: <?php echo $patient['recipient-name'] ?></p>
-                            </div>
-                        </div>
-                        <div class="buttonFunc">
-                            <button type="button" class="insert-but" data-bs-toggle="modal" onclick ="patientInfo()">Thông tin chi tiết</button>
-                        <script> function patientInfo(){window.location = "patientInfo.php";} </script>
-                        
-                        </div>
+            <div class="listbox">
+                <div class="infoPatient">
+                    <div class="patient1">
+                        <h2>Nguyễn Phúc Hưng</h2>
+                        <p>CCCD: 03845730459384</p>
+                        <p>Địa chỉ: Ký túc xá khu B Đại học quốc gia</p>
+                        <p>Khoa điều trị: </p>
                     </div>
-                    <?php
-                        }
-                    }
-                }
-                unset($_SESSION['undefind']);
-                unset($_SESSION['patientList']);
-                ?>
+                </div>
+                <div class="buttonFunc">
+                    <button type="button" class="insert-but" data-bs-toggle="modal" onclick ="patientInfo()">Thông tin chi tiết</button>
+                <script> function patientInfo(){window.location = "patientInfo.php";} </script>
+                
+                </div>
+            </div>
+            <div class="listbox">
+                <div class="infoPatient">
+                    <div class="patient1">
+                        <h2>Nguyễn Phúc Hưng</h2>
+                        <p>CCCD: 03845730459384</p>
+                        <p>Địa chỉ: Ký túc xá khu B Đại học quốc gia</p>
+                    </div>
+                </div>
+                <div class="buttonFunc">
+                    <button type="button" class="insert-but" data-bs-toggle="modal" onclick ="patientInfo()">Thông tin chi tiết</button>
+                <script> function patientInfo(){window.location = "patientInfo.php";} </script>
+                
+                </div>
+            </div>
+            <div class="listbox">
+                <div class="infoPatient">
+                    <div class="patient1">
+                        <h2>Nguyễn Phúc Hưng</h2>
+                        <p>CCCD: 03845730459384</p>
+                        <p>Địa chỉ: Ký túc xá khu B Đại học quốc gia</p>
+                    </div>
+                </div>
+                <div class="buttonFunc">
+                    <button type="button" class="insert-but" data-bs-toggle="modal" onclick ="patientInfo()">Thông tin chi tiết</button>
+                <script> function patientInfo(){window.location = "patientInfo.php";} </script>
+                
+                </div>
+            </div>
+            <div class="listbox">
+                <div class="infoPatient">
+                    <div class="patient1">
+                        <h2>Nguyễn Phúc Hưng</h2>
+                        <p>CCCD: 03845730459384</p>
+                        <p>Địa chỉ: Ký túc xá khu B Đại học quốc gia</p>
+                    </div>
+                </div>
+                <div class="buttonFunc">
+                    <button type="button" class="insert-but" data-bs-toggle="modal" onclick ="patientInfo()">Thông tin chi tiết</button>
+                <script> function patientInfo(){window.location = "patientInfo.php";} </script>
+                
+                </div>
+            </div>
             
         </div>
-
         <div class="end-of-page">
             <div class="modern">
                 <i class='bx bxs-devices'></i>

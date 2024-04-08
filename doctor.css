@@ -15,16 +15,34 @@
     text-align: center;
     padding: 48px 16px;
 }
-.find input, select{
+.find input{
     font-size: 18px;
     border-radius: 34px;
+    margin: 0px;
     padding: 12px 24px;
     text-overflow: ellipsis;
     color: rgb(58, 8, 8);
 }
-.findfirst input, select{
+.find select{
     font-size: 18px;
     border-radius: 34px;
+    margin: 0px;
+    padding: 12px 24px;
+    text-overflow: ellipsis;
+    color: rgb(58, 8, 8);
+}
+.findfirst input{
+    font-size: 18px;
+    border-radius: 34px;
+    margin: 0px;
+    padding: 12px 24px;
+    text-overflow: ellipsis;
+    color: rgb(58, 8, 8);
+}
+.findfirst select{
+    font-size: 18px;
+    border-radius: 34px;
+    margin: 0px;
     padding: 12px 24px;
     text-overflow: ellipsis;
     color: rgb(58, 8, 8);

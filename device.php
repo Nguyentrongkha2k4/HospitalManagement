@@ -13,6 +13,9 @@ if(!isset($_SESSION['user'])){
         <link rel="stylesheet" href="device.css">
         <link rel="stylesheet" href="general.css">
         <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
 
     </head>
     <body>
@@ -32,10 +35,10 @@ if(!isset($_SESSION['user'])){
                     <div>THÔNG TIN LIÊN HỆ</div>
                 </button>
                 <button onclick="treatment()" class="treatment">
-                    <div>QUẢN LÝ BÁC SĨ</div>
+                    <div>QUẢN LÝ NHÂN VIÊN</div>
                 </button>
                 <button onclick="patient()" class="patient">
-                    <div>QUẢN LÝ NGƯỜI BỆNH</div>
+                    <div>QUẢN LÝ BỆNH NHÂN</div>
                 </button>
                 <button onclick="medicine()" class="medicine">
                     <div>QUẢN LÝ THUỐC</div>
@@ -69,66 +72,84 @@ if(!isset($_SESSION['user'])){
             </div>
         </div>
         <div class="find">
-            <h2>TÌM THIẾT BỊ Y TẾ</h2> <br> <br>
-            <p>Vui lòng loại thiết bị y tế cần tìm, viết ra tên thiết bị để tìm nhanh hơn</p> <br>
-            <form action="/device.php" method="get">
-                <select class="select" name="purpose-device-select">
-                    <option value="All" class="doctor">Theo mục đích sử dụng</option>
-                    <option value="Chẩn đoán" class="doctor">Chẩn đoán</option>
-                    <option value="Điều trị" class="doctor">Điều trị</option>
-                    <option value="Hỗ trợ" class="doctor">Hỗ trợ</option>
-                </select>
-                <select class="select" name="kind-device-select">
-                    <option value="All" class="doctor">Theo loại thiết bị</option>
-                    <option value="Thiết bị điện" class="doctor">Thiết bị điện</option>
-                    <option value="Thiết bị cơ học" class="doctor">Thiết bị cơ học</option>
-                    <option value="Thiết bị điện tử" class="doctor">Thiết bị điện tử</option>
-                </select>
-                <select class="select" name="toxic-device-select">
-                    <option value="All" class="doctor">Nguy cơ và quản lý</option>
-                    <option value="An toàn loại I" class="doctor">Loại I</option>
-                    <option value="An toàn loại II" class="doctor">Loại II</option>
-                    <option value="An toàn loại III" class="doctor">Loại III</option>
-                    <option value="Đơn giản" class="doctor">Đơn giản</option>
-                    <option value="Phức tạp" class="doctor">Phức tạp</option>Phức tạp</option>
-                </select>
+            <h2>TÌM THIẾT BỊ Y TẾ</h2>
+            <p>Vui lòng chọn loại thiết bị y tế cần tìm, viết ra tên thiết bị để tìm nhanh hơn</p> <br>
+            <form class="search-form" action="deviceSearch.php" method="post">
                 <input type = "text" placeholder="Tìm kiếm tên thiết bị">
-                <button class="search-button">
+                <select name="devicePurpose">
+                    <option >Theo mục đích sử dụng</option>
+                    <option value="Chẩn đoán" >Chẩn đoán</option>
+                    <option value="Điều trị" >Điều trị</option>
+                    <option value="Hỗ trợ" >Hỗ trợ</option>
+                </select>
+                <button type="submit" class="search-button" title="Tìm kiếm">
                     <img class="search-icon" src="icon/search-replace.png">
                 </button>
             </form>
         </div>
-        <div class="device1">
-            <h2>Máy Siêu Âm (Ultrasound Machine)</h2>
-            <p>Công dụng:  Máy siêu âm được sử dụng để tạo ra 
-            hình ảnh của cơ thể bằng cách sử dụng sóng siêu âm. 
-            Nó được sử dụng để chẩn đoán và theo dõi các tình trạng bệnh 
-            lý trong nhiều lĩnh vực
-            y tế như sản phụ khoa, nội soi, tim mạch, và da liễu.</p>
-            <p>Hoạt động: Máy siêu âm tạo ra sóng siêu âm và phát 
-            chúng vào cơ thể thông qua một đầu dò. Sóng siêu âm sẽ phản xạ lại từ cấu trúc bên 
-            trong cơ thể và được máy ghi nhận để tạo ra hình ảnh.</p>
-            <p>Lịch sử bảo dưỡng: gần đầy nhất vào 11/11/2023</p>
-            <p>Sự sẵn có: không</p>
+
+        <div class="insertMedicine">
+        <button type="button" class="insert-but" data-bs-toggle="modal" data-bs-target="#adddoctor" data-bs-whatever="Tên thuốc">Thêm thiết bị</button>
+            <div class="modal fade" id="adddoctor" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" >
+            <div class="modal-dialog modal-xl modal-dialog-scrollable" s>
+                <div class="modal-content" style="margin-top: 0;">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Thêm thiết bị</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form action="deviceInsert.php" method="post">
+                    <div class="mb-3">
+                        <label for="recipient-name" class="col-form-label">Tên thiết bị:</label>
+                        <input type="text" class="form-control" id="recipient-name" name="deviceName" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="recipient-name" class="col-form-label">Mục đích sử dụng:</label>
+                        <select name="purpose" class="form-control" id="recipient-name">
+                            <option >Theo mục đích sử dụng</option>
+                            <option value="Chẩn đoán" >Chẩn đoán</option>
+                            <option value="Điều trị" >Điều trị</option>
+                            <option value="Hỗ trợ" >Hỗ trợ</option>
+                        </select>
+                    </div>             
+                    <div class="mb-3">
+                        <label for="recipient-name" class="col-form-label">Ngày nhập thiết bị:</label>
+                        <input type="date" class="form-control" id="recipient-name" name="inputdate" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="recipient-name" class="col-form-label">Công dụng:</label>
+                        <textarea type="text" class="form-control" id="recipient-name" name="uses" required></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                    <button type="button" class="btn btn-primary">Lưu</button>
+                </div>
+            </form>
+                </div>
+            </div>
+            </div>
         </div>
-        <div class="device1">
-            <h2>Máy X-quang (X-ray Machine)</h2>
-            <p>Công dụng:  Máy X-quang được sử dụng để tạo ra 
-            hình ảnh của cơ thể bằng cách sử dụng tia X. Nó được sử 
-            dụng rộng rãi trong chẩn đoán và theo dõi các tình trạng bệnh lý như gãy xương, 
-            nhiễm trùng, bệnh phổi, và nhiều bệnh lý khác.</p>
-            <p>Hoạt động: Máy X-quang tạo ra tia X từ một 
-            nguồn tia X và hướng chúng vào cơ thể thông qua 
-            một máy phát tia X. Tia X sẽ đi qua cơ thể và được máy ghi nhận trên một tấm phim hoặc bảng cảm biến, 
-            tạo ra hình ảnh phản xạ cấu trúc bên trong cơ thể.</p>
-            <p>Lịch sử bảo dưỡng: gần đầy nhất vào 10/10/2023</p>
-            <p>Sự sẵn có: có</p>
+        <div class="box-list">
+            <div class="listbox">
+                <div class="infoStaff">
+                    <div class="staff1">
+                        <h2>Máy trợ thính</h2>
+                        <p>Số lượng: 0</p>
+                        <p>Mục đích sử dụng:</p>
+                        <p>Công dụng:</p>
+                    </div>
+                </div>
+                <div class="buttonFunc">
+                    <button type="button" class="insert-but" data-bs-toggle="modal" data-bs-target="#change">Xuất/nhập kho</button>
+                    <form action="deviceDelete.php" method="post">
+                        <button type="submit" class="insert-but" value="<?php echo $medicine['medicineName'] ?>" name="medicineName">Xóa</button>
+                    </form>
+                    <button type="button" class="insert-but" data-bs-toggle="modal" data-bs-target="#info">Lịch bảo dưỡng</button>
+                </div>
+            </div>
         </div>
-        <div class="order-container">
-            <button class="order">&lt</button>
-            <button class="number">1</button>
-            <button class="order">&gt</button>
-        </div> <br> <br>
+
         <div class="end-of-page">
             <div class="modern">
                 <i class='bx bxs-devices'></i>
@@ -152,4 +173,21 @@ if(!isset($_SESSION['user'])){
             </div>
         </div>
     </body>
+<!-- modal -->
+    <div class="modal fade" id="info" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-xl">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="exampleModalLabel">Thông tin</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
     </html>

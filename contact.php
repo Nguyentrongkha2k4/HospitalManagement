@@ -32,10 +32,10 @@ if(!isset($_SESSION['user'])){
                     <div>THÔNG TIN LIÊN HỆ</div>
                 </button>
                 <button onclick="treatment()" class="treatment">
-                    <div>QUẢN LÝ BÁC SĨ</div>
+                    <div>QUẢN LÝ NHÂN VIÊN</div>
                 </button>
                 <button onclick="patient()" class="patient">
-                    <div>QUẢN LÝ NGƯỜI BỆNH</div>
+                    <div>QUẢN LÝ BỆNH NHÂN</div>
                 </button>
                 <button onclick="medicine()" class="medicine">
                     <div>QUẢN LÝ THUỐC</div>

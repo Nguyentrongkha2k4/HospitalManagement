@@ -35,10 +35,10 @@ if(!isset($_SESSION['user'])){
                     <div>THÔNG TIN LIÊN HỆ</div>
                 </button>
                 <button onclick="treatment()" class="treatment">
-                    <div>QUẢN LÝ BÁC SĨ</div>
+                    <div>QUẢN LÝ NHÂN VIÊN</div>
                 </button>
                 <button onclick="patient()" class="patient">
-                    <div>QUẢN LÝ NGƯỜI BỆNH</div>
+                    <div>QUẢN LÝ BỆNH NHÂN</div>
                 </button>
                 <button onclick="medicine()" class="medicine">
                     <div>QUẢN LÝ THUỐC</div>
@@ -75,29 +75,6 @@ if(!isset($_SESSION['user'])){
             <h2>TÌM THUỐC</h2>
             <p>Vui lòng loại thuốc cần tìm, viết ra tên thuốc để tìm nhanh hơn</p> <br>
             <form class="search-form" action="medicineSearch.php" method="post">
-                <!-- <select class="select" name="purpose-medicine-select">
-                    <option value="All" class="doctor">Theo mục đích sử dụng</option>
-                    <option value="Thuốc giảm đau" class="doctor">Thuốc giảm đau</option>
-                    <option value="Thuốc để phòng ngừa bệnh" class="doctor">Thuốc để phòng ngừa bệnh</option>
-                    <option value="Thuốc để tránh lo âu" class="doctor">Thuốc để tránh lo âu</option>
-                    <option value="Thuốc chẩn đoán" class="doctor">Thuốc chẩn đoán</option>
-                    <option value="Thuốc điều trị" class="doctor">Thuốc điều trị</option>
-                    <option value="Thuốc phòng ngừa" class="doctor">Thuốc phòng ngừa</option>
-                </select>
-                <select class="select" name="func-medicine-select">
-                    <option value="All" class="doctor">Theo cơ chế hoạt động</option>
-                    <option value="Chất giảm đau" class="doctor">Chất giảm đau</option>
-                    <option value="Chất chống vi khuẩn" class="doctor">Chất chống vi khuẩn</option>
-                    <option value="Chất chống cơ thắt cơ" class="doctor">Chất chống cơ thắt cơ</option>
-                    <option value="Chất chống vi rút" class="doctor">Chất chống vi rút</option>
-                    <option value="Chất chống viêm" class="doctor">Chất chống viêm</option>
-                    <option value="Chất gây mê, gây tê" class="doctor">Chất gây mê, gây tê</option>
-                </select>
-                <select class="select" name="toxic-medicine-select">
-                    <option value="All" class="doctor">Tìm kiếm theo độc tính</option>
-                    <option value="An toàn" class="doctor">An toàn</option>
-                    <option value="Nguy hiểm" class="doctor">Nguy hiểm</option>
-                </select> -->
                 <input type = "text" placeholder="Tìm kiếm tên thuốc" name="medicineName">
                 <button type="submit" class="search-button">
                     <img class="search-icon" src="icon/search-replace.png">
@@ -150,8 +127,9 @@ if(!isset($_SESSION['user'])){
                                 </div>
                                 <div class="buttonFunc">
                                     <button type="button" class="insert-but" data-bs-toggle="modal" data-bs-target="#change" data-bs-whatever="@mdo">Nhập/xuất kho</button>
-                                    
-                                    <button type="button" class="insert-but" data-bs-toggle="modal" data-bs-target="#dele" data-bs-whatever="@getbootstrap">Xoa</button>
+                                    <form action="medicineDelete.php" method="post">
+                                        <button type="submit" class="insert-but" value="<?php echo $medicine['medicineName'] ?>" name="medicineName">Xóa</button>
+                                    </form>   
                                     <button type="button" class="insert-but" data-bs-toggle="modal" data-bs-target="#info" data-bs-whatever="@getbootstrap">Thông tin chi tiết</button>
                                 </div>
                             </div>
@@ -176,9 +154,11 @@ if(!isset($_SESSION['user'])){
                                     </div> 
                                 </div>
                                 <div class="buttonFunc">
-                                    <button type="button" class="insert-but" data-bs-toggle="modal" data-bs-target="#change" data-bs-whatever="@mdo">Nhập/xuất kho</button>
-                                    <button type="button" class="insert-but" data-bs-toggle="modal" data-bs-target="#dele" data-bs-whatever="@getbootstrap">Xoa</button>
-                                    <button type="button" class="insert-but" data-bs-toggle="modal" data-bs-target="#info" data-bs-whatever="@getbootstrap">Thông tin chi tiết</button>
+                                    <button type="button" class="insert-but" data-bs-toggle="modal" data-bs-target="#change">Nhập/xuất kho</button>
+                                    <form action="medicineDelete.php" method="post">
+                                        <button type="submit" class="insert-but" value="<?php echo $medicine['medicineName'] ?>" name="medicineName">Xóa</button>
+                                    </form>   
+                                    <button type="button" class="insert-but" data-bs-toggle="modal" data-bs-target="#info">Thông tin chi tiết</button>
                                     
                                 </div>
                             </div>
@@ -248,7 +228,7 @@ if(!isset($_SESSION['user'])){
                     </div>
                 </div>
             </div>
-            <div class="modal fade" id="dele" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <!-- <div class="modal fade" id="dele" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -266,7 +246,7 @@ if(!isset($_SESSION['user'])){
                         
                     </div>
                 </div>
-            </div>
+            </div> -->
             <div class="modal fade" id="info" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-xl">
                     <div class="modal-content">

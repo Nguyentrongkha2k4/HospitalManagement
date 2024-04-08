@@ -36,10 +36,10 @@ if(!isset($_SESSION['user'])){
                     <div>THÔNG TIN LIÊN HỆ</div>
                 </button>
                 <button onclick="treatment()" class="treatment">
-                    <div>QUẢN LÝ NHÂN VIÊN</div>
+                    <div>QUẢN LÝ BÁC SĨ</div>
                 </button>
                 <button onclick="patient()" class="patient">
-                    <div>QUẢN LÝ BỆNH NHÂN</div>
+                    <div>QUẢN LÝ NGƯỜI BỆNH</div>
                 </button>
                 <button onclick="medicine()" class="medicine">
                     <div>QUẢN LÝ THUỐC</div>
@@ -159,8 +159,7 @@ if(!isset($_SESSION['user'])){
                     <div class="patient1">
                         <h2><?php echo $patient['patientName']; ?></h2> 
                         <p>CCCD: <?php echo $patient['CCCD']; ?> </p>
-                        <p>Năm sinh: <?php echo $patient['dateofborn']?></p>
-                        <p>Khoa điều trị: <?php echo $patient['recipient-name'] ?></p>
+                        <p>Địa chỉ: <?php echo $patient['address']; ?></p>
                     </div>
                 </div>
                 <div class="buttonFunc">
@@ -187,8 +186,7 @@ if(!isset($_SESSION['user'])){
                             <div class="patient1">
                                 <h2><?php echo $patient['patientName']; ?></h2> 
                                 <p>CCCD: <?php echo $patient['CCCD']; ?> </p>
-                                <p>Năm sinh: <?php echo $patient['dateofborn']?></p>
-                                <p>Khoa điều trị: <?php echo $patient['recipient-name'] ?></p>
+                                <p>Địa chỉ: <?php echo $patient['address']; ?></p>
                             </div>
                         </div>
                         <div class="buttonFunc">

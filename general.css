@@ -97,6 +97,7 @@ body{
     justify-content: space-between;
 }
 .modern, .qualification, .heart, .phone{
+    padding: 10px 0;
     width: 100%;
     background-color: rgb(250, 242, 242);
     height: 190px;
