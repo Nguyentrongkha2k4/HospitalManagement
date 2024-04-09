@@ -85,3 +85,35 @@
     color: white;
     cursor: pointer;
 }
+
+
+table{
+    border-spacing: 0;
+    width: 1100px;
+    border: 1px solid;
+    background-color: rgb(254, 240, 218);
+}
+th,td,tr{
+    border-spacing: 0;
+    border: 1px solid;
+    box-sizing: border-box;
+}
+.align-table{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.scroll-table{
+    height: 350px;
+    width: 100%;
+    overflow-x: hidden;
+    overflow-y: scroll;
+}
+.align-tr td{
+    padding-left: 10px;
+    border: 1px solid;
+}
+.set-border th{
+    border: 1px solid;
+    padding-left: 10px;
+}

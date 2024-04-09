@@ -6,7 +6,15 @@ if(!isset($_SESSION['user'])){
     header("location: login.php");
 }
 
-$patient = $_POST['patient'];
+$CCCD = $_POST['CCCD'];
+if($CCCD == ""){
+    header("location: patient.php");
+}
+$rdb = new firebaseRDB($databaseURL);
+$retrieve = $rdb->retrieve("/vicManager", "CCCD", "EQUAL", $CCCD);
+$data = json_decode($retrieve, 1);
+$id = array_keys($data)[0];
+$patient = $data[$id];
 ?>
 
 <!DOCTYPE html>
@@ -81,7 +89,7 @@ $patient = $_POST['patient'];
                 <div>CCCD: <?php echo $patient['CCCD']; ?></div>
                 <div>Năm sinh: <?php echo $patient['dateofborn']; ?></div>
                 <div>Địa chỉ: <?php echo $patient['address']; ?></div>
-                <div>Khoa điều trị: <?php echo $patient['recipent-name']; ?></div>
+                <div>Khoa điều trị: <?php echo $patient['recipient-name']; ?></div>
                 <div>Bác sĩ điều trị: <?php echo $patient['doctor']; ?></div>
             </div>
             <div class="info button">
@@ -92,11 +100,11 @@ $patient = $_POST['patient'];
         <div class="detail">
             <div>
                 <h5>Kết quả xét nghiệm:</h5>
-                <div>asdad</div>
+                <div><?php if(isset($patient['result'])) echo $patient['result']; else echo "Không"; ?></div>
             </div>
             <div>
                 <h5>Lịch sử bệnh án:</h5>
-                <div>dasda</div>
+                <div><?php if(isset($patient['history'])) echo $patient['history'];else echo "Không"; ?></div>
             </div>
         </div>
     </div>
@@ -134,7 +142,7 @@ $patient = $_POST['patient'];
                             <div class="mb-3">Xác nhận xóa </div>
                             <div class="modal-footer">
                                 <form action="patientDelete.php" method="post">
-                                    <button type="submit" class="btn btn-primary" value="<?php echo $patient['patientName']; ?>" name="patientName">Xóa</button>
+                                    <button type="submit" class="btn btn-primary" value="<?php echo $patient['CCCD']; ?>" name="CCCD">Xóa</button>
                                 </form>      
                             </div>
                         </div>
@@ -154,38 +162,46 @@ $patient = $_POST['patient'];
                             <form action="patientChange.php" method="post">
                                 <div class="mb-3">
                                     <label class="col-form-label">Họ và tên:</label>
-                                    <input type="text" class="form-control" id="recipient-name" name="patientName" required>
+                                    <div style="padding:5px 0 5px 10px; border: 0.5px solid; border-radius: 5px;"><?php echo $patient['patientName'];?></div>
                                 </div>
                                 <div class="mb-3">
                                     <label class="col-form-label">CCCD:</label>
-                                    <input type="text" class="form-control" id="recipient-name" name="CCCD" required>
+                                    <div style="padding:5px 0 5px 10px; border: 0.5px solid; border-radius: 5px;"><?php echo $patient['CCCD'];?></div>
                                 </div>
                                 <div class="mb-3">
-                                    <label class="col-form-label">Năm sinh:</label>
-                                    <input type="text" class="form-control" id="recipient-name" name="dateofborn" required>
+                                    <label class="col-form-label">Năm sinh: <?php echo $patient['dateofborn'];?></label>
+                                    <input type="date" class="form-control" id="recipient-name" name="dateofborn" value="<?php echo $patient['dateofborn'];?>">
                                 </div>
                                 <div class="mb-3">
                                     <label class="col-form-label">Địa chỉ:</label>
-                                    <input type="text" class="form-control" id="recipient-name" name="address" required>
+                                    <input type="text" class="form-control" id="recipient-name" name="address" value="<?php echo $patient['address'];?>" >
                                 </div>
                                 <div class="mb-3">
                                     <label class="col-form-label">Khoa điều trị:</label>
-                                    <input type="text" class="form-control" id="recipient-name" name="khoa" required>
+                                    <select name="recipient-name" class="form-control" id="recipient-name" value="">
+                                        <option value="<?php echo $patient['recipient-name'];?>"><?php echo $patient['recipient-name'];?></option>
+                                        <?php if($patient['recipient-name'] != "khoa ngoại tổng hợp"){?><option value="khoa ngoại tổng hợp">Khoa ngoại tổng hợp</option><?php }?>
+                                        <?php if($patient['recipient-name'] != "khoa nội tổng hợp"){?><option value="khoa nội tổng hợp">Khoa nội tổng hợp</option><?php }?>
+                                        <?php if($patient['recipient-name'] != "khoa răng-hàm-mặt"){?><option value="khoa răng-hàm-mặt">Khoa răng-hàm-mặt</option><?php }?>
+                                        <?php if($patient['recipient-name'] != "khoa tai-mũi-họng"){?><option value="khoa tai-mũi-họng">Khoa tai-mũi-họng</option><?php }?>
+                                        <?php if($patient['recipient-name'] != "khoa da liễu"){?><option value="khoa da liễu">Khoa da liễu</option><?php }?>
+                                        <?php if($patient['recipient-name'] != "khoa thần kinh"){?><option value="khoa thần kinh">Khoa thần kinh</option><?php }?>
+                                    </select>
                                 </div>
                                 <div class="mb-3">
                                     <label class="col-form-label">Bác sĩ điều trị:</label>
-                                    <input type="text" class="form-control" id="recipient-name" name="doctor" required>
+                                    <input type="text" class="form-control" id="recipient-name" name="doctor" value="<?php echo $patient['doctor'];?>" required>
                                 </div>
                                 <div class="mb-3">
                                     <label class="col-form-label">Kết quả xét nghiệm:</label>
-                                    <textarea type="text" class="form-control" id="recipient-name" name="result" required></textarea>
+                                    <textarea type="text" class="form-control" id="recipient-name" name="result" value="<?php echo $patient['result'];?>" ></textarea>
                                 </div>
                                 <div class="mb-3">
                                     <label class="col-form-label">Lịch sử bệnh án:</label>
-                                    <textarea type="text" class="form-control" id="recipient-name" name="history" required></textarea>
+                                    <textarea type="text" class="form-control" id="recipient-name" name="history" value="<?php echo $patient['history'];?>" ></textarea>
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="submit" class="btn btn-primary" value="<?php echo $medicine['medicineName'] ?>" name="medicineName">Lưu thay đổi</button>
+                                    <button type="submit" class="btn btn-primary" value="<?php echo $id; ?>" name="id">Lưu thay đổi</button>
                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
                                 </div>
                             </form>

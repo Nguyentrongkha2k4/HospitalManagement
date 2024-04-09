@@ -143,8 +143,8 @@ if(!isset($_SESSION['user'])){
                                             <form action="medicineChange.php" method="post">
                                                 <div class="mb-3">
                                                     <select class="mb-3" name="choice">
-                                                        <option value=1>Nhập kho</option>
-                                                        <option value=2>Xuất kho</option>
+                                                        <option value="Nhập kho">Nhập kho</option>
+                                                        <option value="Xuất kho">Xuất kho</option>
                                                     </select>
                                                 </div>
                                                 <div class="mb-3">
@@ -189,8 +189,44 @@ if(!isset($_SESSION['user'])){
                                             <h1 class="modal-title fs-5" id="exampleModalLabel">Thông tin <?php echo $medicine['medicineName']; ?></h1>
                                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                         </div>
-                                        <div class="modal-body">
-                                            
+                                        <div class="modal-body" style="overflow-x:hidden;overflow-y:scroll;">
+                                            <?php 
+                                                $rdb = new firebaseRDB($databaseURL);
+                                                $retrieve = $rdb->retrieve("/medicineManager", "medicineName", "EQUAL", $medicine['medicineName']);
+                                                $data = json_decode($retrieve, 1);
+                                                $id = array_keys($data)[0];
+
+                                                $path = "/medicineManager/".$id."/kho";
+                                                $retrieve2 = $rdb->retrieve($path);
+                                                $data2 = json_decode($retrieve2, 1); ?>
+                            <table>
+                                <tr>
+                                    <td>
+                                        <table class="set-border">
+                                            <th style="width: 10%;">Ngày nhập/ xuất kho</th>
+                                            <th style="width: 5%;">Số lượng</th>
+                                            <th style="width: 10%;">Hạn sử dụng</th>
+                                            <th style="width: 10%;">Ghi chú</th>
+                                        </table>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="scroll-table">  
+                                            <table ><?php
+                                                foreach($data2 as $kho){?>
+                                                    <tr class="align-tr">
+                                                        <td style="width: 10%;"><?php echo $kho['date']; ?></td>
+                                                        <td style="width: 5%;"><?php echo $kho['amount']; ?></td>
+                                                        <td style="width: 10%;"><?php if(isset($kho['hsd'])) echo date('j-m-Y', strtotime($kho['hsd'])); ?></td>
+                                                        <td style="width: 10%;"><?php echo $kho['act']; ?></td>
+                                                    </tr><?php
+                                                }?>
+                                            </table>    
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
@@ -237,8 +273,8 @@ if(!isset($_SESSION['user'])){
                                             <form action="medicineChange.php" method="post">
                                                 <div class="mb-3">
                                                     <select class="mb-3" name="choice">
-                                                        <option value="Nhập">Nhập kho</option>
-                                                        <option value="Xuất">Xuất kho</option>
+                                                        <option value="Nhập kho">Nhập kho</option>
+                                                        <option value="Xuất kho">Xuất kho</option>
                                                     </select>
                                                 </div>
                                                 <div class="mb-3">
@@ -284,7 +320,43 @@ if(!isset($_SESSION['user'])){
                                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                         </div>
                                         <div class="modal-body">
-                                            
+                                            <?php 
+                                                $rdb = new firebaseRDB($databaseURL);
+                                                $retrieve = $rdb->retrieve("/medicineManager", "medicineName", "EQUAL", $medicine['medicineName']);
+                                                $data = json_decode($retrieve, 1);
+                                                $id = array_keys($data)[0];
+
+                                                $path = "/medicineManager/".$id."/kho";
+                                                $retrieve2 = $rdb->retrieve($path);
+                                                $data2 = json_decode($retrieve2, 1); ?>
+                            <table>
+                                <tr>
+                                    <td>
+                                        <table class="set-border">
+                                            <th style="width: 10%;">Ngày nhập/ xuất kho</th>
+                                            <th style="width: 5%;">Số lượng</th>
+                                            <th style="width: 10%;">Hạn sử dụng</th>
+                                            <th style="width: 10%;">Ghi chú</th>
+                                        </table>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="scroll-table">  
+                                            <table ><?php
+                                                foreach($data2 as $kho){?>
+                                                    <tr class="align-tr">
+                                                        <td style="width: 10%;"><?php echo $kho['date']; ?></td>
+                                                        <td style="width: 5%;"><?php echo $kho['amount']; ?></td>
+                                                        <td style="width: 10%;"><?php if(isset($kho['hsd'])) echo date('j-m-Y', strtotime($kho['hsd'])); ?></td>
+                                                        <td style="width: 10%;"><?php echo $kho['act']; ?></td>
+                                                    </tr><?php
+                                                }?>
+                                            </table>    
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>

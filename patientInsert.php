@@ -20,10 +20,12 @@ if(count($data) > 0){
     [
         "CCCD" => $patientCCCD,
         "patientName" => $patientName,
-        "dateofborn" => $patientBDate,
+        "dateofborn" => date('j-m-Y', strtotime($patientBDate)),
         "address"=> $patientAddress,
         "recipient-name" => $patientKhoa,
-        "doctor"=> "N/A" //// => $patientDoctor
+        "doctor"=> "N/A", //// => $patientDoctor
+        "result" => "",
+        "history" => ""
     ]);
     $result = json_decode($insert, 1);
     if(isset($result['name'])){

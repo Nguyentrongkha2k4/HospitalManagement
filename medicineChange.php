@@ -16,13 +16,13 @@ if($amount <= 0){
     $id = array_keys($data)[0];
     $path = "/medicineManager/".$id."/kho";
     
-    if($choice == "Nhập"){
+    if($choice == "Nhập kho"){
         $insert = $rdb->insert($path,
         [
-            "date" => $date,
+            "date" => date('j-m-Y', strtotime($date)),
             "amount" => $amount,
             "act" => $choice,
-            "hsd" => date('Y-m-j', strtotime('+2 year', strtotime($date)))
+            "hsd" => date('j-m-Y', strtotime('+2 year', strtotime($date)))
         ]
         );
         $amount = $amount + $data[$id]['amount'];
@@ -31,21 +31,20 @@ if($amount <= 0){
                 "amount" => $amount
             ]);
     }else{
-        $amount = $data[$id]['amount'] - $amount;
-        if((int)$amount < 0){
+        $amount2 = $data[$id]['amount'] - $amount;
+        if((int)$amount2 < 0){
             $_SESSION['wrong'] = "Số lượng không hợp lệ!";
         }else{
             $insert = $rdb->insert($path,
             [
-                "date" => $date,
+                "date" => date('j-m-Y', strtotime($date)),
                 "amount" => $amount,
-                "act" => $choice,
-                "hsd" => date('Y-m-j', strtotime('+2 year', strtotime($date)))
+                "act" => $choice
             ]
             );
             $rdb->update("/medicineManager", $id, 
             [
-                "amount" => $amount
+                "amount" => $amount2
             ]);
         }
     }

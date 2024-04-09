@@ -50,6 +50,7 @@
     border: 1px solid black;
     overflow-x: hidden;
     overflow-y: scroll;
+    padding-left: 10px;
 }
 .basic{
     width: 100%;

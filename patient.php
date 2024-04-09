@@ -164,9 +164,9 @@ if(!isset($_SESSION['user'])){
                     </div>
                 </div>
                 <div class="buttonFunc">
-                    <button type="button" class="insert-but" data-bs-toggle="modal" onclick ="patientInfo()">Thông tin chi tiết</button>
-                <script> function patientInfo(){window.location = "patientInfo.php";} </script>
-                
+                    <form action="patientInfo.php" method="post">
+                        <button type="submit" class="insert-but" name="CCCD" value ="<?php echo $patient['CCCD'];?>">Thông tin chi tiết</button>
+                    </form>
                 </div>
             </div>
             <?php
@@ -192,9 +192,9 @@ if(!isset($_SESSION['user'])){
                             </div>
                         </div>
                         <div class="buttonFunc">
-                            <button type="button" class="insert-but" data-bs-toggle="modal" onclick ="patientInfo()">Thông tin chi tiết</button>
-                        <script> function patientInfo(){window.location = "patientInfo.php";} </script>
-                        
+                            <form action="patientInfo.php" method="post">
+                                <button type="submit" class="insert-but" name="CCCD" value ="<?php echo $patient['CCCD'];?>">Thông tin chi tiết</button>
+                            </form>
                         </div>
                     </div>
                     <?php
