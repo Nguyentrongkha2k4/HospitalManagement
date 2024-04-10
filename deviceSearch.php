@@ -7,14 +7,14 @@ $devicePurpose = (isset($_POST["devicePurpose"])) ? $_POST["devicePurpose"] : ""
 
 if( $devicePurpose == "" && $deviceName == ""){
     $rdb = new firebaseRDB($databaseURL);
-    $retrieve = $rdb->retrieve("/deviceManager");
+    $retrieve = $rdb->retrieve("/deviceManager/device");
     $data = json_decode($retrieve,1);
     $_SESSION['deviceList'] = $data;
     header("location: device.php");
 }
 else if( $devicePurpose == "" && $deviceName != ""){
     $rdb = new firebaseRDB($databaseURL);
-    $retrieve = $rdb->retrieve("/deviceManager");
+    $retrieve = $rdb->retrieve("/deviceManager/device");
     $data = json_decode($retrieve,1);
     $_SESSION["deviceList"] = $data;
     foreach ($_SESSION["deviceList"] as $key => $val)
@@ -30,7 +30,7 @@ else if( $devicePurpose == "" && $deviceName != ""){
 }
 else if( $devicePurpose != "" && $deviceName == ""){
     $rdb = new firebaseRDB($databaseURL);
-    $retrieve = $rdb->retrieve("/deviceManager");
+    $retrieve = $rdb->retrieve("/deviceManager/device");
     $data = json_decode($retrieve,1);
     $_SESSION["deviceList"] = $data;
     foreach ($_SESSION["deviceList"] as $key => $val)

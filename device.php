@@ -5,30 +5,7 @@ include("firebaseRDB.php");
 if(!isset($_SESSION['user'])){
     header("location: login.php");
 }
-function locdautiengviet($str){
-    $str = strtolower($str); //chuyển chữ hoa thành chữ thường
-    $unicode = array(
-    'a'=>'á|à|ả|ã|ạ|ă|ắ|ặ|ằ|ẳ|ẵ|â|ấ|ầ|ẩ|ẫ|ậ',
-    'd'=>'đ',
-    'e'=>'é|è|ẻ|ẽ|ẹ|ê|ế|ề|ể|ễ|ệ',
-    'i'=>'í|ì|ỉ|ĩ|ị',
-    'o'=>'ó|ò|ỏ|õ|ọ|ô|ố|ồ|ổ|ỗ|ộ|ơ|ớ|ờ|ở|ỡ|ợ',
-    'u'=>'ú|ù|ủ|ũ|ụ|ư|ứ|ừ|ử|ữ|ự',
-    'y'=>'ý|ỳ|ỷ|ỹ|ỵ',
-    'A'=>'Á|À|Ả|Ã|Ạ|Ă|Ắ|Ặ|Ằ|Ẳ|Ẵ|Â|Ấ|Ầ|Ẩ|Ẫ|Ậ',
-    'D'=>'Đ',
-    'E'=>'É|È|Ẻ|Ẽ|Ẹ|Ê|Ế|Ề|Ể|Ễ|Ệ',
-    'I'=>'Í|Ì|Ỉ|Ĩ|Ị',
-    'O'=>'Ó|Ò|Ỏ|Õ|Ọ|Ô|Ố|Ồ|Ổ|Ỗ|Ộ|Ơ|Ớ|Ờ|Ở|Ỡ|Ợ',
-    'U'=>'Ú|Ù|Ủ|Ũ|Ụ|Ư|Ứ|Ừ|Ử|Ữ|Ự',
-     'Y'=>'Ý|Ỳ|Ỷ|Ỹ|Ỵ',
-     );
-     foreach($unicode as $nonUnicode=>$uni){
-            $str = preg_replace("/($uni)/i", $nonUnicode, $str);
-     }
-     $str = str_replace(' ','_',$str);
-     return $str;
-}
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -113,12 +90,12 @@ function locdautiengviet($str){
         </div>
 <!-- insert device -->
         <div class="insertMedicine">
-        <button type="button" class="insert-but" data-bs-toggle="modal" data-bs-target="#adddoctor" data-bs-whatever="Tên thuốc">Thêm thiết bị</button>
-            <div class="modal fade" id="adddoctor" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" >
+        <button type="button" class="insert-but" data-bs-toggle="modal" data-bs-target="#adddevice" data-bs-whatever="Tên thuốc">Thêm thiết bị mới</button>
+            <div class="modal fade" id="adddevice" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" >
             <div class="modal-dialog modal-xl modal-dialog-scrollable" s>
                 <div class="modal-content" style="margin-top: 0;">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">Thêm thiết bị</h1>
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Thêm thiết bị mới</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -134,14 +111,6 @@ function locdautiengviet($str){
                             <option value="Điều trị" >Điều trị</option>
                             <option value="Hỗ trợ" >Hỗ trợ</option>
                         </select>
-                    </div>
-                    <div class="mb-3">
-                        <label for="recipient-name" class="col-form-label">Ngày nhập thiết bị:</label>
-                        <input type="date" class="form-control" id="recipient-name" name="inputdate" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="recipient-name" class="col-form-label">Số lượng:</label>
-                        <input type="number" class="form-control" id="recipient-name" name="amount" required autocomplete="off" min="0">
                     </div>
                     <div class="mb-3">
                         <label for="recipient-name" class="col-form-label">Công dụng:</label>
@@ -170,8 +139,8 @@ function locdautiengviet($str){
                                     <div class="staff1">
                                         <h2><?php echo $device['deviceName'];?></h2>
                                         <p>Số lượng: <?php if(isset($device['amount'])){echo $device['amount'];}else{echo 0;}?></p>
-                                        <p>Mục đích sử dụng: <?php echo $device['uses'];?></p>
                                         <p>Công dụng: <?php echo $device['purpose'];?></p>
+                                        <p>Mục đích sử dụng: <?php echo $device['uses'];?></p>
                                     </div> 
                                 </div>
                                 <div class="buttonFunc">
@@ -181,34 +150,35 @@ function locdautiengviet($str){
                                 </div>
                             </div>
 <!-- modal                   -->
-                            <div class="modal fade" id="<?php echo md5($device['deviceName'])."change";?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="<?php echo md5($device['deviceName'])."change";?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div class="modal-dialog">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h1 class="modal-title fs-5" id="exampleModalLabel">Nhập xuất kho</h1>
+                                            <h1 class="modal-title fs-5" id="exampleModalLabel">Nhập thiết bị <?php echo $device['deviceName'];?></h1>
                                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                         </div>
                                         <div class="modal-body">
-                                            <form action="medicineChange.php" method="post">
+                                            <form action="deviceChange.php" method="post">
                                                 <div class="mb-3">
-                                                    <select class="mb-3" name="choice">
-                                                        <option value=1>Nhập kho</option>
-                                                        <option value=2>Xuất kho</option>
+                                                    <label class="col-form-label">Mã máy:</label>
+                                                    <input type="text" class="form-control" id="recipient-name" name="code" required maxlength="12">
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label class="col-form-label">Ngày nhập thiết bị:</label>
+                                                    <input type="date" class="form-control" id="message-text" name="date" required min="1900-01-01" max="2100-12-31"></input>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label class="col-form-label">Tình trạng:</label>
+                                                    <select name="active" class="form-control">
+                                                        <option value="Đang hoạt động">Đang hoạt động</option>
+                                                        <option value="Đang bảo trì">Đang bảo trì</option>
+                                                        <option value="Bận">Bận</option>
                                                     </select>
-                                                </div>
-                                                <div class="mb-3">
-                                                    <label for="recipient-name" class="col-form-label">Số lượng:</label>
-                                                    <input type="text" class="form-control" id="recipient-name" name="amount" required>
-                                                </div>
-                                                <div class="mb-3">
-                                                    <label for="message-text" class="col-form-label">Ngày nhập/xuất kho:</label>
-                                                    <input type="date" class="form-control" id="message-text" name="date" required></input>
                                                 </div>
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
-                                                    <button type="submit" class="btn btn-primary" value="<?php echo $device['deviceName']; ?>" name="medicineName">Lưu thay đổi</button>
+                                                    <button type="submit" class="btn btn-primary" value="<?php echo $device['deviceName']; ?>" name="deviceName">Lưu thay đổi</button>
                                                 </div>
-                                        
                                            </form>
                                         </div>
                                         
@@ -219,12 +189,28 @@ function locdautiengviet($str){
                                 <div class="modal-dialog">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h1 class="modal-title fs-5" id="exampleModalLabel">Xóa thuốc <?php echo $device['deviceName']; ?></h1>
+                                            <h1 class="modal-title fs-5" id="exampleModalLabel">Xóa <?php echo $device['deviceName']; ?></h1>
                                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                         </div>
-                                        <div class="modal-footer">
-                                                <form action="medicineDelete.php" method="post">
-                                                    <button type="submit" class="btn btn-primary" value="<?php echo $device['deviceName']; ?>" name="medicineName">Xác nhận</button>
+                                        <div class="modal-body">
+                                                <form action="deviceDelete.php" method="post">
+                                                    <?php 
+                                                        $rdb = new firebaseRDB($databaseURL);
+                                                        $retrieve = $rdb->retrieve("/deviceManager/maintenance", "deviceName", "EQUAL", $device['deviceName']);
+                                                        $data = json_decode($retrieve, 1);?>
+                                                        <div class="mb-3">
+                                                            <label class="col-form-label">Chọn mã máy cần xóa:</label>
+                                                            <select name="code" class="form-control">
+                                                                <?php
+                                                                foreach($data as $device){?>
+                                                                    <option value="<?php echo $device['code']; ?>"><?php echo $device['code']; ?></option>
+                                                                <?php 
+                                                                }?>
+                                                            </select>
+                                                        </div>
+                                                    <div class="modal-footer">
+                                                        <button type="submit" class="btn btn-primary" value="<?php echo $device['deviceName']; ?>" name="medicineName">Xác nhận</button>
+                                                    </div>
                                                 </form>      
                                         </div>
                                         
@@ -239,7 +225,38 @@ function locdautiengviet($str){
                                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                         </div>
                                         <div class="modal-body">
-                                            
+                                            <?php 
+                                                $rdb = new firebaseRDB($databaseURL);
+                                                $retrieve = $rdb->retrieve("/deviceManager/maintenance", "deviceName", "EQUAL", $device['deviceName']);
+                                                $data = json_decode($retrieve, 1);?>
+                            <table>
+                                <tr>
+                                    <td>
+                                        <table class="set-border">
+                                            <th style="width: 10%;">Ngày nhập kho</th>
+                                            <th style="width: 10%;">Ngày bảo trì</th>
+                                            <th style="width: 20%;">Mã máy</th>
+                                            <th style="width: 10%;">Tình trạng</th>
+                                        </table>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="scroll-table">  
+                                            <table ><?php
+                                                foreach($data as $detail){?>
+                                                    <tr class="align-tr">
+                                                        <td style="width: 10%;"><?php echo $detail['inputdate']; ?></td>
+                                                        <td style="width: 10%;"><?php echo $detail['maintenance']; ?></td>
+                                                        <td style="width: 20%;"><?php echo $detail['code']; ?></td>
+                                                        <td style="width: 10%;"><?php echo $detail['active']; ?></td>
+                                                    </tr><?php
+                                                }?>
+                                            </table>    
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
@@ -253,7 +270,7 @@ function locdautiengviet($str){
                     
                 }else{
                     $rdb = new firebaseRDB($databaseURL);
-                    $retrieve = $rdb->retrieve("/deviceManager");
+                    $retrieve = $rdb->retrieve("/deviceManager/device");
                     $data = json_decode($retrieve, 1);
                     if($data == ""){ ?>
                         <div class="listbox"><h2>Undefind</h2></div><?php
@@ -264,12 +281,12 @@ function locdautiengviet($str){
                                     <div class="staff1">
                                         <h2><?php echo $device['deviceName'];?></h2>
                                         <p>Số lượng: <?php if(isset($device['amount'])){echo $device['amount'];}else{echo 0;}?></p>
-                                        <p>Mục đích sử dụng: <?php echo $device['uses'];?></p>
                                         <p>Công dụng: <?php echo $device['purpose'];?></p>
+                                        <p>Mục đích sử dụng: <?php echo $device['uses'];?></p>
                                     </div> 
                                 </div>
                                 <div class="buttonFunc">
-                                    <button type="button" class="insert-but" data-bs-toggle="modal" data-bs-target="#<?php echo md5($device['deviceName'])."change";?>">Nhập/xuất kho</button>
+                                    <button type="button" class="insert-but" data-bs-toggle="modal" data-bs-target="#<?php echo md5($device['deviceName'])."change";?>">Nhập thiết bị</button>
                                     <button type="button" class="insert-but" data-bs-toggle="modal" data-bs-target="#<?php echo md5($device['deviceName'])."delete"; ?>">Xóa</button>
                                     <button type="button" class="insert-but" data-bs-toggle="modal" data-bs-target="#<?php echo md5($device['deviceName'])."info"; ?>">Thông tin chi tiết</button>
                                 </div>
@@ -279,30 +296,31 @@ function locdautiengviet($str){
                                 <div class="modal-dialog">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h1 class="modal-title fs-5" id="exampleModalLabel">Nhập xuất kho <?php echo $device['deviceName'];?></h1>
+                                            <h1 class="modal-title fs-5" id="exampleModalLabel">Nhập thiết bị <?php echo $device['deviceName'];?></h1>
                                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                         </div>
                                         <div class="modal-body">
-                                            <form action="medicineChange.php" method="post">
+                                            <form action="deviceChange.php" method="post">
                                                 <div class="mb-3">
-                                                    <select class="mb-3" name="choice">
-                                                        <option value=1>Nhập kho</option>
-                                                        <option value=2>Xuất kho</option>
+                                                    <label class="col-form-label">Mã máy:</label>
+                                                    <input type="text" class="form-control" id="recipient-name" name="code" required maxlength="12">
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label class="col-form-label">Ngày nhập thiết bị:</label>
+                                                    <input type="date" class="form-control" id="message-text" name="date" required min="1900-01-01" max="2100-12-31"></input>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label class="col-form-label">Tình trạng:</label>
+                                                    <select name="active" class="form-control">
+                                                        <option value="Đang hoạt động">Đang hoạt động</option>
+                                                        <option value="Đang bảo trì">Đang bảo trì</option>
+                                                        <option value="Bận">Bận</option>
                                                     </select>
-                                                </div>
-                                                <div class="mb-3">
-                                                    <label for="recipient-name" class="col-form-label">Số lượng:</label>
-                                                    <input type="text" class="form-control" id="recipient-name" name="amount" required>
-                                                </div>
-                                                <div class="mb-3">
-                                                    <label for="message-text" class="col-form-label">Ngày nhập/xuất kho:</label>
-                                                    <input type="date" class="form-control" id="message-text" name="date" required></input>
                                                 </div>
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
                                                     <button type="submit" class="btn btn-primary" value="<?php echo $device['deviceName']; ?>" name="deviceName">Lưu thay đổi</button>
                                                 </div>
-                                        
                                            </form>
                                         </div>
                                         
@@ -313,12 +331,28 @@ function locdautiengviet($str){
                                 <div class="modal-dialog">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h1 class="modal-title fs-5" id="exampleModalLabel">Xóa thuốc <?php echo $device['deviceName']; ?></h1>
+                                            <h1 class="modal-title fs-5" id="exampleModalLabel">Xóa <?php echo $device['deviceName']; ?></h1>
                                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                         </div>
-                                        <div class="modal-footer">
-                                                <form action="medicineDelete.php" method="post">
-                                                    <button type="submit" class="btn btn-primary" value="<?php echo $device['deviceName']; ?>" name="deviceName">Xác nhận</button>
+                                        <div class="modal-body">
+                                                <form action="deviceDelete.php" method="post">
+                                                    <?php 
+                                                        $rdb = new firebaseRDB($databaseURL);
+                                                        $retrieve = $rdb->retrieve("/deviceManager/maintenance", "deviceName", "EQUAL", $device['deviceName']);
+                                                        $data = json_decode($retrieve, 1);?>
+                                                        <div class="mb-3">
+                                                            <label class="col-form-label">Chọn mã máy cần xóa:</label>
+                                                            <select name="code" class="form-control">
+                                                                <?php
+                                                                foreach($data as $device){?>
+                                                                    <option value="<?php echo $device['code']; ?>"><?php echo $device['code']; ?></option>
+                                                                <?php 
+                                                                }?>
+                                                            </select>
+                                                        </div>
+                                                    <div class="modal-footer">
+                                                        <button type="submit" class="btn btn-primary" value="<?php echo $device['deviceName']; ?>" name="medicineName">Xác nhận</button>
+                                                    </div>
                                                 </form>      
                                         </div>
                                         
@@ -333,7 +367,38 @@ function locdautiengviet($str){
                                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                         </div>
                                         <div class="modal-body">
-                                            
+                                            <?php 
+                                                $rdb = new firebaseRDB($databaseURL);
+                                                $retrieve = $rdb->retrieve("/deviceManager/maintenance", "deviceName", "EQUAL", $device['deviceName']);
+                                                $data = json_decode($retrieve, 1);?>
+                            <table>
+                                <tr>
+                                    <td>
+                                        <table class="set-border">
+                                            <th style="width: 10%;">Ngày nhập kho</th>
+                                            <th style="width: 10%;">Ngày bảo trì</th>
+                                            <th style="width: 20%;">Mã máy</th>
+                                            <th style="width: 10%;">Tình trạng</th>
+                                        </table>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="scroll-table">  
+                                            <table ><?php
+                                                foreach($data as $detail){?>
+                                                    <tr class="align-tr">
+                                                        <td style="width: 10%;"><?php echo $detail['inputdate']; ?></td>
+                                                        <td style="width: 10%;"><?php echo $detail['maintenance']; ?></td>
+                                                        <td style="width: 20%;"><?php echo $detail['code']; ?></td>
+                                                        <td style="width: 10%;"><?php echo $detail['active']; ?></td>
+                                                    </tr><?php
+                                                }?>
+                                            </table>    
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
