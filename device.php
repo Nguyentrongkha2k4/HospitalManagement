@@ -101,11 +101,11 @@ if(!isset($_SESSION['user'])){
                 <div class="modal-body">
                     <form action="deviceInsert.php" method="post">
                     <div class="mb-3">
-                        <label for="recipient-name" class="col-form-label">Tên thiết bị:</label>
+                        <label class="col-form-label">Tên thiết bị:</label>
                         <input type="text" class="form-control" id="recipient-name" name="deviceName" required>
                     </div>
                     <div class="mb-3">
-                        <label for="recipient-name" class="col-form-label">Mục đích sử dụng:</label>
+                        <label class="col-form-label">Mục đích sử dụng:</label>
                         <select name="purpose" class="form-control" id="recipient-name">
                             <option value="Chẩn đoán" >Chẩn đoán</option>
                             <option value="Điều trị" >Điều trị</option>
@@ -113,7 +113,7 @@ if(!isset($_SESSION['user'])){
                         </select>
                     </div>
                     <div class="mb-3">
-                        <label for="recipient-name" class="col-form-label">Công dụng:</label>
+                        <label class="col-form-label">Công dụng:</label>
                         <textarea type="text" class="form-control" id="recipient-name" name="uses" required></textarea>
                     </div>
                 </div>

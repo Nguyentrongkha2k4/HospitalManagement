@@ -75,7 +75,7 @@ if(!isset($_SESSION['user'])){
             <h2>TÌM THUỐC</h2>
             <p>Vui lòng loại thuốc cần tìm, viết ra tên thuốc để tìm nhanh hơn</p> <br>
             <form class="search-form" action="medicineSearch.php" method="post">
-                <input type = "text" placeholder="Tìm kiếm tên thuốc" name="medicineName">
+                <input type = "text" placeholder="Tìm kiếm tên thuốc" name="medicineName" autocomplete="off">
                 <button type="submit" class="search-button">
                     <img class="search-icon" src="icon/search-replace.png">
                 </button>
@@ -93,11 +93,11 @@ if(!isset($_SESSION['user'])){
                 <div class="modal-body">
                     <form action="medicineInsert.php" method="post">
                     <div class="mb-3">
-                        <label for="recipient-name" class="col-form-label">Tên thuốc:</label>
-                        <input type="text" class="form-control" id="recipient-name" name="medicineName" required>
+                        <label class="col-form-label">Tên thuốc:</label>
+                        <input type="text" class="form-control" id="recipient-name" name="medicineName" required autocomplete="off">
                     </div>
                     <div class="mb-3">
-                        <label for="message-text" class="col-form-label">Công dụng:</label>
+                        <label class="col-form-label">Công dụng:</label>
                         <textarea type="text" class="form-control" id="message-text" name="uses" required></textarea>
                     </div>
                     
@@ -148,21 +148,19 @@ if(!isset($_SESSION['user'])){
                                                     </select>
                                                 </div>
                                                 <div class="mb-3">
-                                                    <label for="recipient-name" class="col-form-label">Số lượng:</label>
+                                                    <label class="col-form-label">Số lượng:</label>
                                                     <input type="text" class="form-control" id="recipient-name" name="amount" required>
                                                 </div>
                                                 <div class="mb-3">
-                                                    <label for="message-text" class="col-form-label">Ngày nhập/xuất kho:</label>
+                                                    <label class="col-form-label">Ngày nhập/xuất kho:</label>
                                                     <input type="date" class="form-control" id="message-text" name="date" required></input>
                                                 </div>
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
                                                     <button type="submit" class="btn btn-primary" value="<?php echo $medicine['medicineName']; ?>" name="medicineName">Lưu thay đổi</button>
                                                 </div>
-                                        
                                            </form>
                                         </div>
-                                        
                                     </div>
                                 </div>
                             </div>
@@ -178,7 +176,6 @@ if(!isset($_SESSION['user'])){
                                                     <button type="submit" class="btn btn-primary" value="<?php echo $medicine['medicineName']; ?>" name="medicineName">Xác nhận</button>
                                                 </form>      
                                         </div>
-                                        
                                     </div>
                                 </div>
                             </div>
@@ -192,13 +189,8 @@ if(!isset($_SESSION['user'])){
                                         <div class="modal-body" style="overflow-x:hidden;overflow-y:scroll;">
                                             <?php 
                                                 $rdb = new firebaseRDB($databaseURL);
-                                                $retrieve = $rdb->retrieve("/medicineManager", "medicineName", "EQUAL", $medicine['medicineName']);
-                                                $data = json_decode($retrieve, 1);
-                                                $id = array_keys($data)[0];
-
-                                                $path = "/medicineManager/".$id."/kho";
-                                                $retrieve2 = $rdb->retrieve($path);
-                                                $data2 = json_decode($retrieve2, 1); ?>
+                                                $retrieve = $rdb->retrieve("/medicineManager/storehouse", "medicineName", "EQUAL", $medicine['medicineName']);
+                                                $data = json_decode($retrieve, 1);?>
                             <table>
                                 <tr>
                                     <td>
@@ -214,7 +206,7 @@ if(!isset($_SESSION['user'])){
                                     <td>
                                         <div class="scroll-table">  
                                             <table ><?php
-                                                foreach($data2 as $kho){?>
+                                                foreach($data as $kho){?>
                                                     <tr class="align-tr">
                                                         <td style="width: 10%;"><?php echo $kho['date']; ?></td>
                                                         <td style="width: 5%;"><?php echo $kho['amount']; ?></td>
@@ -240,7 +232,7 @@ if(!isset($_SESSION['user'])){
                     
                 }else{
                     $rdb = new firebaseRDB($databaseURL);
-                    $retrieve = $rdb->retrieve("/medicineManager");
+                    $retrieve = $rdb->retrieve("/medicineManager/medicine");
                     $data = json_decode($retrieve, 1);
                     if($data == ""){ ?>
                         <div class="listbox"><h2>Undefind</h2></div><?php
@@ -258,7 +250,6 @@ if(!isset($_SESSION['user'])){
                                     <button type="button" class="insert-but" data-bs-toggle="modal" data-bs-target="#<?php echo md5($medicine['medicineName'])."change"; ?>">Nhập/xuất kho</button>
                                     <button type="button" class="insert-but" data-bs-toggle="modal" data-bs-target="#<?php echo md5($medicine['medicineName'])."delete"; ?>">Xóa</button>
                                     <button type="button" class="insert-but" data-bs-toggle="modal" data-bs-target="#<?php echo md5($medicine['medicineName'])."info"; ?>">Thông tin chi tiết</button>
-                                    
                                 </div>
                             </div>
 <!-- modal                             -->
@@ -278,21 +269,19 @@ if(!isset($_SESSION['user'])){
                                                     </select>
                                                 </div>
                                                 <div class="mb-3">
-                                                    <label for="recipient-name" class="col-form-label">Số lượng:</label>
+                                                    <label class="col-form-label">Số lượng:</label>
                                                     <input type="text" class="form-control" id="recipient-name" name="amount" required>
                                                 </div>
                                                 <div class="mb-3">
-                                                    <label for="message-text" class="col-form-label">Ngày nhập/xuất kho:</label>
+                                                    <label class="col-form-label">Ngày nhập/xuất kho:</label>
                                                     <input type="date" class="form-control" id="message-text" name="date" required></input>
                                                 </div>
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
                                                     <button type="submit" class="btn btn-primary" value="<?php echo $medicine['medicineName']; ?>" name="medicineName">Lưu thay đổi</button>
                                                 </div>
-                                        
                                            </form>
                                         </div>
-                                        
                                     </div>
                                 </div>
                             </div>
@@ -308,7 +297,6 @@ if(!isset($_SESSION['user'])){
                                                     <button type="submit" class="btn btn-primary" value="<?php echo $medicine['medicineName']; ?>" name="medicineName">Xác nhận</button>
                                                 </form>      
                                         </div>
-                                        
                                     </div>
                                 </div>
                             </div>
@@ -322,13 +310,8 @@ if(!isset($_SESSION['user'])){
                                         <div class="modal-body">
                                             <?php 
                                                 $rdb = new firebaseRDB($databaseURL);
-                                                $retrieve = $rdb->retrieve("/medicineManager", "medicineName", "EQUAL", $medicine['medicineName']);
-                                                $data = json_decode($retrieve, 1);
-                                                $id = array_keys($data)[0];
-
-                                                $path = "/medicineManager/".$id."/kho";
-                                                $retrieve2 = $rdb->retrieve($path);
-                                                $data2 = json_decode($retrieve2, 1); ?>
+                                                $retrieve = $rdb->retrieve("/medicineManager/storehouse", "medicineName", "EQUAL", $medicine['medicineName']);
+                                                $data = json_decode($retrieve, 1);?>
                             <table>
                                 <tr>
                                     <td>
@@ -344,7 +327,7 @@ if(!isset($_SESSION['user'])){
                                     <td>
                                         <div class="scroll-table">  
                                             <table ><?php
-                                                foreach($data2 as $kho){?>
+                                                foreach($data as $kho){?>
                                                     <tr class="align-tr">
                                                         <td style="width: 10%;"><?php echo $kho['date']; ?></td>
                                                         <td style="width: 5%;"><?php echo $kho['amount']; ?></td>

@@ -11,14 +11,14 @@ if($amount <= 0){
     $_SESSION['wrong'] = "Số lượng không hợp lệ!";
 }else{
     $rdb = new firebaseRDB($databaseURL);
-    $retrieve = $rdb->retrieve("/medicineManager", "medicineName", "EQUAL", $medicineName);
+    $retrieve = $rdb->retrieve("/medicineManager/medicine", "medicineName", "EQUAL", $medicineName);
     $data = json_decode($retrieve, 1);
     $id = array_keys($data)[0];
-    $path = "/medicineManager/".$id."/kho";
     
     if($choice == "Nhập kho"){
-        $insert = $rdb->insert($path,
+        $insert = $rdb->insert("/medicineManager/storehouse",
         [
+            "medicineName" => $medicineName,
             "date" => date('j-m-Y', strtotime($date)),
             "amount" => $amount,
             "act" => $choice,
@@ -26,7 +26,7 @@ if($amount <= 0){
         ]
         );
         $amount = $amount + $data[$id]['amount'];
-        $rdb->update("/medicineManager", $id, 
+        $rdb->update("/medicineManager/medicine", $id, 
             [
                 "amount" => $amount
             ]);
@@ -35,14 +35,15 @@ if($amount <= 0){
         if((int)$amount2 < 0){
             $_SESSION['wrong'] = "Số lượng không hợp lệ!";
         }else{
-            $insert = $rdb->insert($path,
+            $insert = $rdb->insert("/medicineManager/storehouse",
             [
+                "medicineName" => $medicineName,
                 "date" => date('j-m-Y', strtotime($date)),
                 "amount" => $amount,
                 "act" => $choice
             ]
             );
-            $rdb->update("/medicineManager", $id, 
+            $rdb->update("/medicineManager/medicine", $id, 
             [
                 "amount" => $amount2
             ]);
