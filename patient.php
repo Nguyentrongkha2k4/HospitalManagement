@@ -81,12 +81,12 @@ if(!isset($_SESSION['user'])){
                 <input type = "date" name="dateofborn">
                 <select name="recipient-name">
                     <option value = "">Khoa điều trị</option>
-                    <option value="khoa ngoại tổng hợp">Khoa ngoại tổng hợp</option>
-                    <option value="khoa nội tổng hợp">Khoa nội tổng hợp</option>
-                    <option value="khoa răng-hàm-mặt">Khoa răng-hàm-mặt</option>
-                    <option value="khoa tai-mũi-họng">Khoa tai-mũi-họng</option>
-                    <option value="khoa da liễu">Khoa da liễu</option>
-                    <option value="khoa thần kinh">Khoa thần kinh</option>
+                    <option value="Khoa ngoại tổng hợp">Khoa ngoại tổng hợp</option>
+                    <option value="Khoa nội tổng hợp">Khoa nội tổng hợp</option>
+                    <option value="Khoa răng-hàm-mặt">Khoa răng-hàm-mặt</option>
+                    <option value="Khoa tai-mũi-họng">Khoa tai-mũi-họng</option>
+                    <option value="Khoa da liễu">Khoa da liễu</option>
+                    <option value="Khoa thần kinh">Khoa thần kinh</option>
                 </select>
                 <button type="submit" class="search-button">
                     <img class="search-icon" src="icon/search-replace.png">
@@ -118,21 +118,21 @@ if(!isset($_SESSION['user'])){
                     </div>
                     <div class="mb-3">
                         <label for="recipient-name" class="col-form-label">Ngày sinh:</label>
-                        <input type="date" class="form-control" id="recipient-name" name="dateofborn" required>
+                        <input type="date" class="form-control" id="recipient-name" name="dateofborn">
                     </div>
                     <div class="mb-3">
                         <label for="recipient-name" class="col-form-label">Địa chỉ:</label>
-                        <input type="text" class="form-control" id="recipient-name" name="address" required>
+                        <input type="text" class="form-control" id="recipient-name" name="address">
                     </div>
                     <div class="mb-3">
                         <label for="recipient-name" class="col-form-label">Khoa điều trị:</label>
                         <select name="recipient-name" class="form-control" id="recipient-name">
-                            <option value="khoa ngoại tổng hợp">Khoa ngoại tổng hợp</option>
-                            <option value="khoa nội tổng hợp">Khoa nội tổng hợp</option>
-                            <option value="khoa răng-hàm-mặt">Khoa răng-hàm-mặt</option>
-                            <option value="khoa tai-mũi-họng">Khoa tai-mũi-họng</option>
-                            <option value="khoa da liễu">Khoa da liễu</option>
-                            <option value="khoa thần kinh">Khoa thần kinh</option>
+                            <option value="Khoa ngoại tổng hợp">Khoa ngoại tổng hợp</option>
+                            <option value="Khoa nội tổng hợp">Khoa nội tổng hợp</option>
+                            <option value="Khoa răng-hàm-mặt">Khoa răng-hàm-mặt</option>
+                            <option value="Khoa tai-mũi-họng">Khoa tai-mũi-họng</option>
+                            <option value="Khoa da liễu">Khoa da liễu</option>
+                            <option value="Khoa thần kinh">Khoa thần kinh</option>
                         </select>
                     </div>
                     

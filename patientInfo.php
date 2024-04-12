@@ -15,6 +15,14 @@ $retrieve = $rdb->retrieve("/vicManager", "CCCD", "EQUAL", $CCCD);
 $data = json_decode($retrieve, 1);
 $id = array_keys($data)[0];
 $patient = $data[$id];
+
+$retrieve = $rdb->retrieve("/staffManager/doctor", "ID", "EQUAL", $patient['doctorID']);
+$data = json_decode($retrieve, 1);
+if(count($data)) $doctor = $data[array_keys($data)[0]];
+
+$retrieve = $rdb->retrieve("/staffManager/nurse", "ID", "EQUAL", $patient['nurseID']);
+$data = json_decode($retrieve, 1);
+if(count($data))$nurse = $data[array_keys($data)[0]];
 ?>
 
 <!DOCTYPE html>
@@ -90,7 +98,19 @@ $patient = $data[$id];
                 <div>Năm sinh: <?php echo $patient['dateofborn']; ?></div>
                 <div>Địa chỉ: <?php echo $patient['address']; ?></div>
                 <div>Khoa điều trị: <?php echo $patient['recipient-name']; ?></div>
-                <div>Bác sĩ điều trị: <?php echo $patient['doctor']; ?></div>
+                <div>Bác sĩ điều trị: 
+                    <?php if(isset($doctor)){ ?>
+                    <form action="doctorInfo.php" method="post">
+                        <button class="asset" type="submit" name="ID" value="<?php echo $doctor['ID']; ?>"><?php echo $doctor['doctorName']; ?></button>
+                    </form>
+                    <?php } else echo "N/A";?>
+                </div>
+                <div>Y tá hỗ trợ: 
+                    <?php if(isset($nurse)){ ?>
+                    <form action="nurseInfo.php" method="post">
+                        <button class="asset" type="submit" name="ID" value="<?php echo $nurse['ID']; ?>"><?php echo $nurse['nurseName']; ?></button>
+                    </form><?php } else echo "N/A";?>
+                </div>
             </div>
             <div class="info button">
                 <button type="button" data-bs-toggle="modal" data-bs-target="#change-info">Chỉnh sửa</button>
@@ -100,11 +120,11 @@ $patient = $data[$id];
         <div class="detail">
             <div>
                 <h5>Kết quả xét nghiệm:</h5>
-                <div><?php if(isset($patient['result'])) echo $patient['result']; else echo "Không"; ?></div>
+                <div><?php if(!isset($patient['result']) or ($patient['result'] == "")) echo "Không"; else echo $patient['result']; ?></div>
             </div>
             <div>
                 <h5>Lịch sử bệnh án:</h5>
-                <div><?php if(isset($patient['history'])) echo $patient['history'];else echo "Không"; ?></div>
+                <div><?php if(!isset($patient['history']) or ($patient['history'] == "")) echo "Không"; else echo $patient['history']; ?></div>
             </div>
         </div>
     </div>
@@ -187,10 +207,6 @@ $patient = $data[$id];
                                         <?php if($patient['recipient-name'] != "khoa da liễu"){?><option value="khoa da liễu">Khoa da liễu</option><?php }?>
                                         <?php if($patient['recipient-name'] != "khoa thần kinh"){?><option value="khoa thần kinh">Khoa thần kinh</option><?php }?>
                                     </select>
-                                </div>
-                                <div class="mb-3">
-                                    <label class="col-form-label">Bác sĩ điều trị:</label>
-                                    <input type="text" class="form-control" id="recipient-name" name="doctor" value="<?php echo $patient['doctor'];?>" required>
                                 </div>
                                 <div class="mb-3">
                                     <label class="col-form-label">Kết quả xét nghiệm:</label>

@@ -1,3 +1,22 @@
+<?php 
+include("config.php");
+include("firebaseRDB.php");
+
+if(!isset($_SESSION['user'])){
+    header("location: login.php");
+}
+
+$ID = $_POST['ID'];
+$rdb = new firebaseRDB($databaseURL);
+$retrieve = $rdb->retrieve("/staffManager/doctor", "ID", "EQUAL", $ID);
+$data = json_decode($retrieve, 1);
+
+$id = array_keys($data)[0];
+
+$doctor = $data[$id];
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -66,14 +85,14 @@
         <div class="info">
             <div class="info basic">
                 <div><img src="" alt="none" width="120px" height="120px" style="border-radius: 100%;"></div>
-                <div>ID: </div>
-                <div>Họ và tên: </div>
-                <div>CCCD:</div>
-                <div>Năm sinh: </div>
-                <div>Địa chỉ:</div>
-                <div>Khoa điều trị: </div>
-                <div>Chức vụ: </div>
-                <div>Bằng cấp: </div>
+                <div>ID: <?php echo $doctor['ID']; ?></div>
+                <div>Họ và tên: <?php echo $doctor['doctorName']; ?></div>
+                <div>CCCD: <?php echo $doctor['CCCD']; ?></div>
+                <div>Năm sinh: <?php echo $doctor['dateofborn']; ?></div>
+                <div>Địa chỉ: <?php echo $doctor['address']; ?></div>
+                <div>Khoa điều trị: <?php echo $doctor['khoa']; ?></div>
+                <div>Chức vụ: <?php echo $doctor['position']; ?></div>
+                <div>Bằng cấp: <?php echo $doctor['degree']; ?></div>
             </div>
             <div class="info button">
                 <button type="button" data-bs-toggle="modal" data-bs-target="#change-info">Chỉnh sửa</button>
@@ -81,13 +100,60 @@
             </div>
         </div>
         <div class="detail">
-            <div>
+            <div class="detail test">
                 <h5>Bệnh nhân đang chữa trị:</h5>
-                <div>asdad</div>
+                <div class="">asdad</div>
             </div>
-            <div>
+            <div class="detail test">
                 <h5>Lịch làm việc:</h5>
-                <div>dasda</div>
+                <div class="schedule">
+                    <table class="table" style="height: 100%;">
+                        <thead>
+                            <tr>
+                                <th>Thời gian</th>
+                                <th>Thứ hai</th>
+                                <th>Thứ ba</th>
+                                <th>Thứ tư</th>
+                                <th>Thứ năm</th>
+                                <th>Thứ sáu</th>
+                                <th>Thứ bảy</th>
+                                <th>Chủ nhật</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr style="height:40%;">
+                                <td scope="row">07:00 - 10:50</td>
+                                <td><div style="background-color:rgb(59, 169, 181);height:100%; width:50%;"></div></td>
+                                <td><div style="background-color:rgb(59, 169, 181);height:100%; width:50%;"></div></td>
+                                <td><div style="background-color:rgb(59, 169, 181);height:100%; width:50%;"></div></td>
+                                <td><div style="background-color:rgb(59, 169, 181);height:100%; width:50%;"></div></td>
+                                <td><div style="background-color:rgb(59, 169, 181);height:100%; width:50%;"></div></td>
+                                <td><div style="background-color:rgb(59, 169, 181);height:100%; width:50%;"></div></td>
+                                <td><div style="background-color:rgb(59, 169, 181);height:100%; width:50%;"></div></td>
+                            </tr>
+                            <tr style="height:10%;">
+                                <td scope="row">11:00 - 13:00</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr style="height:40%;">
+                                <td scope="row">13:00 - 17:00</td>
+                                <td><div style="background-color:rgb(59, 169, 181);height:100%; width:50%;"></div></td>
+                                <td><div style="background-color:rgb(59, 169, 181);height:100%; width:50%;"></div></td>
+                                <td><div style="background-color:rgb(59, 169, 181);height:100%; width:50%;"></div></td>
+                                <td><div style="background-color:rgb(59, 169, 181);height:100%; width:50%;"></div></td>
+                                <td><div style="background-color:rgb(59, 169, 181);height:100%; width:50%;"></div></td>
+                                <td><div style="background-color:rgb(59, 169, 181);height:100%; width:50%;"></div></td>
+                                <td><div style="background-color:rgb(59, 169, 181);height:100%; width:50%;"></div></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>
@@ -144,32 +210,41 @@
                         <div class="modal-body">
                             <form action="doctorChange.php" method="post">
                                 <div class="mb-3">
+                                    <label class="col-form-label">ID:</label>
+                                    <div style="padding:5px 0 5px 10px; border: 0.5px solid; border-radius: 5px;"><?php echo $doctor['ID']; ?></div>
+                                </div>
+                                <div class="mb-3">
                                     <label class="col-form-label">Họ và tên:</label>
-                                    <input type="text" class="form-control" id="recipient-name" name="doctorName" required>
+                                    <div style="padding:5px 0 5px 10px; border: 0.5px solid; border-radius: 5px;"> <?php echo $doctor['doctorName']; ?></div>
                                 </div>
                                 <div class="mb-3">
                                     <label class="col-form-label">CCCD:</label>
-                                    <input type="text" class="form-control" id="recipient-name" name="CCCD" required>
+                                    <div style="padding:5px 0 5px 10px; border: 0.5px solid; border-radius: 5px;"><?php echo $doctor['CCCD']; ?></div>
                                 </div>
                                 <div class="mb-3">
                                     <label class="col-form-label">Năm sinh:</label>
-                                    <input type="text" class="form-control" id="recipient-name" name="dateofborn" required>
+                                    <input type="text" class="form-control" id="recipient-name" name="dateofborn" value="<?php echo $doctor['dateofborn']; ?>" required>
                                 </div>
                                 <div class="mb-3">
                                     <label class="col-form-label">Địa chỉ:</label>
-                                    <input type="text" class="form-control" id="recipient-name" name="address" required>
+                                    <input type="text" class="form-control" id="recipient-name" name="address" value="<?php echo $doctor['address']; ?>" required>
                                 </div>
                                 <div class="mb-3">
                                     <label class="col-form-label">Khoa điều trị:</label>
-                                    <input type="text" class="form-control" id="recipient-name" name="khoa" required>
+                                    <div style="padding:5px 0 5px 10px; border: 0.5px solid; border-radius: 5px;"><?php echo $doctor['khoa']; ?></div>
                                 </div>
                                 <div class="mb-3">
                                     <label class="col-form-label">Chức vụ:</label>
-                                    <input type="text" class="form-control" id="recipient-name" name="position" required>
+                                    <select name="position" class="form-control" id="recipient-name">
+                                        <option value="<?php echo $doctor['position']; ?>"><?php echo $doctor['position']; ?></option>
+                                        <?php if($doctor['position'] != "Viện Trưởng") ?><option value="Viện trưởng">Viện trưởng</option>
+                                        <?php if($doctor['position'] != "Trưởng khoa")?><option value="Trưởng Khoa">Trưởng Khoa</option>
+                                        <?php if($doctor['position'] != "Bác sĩ")?><option value="Bác sĩ">Bác sĩ</option>
+                                    </select>
                                 </div>
                                 <div class="mb-3">
                                     <label class="col-form-label">Bằng cấp:</label>
-                                    <input type="text" class="form-control" id="recipient-name" name="degree" required>
+                                    <input type="text" class="form-control" id="recipient-name" name="degree" value="<?php echo $doctor['degree']; ?>" required>
                                 </div>
                                 <div class="modal-footer">
                                     <button type="submit" class="btn btn-primary" value="<?php echo $doctor['ID'] ?>" name="ID">Lưu thay đổi</button>

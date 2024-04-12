@@ -34,11 +34,33 @@ if($obj == "doctor"){
                 "address" => $address,
                 "degree" => $degree,
                 "khoa" => $khoa,
-                "position" => $position
+                "position" => $position,
+                "patientNum" => 0
             ]);
             
             $result = json_decode($insert, 1);
             if(isset($result['name'])){
+                $retrieve = $rdb->retrieve("/staffManager/doctor", "ID", "EQUAL", $ID);
+                $data = json_decode($retrieve, 1);
+                $id = array_keys($data)[0];
+                $doctor = $data[$id];
+                $count = 0;
+                $retrieve = $rdb->retrieve("/vicManager", "doctorID", "EQUAL", "N/A");
+                $data = json_decode($retrieve, 1);
+                if(count($data) > 0){
+                    for($i = 0; $i < count($data); ++$i){
+                        if(($data[array_keys($data)[$i]]['recipient-name'] == $khoa and $count < 12)){
+                            $count++;
+                            $rdb->update("/vicManager", array_keys($data)[$i], [
+                                "doctorID" => $doctor['ID']
+                            ]);
+                        }
+                    }
+                    $rdb->update("/staffManager/doctor", $id, [
+                        "patientNum" => $count
+                    ]);
+                }
+
                 $_SESSION['success'] = "Thêm thành công!";
             }else{
                 $_SESSION['wrong'] = "Thêm thất bại!";
@@ -73,10 +95,32 @@ if($obj == "doctor"){
                 "dateofborn" => $dateofborn,
                 "address" => $address,
                 "degree" => $degree,
+                "patientNum" => 0
             ]);
             
             $result = json_decode($insert, 1);
             if(isset($result['name'])){
+                $retrieve = $rdb->retrieve("/staffManager/nurse", "ID", "EQUAL", $ID);
+                $data = json_decode($retrieve, 1);
+                $id = array_keys($data)[0];
+                $nurse = $data[$id];
+                $count = 0;
+                $retrieve = $rdb->retrieve("/vicManager", "nurseID", "EQUAL", "N/A");
+                $data = json_decode($retrieve, 1);
+                if(count($data) > 0){
+                    for($i = 0; $i < count($data); ++$i){
+                        if($count < 12){
+                            $count++;
+                            $rdb->update("/vicManager", array_keys($data)[$i], [
+                                "nurseID" => $nurse['ID']
+                            ]);
+                        }
+                    }
+                    $rdb->update("/staffManager/nurse", $id, [
+                        "patientNum" => $count
+                    ]);
+                }
+
                 $_SESSION['success'] = "Thêm thành công!";
             }else{
                 $_SESSION['wrong'] = "Thêm thất bại!";

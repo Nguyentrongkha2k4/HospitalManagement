@@ -89,9 +89,9 @@ if(!isset($_SESSION['user'])){
                 </select>
                 <select name="position">
                     <option>Chức vụ</option>
-                    <option value="resident">Viện Trưởng</option>
-                    <option value="leader">Trưởng Khoa</option>
-                    <option value="doctor">Bác sĩ</option>
+                    <option value="Viện trưởng">Viện Trưởng</option>
+                    <option value="Trưởng khoa">Trưởng Khoa</option>
+                    <option value="Bác sĩ">Bác sĩ</option>
                 </select>
                 <button type="submit" class="search-button" title="Tìm kiếm">
                     <img class="search-icon" src="icon/search-replace.png">
@@ -137,20 +137,20 @@ if(!isset($_SESSION['user'])){
                     <div class="mb-3">
                         <label for="recipient-name" class="col-form-label">Khoa điều trị:</label>
                         <select name="khoa" class="form-control" id="recipient-name">
-                            <option value="khoa ngoại tổng hợp">Khoa ngoại tổng hợp</option>
-                            <option value="khoa nội tổng hợp">Khoa nội tổng hợp</option>
-                            <option value="khoa răng-hàm-mặt">Khoa răng-hàm-mặt</option>
-                            <option value="khoa tai-mũi-họng">Khoa tai-mũi-họng</option>
-                            <option value="khoa da liễu">Khoa da liễu</option>
-                            <option value="khoa thần kinh">Khoa thần kinh</option>
+                            <option value="Khoa ngoại tổng hợp">Khoa ngoại tổng hợp</option>
+                            <option value="Khoa nội tổng hợp">Khoa nội tổng hợp</option>
+                            <option value="Khoa răng-hàm-mặt">Khoa răng-hàm-mặt</option>
+                            <option value="Khoa tai-mũi-họng">Khoa tai-mũi-họng</option>
+                            <option value="Khoa da liễu">Khoa da liễu</option>
+                            <option value="Khoa thần kinh">Khoa thần kinh</option>
                         </select>
                     </div>
                     <div class="mb-3">
                         <label for="recipient-name" class="col-form-label">Chức vụ:</label>
                         <select name="position" class="form-control" id="recipient-name">
-                            <option value="resident">Viện Trưởng</option>
-                            <option value="leader">Trưởng Khoa</option>
-                            <option value="doctor">Bác sĩ</option>
+                            <option value="Viện trưởng">Viện Trưởng</option>
+                            <option value="Trưởng khoa">Trưởng Khoa</option>
+                            <option value="Bác sĩ">Bác sĩ</option>
                         </select>
                     </div>
                     <div class="modal-footer">
@@ -184,7 +184,7 @@ if(!isset($_SESSION['user'])){
                 </div>
                 <div class="buttonFunc">
                     <form action="doctorInfo.php" method="post">
-                        <button type="submit" class="insert-but" name="CCCD" value ="<?php echo $doctor['CCCD'];?>">Thông tin chi tiết</button>
+                        <button type="submit" class="insert-but" name="ID" value ="<?php echo $doctor['ID'];?>">Thông tin chi tiết</button>
                     </form>
                 </div>
             </div>
@@ -212,7 +212,7 @@ if(!isset($_SESSION['user'])){
                         </div>
                         <div class="buttonFunc">
                             <form action="doctorInfo.php" method="post">
-                                <button type="submit" class="insert-but" name="CCCD" value ="<?php echo $doctor['CCCD'];?>">Thông tin chi tiết</button>
+                                <button type="submit" class="insert-but" name="ID" value ="<?php echo $doctor['ID'];?>">Thông tin chi tiết</button>
                             </form>
                         </div>
                     </div>
@@ -304,7 +304,7 @@ if(!isset($_SESSION['user'])){
                 </div>
                 <div class="buttonFunc">
                     <form action="doctorInfo.php" method="post">
-                        <button type="submit" class="insert-but" name="CCCD" value ="<?php echo $doctor['CCCD'];?>">Thông tin chi tiết</button>
+                        <button type="submit" class="insert-but" name="ID" value ="<?php echo $doctor['ID'];?>">Thông tin chi tiết</button>
                     </form>
                 </div>
             </div>
@@ -331,7 +331,7 @@ if(!isset($_SESSION['user'])){
                         </div>
                         <div class="buttonFunc">
                             <form action="doctorInfo.php" method="post">
-                                <button type="submit" class="insert-but" name="CCCD" value ="<?php echo $doctor['CCCD'];?>">Thông tin chi tiết</button>
+                                <button type="submit" class="insert-but" name="ID" value ="<?php echo $doctor['ID'];?>">Thông tin chi tiết</button>
                             </form>
                         </div>
                     </div>
@@ -433,7 +433,7 @@ if(!isset($_SESSION['user'])){
                 </div>
                 <div class="buttonFunc">
                     <form action="doctorInfo.php" method="post">
-                        <button type="submit" class="insert-but" name="CCCD" value ="<?php echo $support['ID'];?>">Thông tin chi tiết</button>
+                        <button type="submit" class="insert-but" name="ID" value ="<?php echo $support['ID'];?>">Thông tin chi tiết</button>
                     </form>
                 </div>
             </div>
@@ -460,7 +460,7 @@ if(!isset($_SESSION['user'])){
                         </div>
                         <div class="buttonFunc">
                             <form action="doctorInfo.php" method="post">
-                                <button type="submit" class="insert-but" name="CCCD" value ="<?php echo $support['ID'];?>">Thông tin chi tiết</button>
+                                <button type="submit" class="insert-but" name="ID" value ="<?php echo $support['ID'];?>">Thông tin chi tiết</button>
                             </form>
                         </div>
                     </div>

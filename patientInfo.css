@@ -83,3 +83,12 @@
     cursor: pointer;
     background-color: rgb(164, 164, 164);
 }
+.asset{
+    border: none;
+    background-color: inherit;
+    width: fit-content;
+}
+.asset:hover{
+    text-decoration: underline;
+    color: rgb(50, 50, 255);
+}
