@@ -153,14 +153,12 @@ if(!isset($_SESSION['user'])){
                             <option value="doctor">Bác sĩ</option>
                         </select>
                     </div>
-
-                    
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
-                    <button type="button" class="btn btn-primary">Lưu</button>
-                </div>
-            </form>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                        <button type="submit" class="btn btn-primary" name="obj" value="doctor">Lưu</button>
+                    </div>
+                </form>
+            </div>
                 </div>
             </div>
             </div>
@@ -168,34 +166,63 @@ if(!isset($_SESSION['user'])){
 
 
         <div class="box-list">
+            <?php
+            if(isset($_SESSION['doctorList'])){
+                if(isset($_SESSION['undefind'])){?>
+                <div class="listbox"><h2><?php echo $_SESSION['undefind']; ?></h2></div><?php
+            } else{
+                foreach($_SESSION['doctorList'] as $doctor){?>
+                <!-- <?php echo $doctor; ?> -->
             <div class="listbox">
                 <div class="infoStaff">
                     <div class="staff1">
-                        <h2>Nguyễn Phúc Hưng</h2>
-                        <p>CCCD: 03845730459383</p>
-                        <p>Địa chỉ: Ký túc xá khu B Đại học quốc gia</p>
+                        <h2><?php echo $doctor['doctorName']; ?></h2> 
+                        <p>CCCD: <?php echo $doctor['CCCD']; ?> </p>
+                        <p>Năm sinh: <?php echo $doctor['dateofborn']?></p>
+                        <p>Khoa điều trị: <?php echo $doctor['khoa'] ?></p>
                     </div>
                 </div>
                 <div class="buttonFunc">
-                    <button type="button" class="insert-but" data-bs-toggle="modal" onclick ="patientInfo()">Thông tin chi tiết</button>
-                <script> function patientInfo(){window.location = "doctorInfo.php";} </script>
-                
+                    <form action="doctorInfo.php" method="post">
+                        <button type="submit" class="insert-but" name="CCCD" value ="<?php echo $doctor['CCCD'];?>">Thông tin chi tiết</button>
+                    </form>
                 </div>
             </div>
-            <div class="listbox">
-                <div class="infoStaff">
-                    <div class="staff1">
-                        <h2>Nguyễn Phúc Hưng</h2>
-                        <p>CCCD: 03845730459384</p>
-                        <p>Địa chỉ: Ký túc xá khu B Đại học quốc gia</p>
+            <?php
+                }
+            }
+        }
+        else{
+            $rdb = new firebaseRDB($databaseURL);
+            $retrieve = $rdb->retrieve('/staffManager/doctor');
+            $data = json_decode($retrieve,1);
+            if($data == ""){?>
+                <div class="listbox"><h2>Undefind</h2></div><?php
+            }
+            else{
+                foreach($data as $doctor){?>
+                    <div class="listbox">
+                        <div class="infoStaff">
+                            <div class="staff1">
+                                <h2><?php echo $doctor['doctorName']; ?></h2> 
+                                <p>CCCD: <?php echo $doctor['CCCD']; ?> </p>
+                                <p>Năm sinh: <?php echo $doctor['dateofborn']?></p>
+                                <p>Khoa điều trị: <?php echo $doctor['khoa'] ?></p>
+                            </div>
+                        </div>
+                        <div class="buttonFunc">
+                            <form action="doctorInfo.php" method="post">
+                                <button type="submit" class="insert-but" name="CCCD" value ="<?php echo $doctor['CCCD'];?>">Thông tin chi tiết</button>
+                            </form>
+                        </div>
                     </div>
-                </div>
-                <div class="buttonFunc">
-                    <button type="button" class="insert-but" data-bs-toggle="modal" onclick ="patientInfo()">Thông tin chi tiết</button>
-                <script> function patientInfo(){window.location = "patientInfo.php";} </script>
-                
-                </div>
-            </div>
+                    <?php
+                        }
+                    }
+                }
+                unset($_SESSION['undefind']);
+                unset($_SESSION['doctorList']);
+                ?>
             
         </div>
 
@@ -222,14 +249,14 @@ if(!isset($_SESSION['user'])){
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form action="doctorNurseInsert.php" method="post">
+                    <form action="doctorInsert.php" method="post">
                     <div class="mb-3">
                         <label for="recipient-name" class="col-form-label">ID:</label>
                         <input type="text" class="form-control" id="recipient-name" name="ID" required>
                     </div>
                     <div class="mb-3">
                         <label for="recipient-name" class="col-form-label">Họ và tên:</label>
-                        <input type="text" class="form-control" id="recipient-name" name="doctorName" required>
+                        <input type="text" class="form-control" id="recipient-name" name="nurseName" required>
                     </div>
                     <div class="mb-3">
                         <label for="recipient-name" class="col-form-label">CCCD:</label>
@@ -247,12 +274,12 @@ if(!isset($_SESSION['user'])){
                         <label for="recipient-name" class="col-form-label">Bằng cấp:</label>
                         <input type="text" class="form-control" id="recipient-name" name="degree" required>
                     </div>             
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
-                    <button type="button" class="btn btn-primary">Lưu</button>
-                </div>
-            </form>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                        <button type="submit" class="btn btn-primary" name="obj" value="nurse">Lưu</button>
+                    </div>
+                </form>
+            </div>
                 </div>
             </div>
             </div>
@@ -260,34 +287,61 @@ if(!isset($_SESSION['user'])){
 
 
         <div class="box-list">
+            <?php
+            if(isset($_SESSION['nurseList'])){
+                if(isset($_SESSION['undefind'])){?>
+                <div class="listbox"><h2><?php echo $_SESSION['undefind']; ?></h2></div><?php
+            } else{
+                foreach($_SESSION['nurseList'] as $nurse){?>
+                <!-- <?php echo $doctor; ?> -->
             <div class="listbox">
                 <div class="infoStaff">
                     <div class="staff1">
-                        <h2>Nguyễn Phúc Hưng</h2>
-                        <p>CCCD: 03845730459384</p>
-                        <p>Địa chỉ: Ký túc xá khu B Đại học quốc gia</p>
+                        <h2><?php echo $nurse['nurseName']; ?></h2> 
+                        <p>CCCD: <?php echo $nurse['CCCD']; ?> </p>
+                        <p>Năm sinh: <?php echo $nurse['dateofborn']?></p>
                     </div>
                 </div>
                 <div class="buttonFunc">
-                    <button type="button" class="insert-but" data-bs-toggle="modal" onclick ="patientInfo()">Thông tin chi tiết</button>
-                <script> function patientInfo(){window.location = "patientInfo.php";} </script>
-                
+                    <form action="doctorInfo.php" method="post">
+                        <button type="submit" class="insert-but" name="CCCD" value ="<?php echo $doctor['CCCD'];?>">Thông tin chi tiết</button>
+                    </form>
                 </div>
             </div>
-            <div class="listbox">
-                <div class="infoStaff">
-                    <div class="staff1">
-                        <h2>Nguyễn Phúc Hưng</h2>
-                        <p>CCCD: 03845730459384</p>
-                        <p>Địa chỉ: Ký túc xá khu B Đại học quốc gia</p>
+            <?php
+                }
+            }
+        }
+        else{
+            $rdb = new firebaseRDB($databaseURL);
+            $retrieve = $rdb->retrieve('/staffManager/nurse');
+            $data = json_decode($retrieve,1);
+            if($data == ""){?>
+                <div class="listbox"><h2>Undefind</h2></div><?php
+            }
+            else{
+                foreach($data as $nurse){?>
+                    <div class="listbox">
+                        <div class="infoStaff">
+                            <div class="staff1">
+                                <h2><?php echo $nurse['nurseName']; ?></h2> 
+                                <p>CCCD: <?php echo $nurse['CCCD']; ?> </p>
+                                <p>Năm sinh: <?php echo $nurse['dateofborn']?></p>
+                            </div>
+                        </div>
+                        <div class="buttonFunc">
+                            <form action="doctorInfo.php" method="post">
+                                <button type="submit" class="insert-but" name="CCCD" value ="<?php echo $doctor['CCCD'];?>">Thông tin chi tiết</button>
+                            </form>
+                        </div>
                     </div>
-                </div>
-                <div class="buttonFunc">
-                    <button type="button" class="insert-but" data-bs-toggle="modal" onclick ="patientInfo()">Thông tin chi tiết</button>
-                <script> function patientInfo(){window.location = "patientInfo.php";} </script>
-                
-                </div>
-            </div>
+                    <?php
+                        }
+                    }
+                }
+                unset($_SESSION['undefind']);
+                unset($_SESSION['doctorList']);
+                ?>
             
         </div>
 <!-- Support -->
@@ -326,7 +380,7 @@ if(!isset($_SESSION['user'])){
                     </div>
                     <div class="mb-3">
                         <label for="recipient-name" class="col-form-label">Họ và tên:</label>
-                        <input type="text" class="form-control" id="recipient-name" name="doctorName" required>
+                        <input type="text" class="form-control" id="recipient-name" name="supportName" required>
                     </div>
                     <div class="mb-3">
                         <label for="recipient-name" class="col-form-label">CCCD:</label>
@@ -352,46 +406,71 @@ if(!isset($_SESSION['user'])){
                             <option value="doctor">Nhân viên bảo vệ</option>
                         </select>
                     </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
-                    <button type="button" class="btn btn-primary">Lưu</button>
-                </div>
-            </form>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                        <button type="submit" class="btn btn-primary" name="obj" value="support">Lưu</button>
+                    </div>
+                </form>
+            </div>
                 </div>
             </div>
             </div>
         </div>
         <div class="box-list">
+            <?php
+            if(isset($_SESSION['supportList'])){
+                if(isset($_SESSION['undefind'])){?>
+                <div class="listbox"><h2><?php echo $_SESSION['undefind']; ?></h2></div><?php
+            } else{
+                foreach($_SESSION['supportList'] as $support){?>
             <div class="listbox">
                 <div class="infoStaff">
                     <div class="staff1">
-                        <h2>Nguyễn Phúc Hưng</h2>
-                        <p>CCCD: 03845730459384</p>
-                        <p>Địa chỉ: Ký túc xá khu B Đại học quốc gia</p>
+                        <h2><?php echo $support['supportName']; ?></h2> 
+                        <p>CCCD: <?php echo $support['CCCD']; ?> </p>
+                        <p>Năm sinh: <?php echo $support['dateofborn']?></p>
                     </div>
                 </div>
                 <div class="buttonFunc">
-                    <button type="button" class="insert-but" data-bs-toggle="modal" onclick ="patientInfo()">Thông tin chi tiết</button>
-                <script> function patientInfo(){window.location = "patientInfo.php";} </script>
-                
-                </div>
-            </div>
-            <div class="listbox">
-                <div class="infoStaff">
-                    <div class="staff1">
-                        <h2>Nguyễn Phúc Hưng</h2>
-                        <p>CCCD: 03845730459384</p>
-                        <p>Địa chỉ: Ký túc xá khu B Đại học quốc gia</p>
-                    </div>
-                </div>
-                <div class="buttonFunc">
-                    <form action="doctorInfo.php">
-                        <button type="submit" class="insert-but" data-bs-toggle="modal">Thông tin chi tiết</button>
+                    <form action="doctorInfo.php" method="post">
+                        <button type="submit" class="insert-but" name="CCCD" value ="<?php echo $support['ID'];?>">Thông tin chi tiết</button>
                     </form>
-                
                 </div>
             </div>
+            <?php
+                }
+            }
+        }
+        else{
+            $rdb = new firebaseRDB($databaseURL);
+            $retrieve = $rdb->retrieve('/staffManager/support');
+            $data = json_decode($retrieve,1);
+            if($data == ""){?>
+                <div class="listbox"><h2>Undefind</h2></div><?php
+            }
+            else{
+                foreach($data as $support){?>
+                    <div class="listbox">
+                        <div class="infoStaff">
+                            <div class="staff1">
+                                <h2><?php echo $support['supportName']; ?></h2> 
+                                <p>CCCD: <?php echo $support['CCCD']; ?> </p>
+                                <p>Năm sinh: <?php echo $support['dateofborn']?></p>
+                            </div>
+                        </div>
+                        <div class="buttonFunc">
+                            <form action="doctorInfo.php" method="post">
+                                <button type="submit" class="insert-but" name="CCCD" value ="<?php echo $support['ID'];?>">Thông tin chi tiết</button>
+                            </form>
+                        </div>
+                    </div>
+                    <?php
+                        }
+                    }
+                }
+                unset($_SESSION['undefind']);
+                unset($_SESSION['doctorList']);
+                ?>
             
         </div>
         <div class="end-of-page">

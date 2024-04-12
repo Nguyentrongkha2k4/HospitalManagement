@@ -76,7 +76,7 @@ if(!isset($_SESSION['user'])){
             <h2>TÌM THIẾT BỊ Y TẾ</h2>
             <p>Vui lòng chọn loại thiết bị y tế cần tìm, viết ra tên thiết bị để tìm nhanh hơn</p> <br>
             <form class="search-form" action="deviceSearch.php" method="post">
-                <input type = "text" placeholder="Tìm kiếm tên thiết bị" name = "deviceName">
+                <input type = "text" placeholder="Tìm kiếm tên thiết bị" name = "deviceName" autocomplete="off">
                 <select name="devicePurpose">
                     <option value = "">Theo mục đích sử dụng</option>
                     <option value="Chẩn đoán" >Chẩn đoán</option>
