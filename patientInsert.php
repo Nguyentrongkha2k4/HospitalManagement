@@ -13,7 +13,7 @@ $rdb = new firebaseRDB($databaseURL);
 $retrieve = $rdb->retrieve("/vicManager", "CCCD", "EQUAL", $patientCCCD);
 $data = json_decode($retrieve, 1);
 if(count($data) > 0){
-    $_SESSION['wrong'] = "Bệnh nhân đã tồn tại!";
+    $_SESSION['wrong'] = "Bệnh nhân đã tồn tại.";
 }else{
     $insert = $rdb->insert("/vicManager",
     [
@@ -88,9 +88,9 @@ if(count($data) > 0){
             } 
         }
 
-        $_SESSION['success'] = "Thêm thành công!";
+        $_SESSION['success'] = "Thêm thành công.";
     }else{
-        $_SESSION['wrong'] = "Thêm thất bại!";
+        $_SESSION['wrong'] = "Thêm thất bại.";
     }
 }
 header("location: patient.php");

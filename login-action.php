@@ -10,7 +10,7 @@ $retrieve = $rdb->retrieve("/user", "Email", "EQUAL", $UserName);
 $data = json_decode($retrieve, 1);
 
 if(count($data) == 0){
-    $_SESSION['wrong'] = "Username doesn't exit!";
+    $_SESSION['wrong'] = "Thông tin đăng nhập không đúng.";
     header("location: login.php");
 }else{
     $id = array_keys($data)[0];
@@ -18,15 +18,8 @@ if(count($data) == 0){
         $_SESSION['user'] = $data[$id];
         header("location: home.php");
     }else{
-        $_SESSION['wrong'] = "Password is not correct!";
+        $_SESSION['wrong'] = "Mật khẩu không đúng.";
         header("location: login.php");
     }
 }
-// if (isset($_SESSION['wrong'])) {
-//     echo '<script type="text/javascript">',
-//     'document.getElementById("errorMessage").innerText = "'.$_SESSION['wrong'].'";',
-//     '$("#loginFailedModal").modal("show");',
-//     '</script>';
-//     unset($_SESSION['wrong']);
-// }
-?>
+

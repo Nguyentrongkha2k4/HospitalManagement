@@ -61,4 +61,3 @@ else {
     header("location: device.php");
 }
 
-?>

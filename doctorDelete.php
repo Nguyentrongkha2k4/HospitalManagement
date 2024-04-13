@@ -58,4 +58,3 @@ if(!isset($result['name'])){
     $_SESSION['wrong'] = "Xóa bác sĩ thất bại.";
 }
 header("location: doctor.php");
-?>

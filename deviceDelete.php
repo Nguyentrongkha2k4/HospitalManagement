@@ -12,10 +12,9 @@ $delete = $rdb->delete("/deviceManager/device", $id);
 $result = json_decode($delete, 1);
 
 if(!isset($result['name'])){
-    $_SESSION['success'] = "Xóa thành công!";
+    $_SESSION['success'] = "Xóa thiết bị thành công.";
 }else{
-    $_SESSION['wrong'] = "Xóa thất bại!";
+    $_SESSION['wrong'] = "Xóa thiết bị thất bại.";
 }
 
 header("location: device.php");
-?>

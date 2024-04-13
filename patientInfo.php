@@ -28,7 +28,7 @@ if(count($data))$nurse = $data[array_keys($data)[0]];
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>detail-patient</title>
+    <title>Quản lý bệnh nhân | <?php echo $patient['patientName']; ?></title>
     <link rel="stylesheet" href="general.css">
     <link rel="stylesheet" href="patientInfo.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
@@ -129,10 +129,10 @@ if(count($data))$nurse = $data[array_keys($data)[0]];
                 <div>THÔNG TIN LIÊN HỆ</div>
             </button>
             <button onclick="treatment()" class="treatment">
-                <div>QUẢN LÝ BÁC SĨ</div>
+                <div>QUẢN LÝ NHÂN VIÊN</div>
             </button>
             <button onclick="patient()" class="patient">
-                <div>QUẢN LÝ NGƯỜI BỆNH</div>
+                <div>QUẢN LÝ BỆNH NHÂN</div>
             </button>
             <button onclick="medicine()" class="medicine">
                 <div>QUẢN LÝ THUỐC</div>
@@ -262,7 +262,7 @@ if(count($data))$nurse = $data[array_keys($data)[0]];
                                 </div>
                                 <div class="mb-3">
                                     <label class="col-form-label">CCCD:</label>
-                                    <div style="padding:5px 0 5px 10px; border: 0.5px solid; border-radius: 5px;"><?php echo $patient['CCCD'];?></div>
+                                    <div style="padding:5px 0 5px 10px; border: 0.5px solid; border-radius: 5px;" name ="CCCD" value="<?php echo $patient['CCCD'];?>"><?php echo $patient['CCCD'];?></div>
                                 </div>
                                 <div class="mb-3">
                                     <label class="col-form-label">Năm sinh: <?php echo $patient['dateofborn'];?></label>
@@ -278,11 +278,11 @@ if(count($data))$nurse = $data[array_keys($data)[0]];
                                 </div>
                                 <div class="mb-3">
                                     <label class="col-form-label">Kết quả xét nghiệm:</label>
-                                    <textarea type="text" class="form-control" id="recipient-name" name="result" value="<?php echo $patient['result'];?>" ></textarea>
+                                    <textarea type="text" class="form-control" id="recipient-name" name="result" value="<?php echo $patient['result'];?>" ><?php echo $patient['result'];?></textarea>
                                 </div>
                                 <div class="mb-3">
                                     <label class="col-form-label">Lịch sử bệnh án:</label>
-                                    <textarea type="text" class="form-control" id="recipient-name" name="history" value="<?php echo $patient['history'];?>" ></textarea>
+                                    <textarea type="text" class="form-control" id="recipient-name" name="history" value="<?php echo $patient['history'];?>" ><?php echo $patient['history'];?></textarea>
                                 </div>
                                 <div class="modal-footer">
                                     <button type="submit" class="btn btn-primary" value="<?php echo $id; ?>" name="id">Lưu thay đổi</button>

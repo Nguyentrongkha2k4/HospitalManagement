@@ -20,7 +20,7 @@ $nurse = $data[$id];
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>detail-nurse</title>
+    <title>Quản lý nhân viên y tế | <?php echo $nurse['nurseName']; ?></title>
     <link rel="stylesheet" href="general.css">
     <link rel="stylesheet" href="doctorInfo.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
@@ -121,10 +121,10 @@ $nurse = $data[$id];
                 <div>THÔNG TIN LIÊN HỆ</div>
             </button>
             <button onclick="treatment()" class="treatment">
-                <div>QUẢN LÝ BÁC SĨ</div>
+                <div>QUẢN LÝ NHÂN VIÊN</div>
             </button>
             <button onclick="patient()" class="patient">
-                <div>QUẢN LÝ NGƯỜI BỆNH</div>
+                <div>QUẢN LÝ BỆNH NHÂN</div>
             </button>
             <button onclick="medicine()" class="medicine">
                 <div>QUẢN LÝ THUỐC</div>
@@ -132,7 +132,7 @@ $nurse = $data[$id];
             <button onclick="device()" class="device">
                 <div>THIẾT BỊ Y TẾ</div>
             </button>
-            <script>
+                <script>
                 function general(){
                     window.location = "generalPage.php";
                 }
@@ -340,7 +340,7 @@ $nurse = $data[$id];
                                     <input type="text" class="form-control" id="recipient-name" name="degree" value="<?php echo $nurse['degree']; ?>" required>
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="submit" class="btn btn-primary" value="<?php echo $nurse['ID'] ?>" name="ID">Lưu thay đổi</button>
+                                    <button type="submit" class="btn btn-primary" value="<?php echo $id; ?>" name="id">Lưu thay đổi</button>
                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
                                 </div>
                             </form>

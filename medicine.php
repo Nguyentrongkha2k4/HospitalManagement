@@ -195,7 +195,7 @@ if(!isset($_SESSION['user'])){
                             <div class="listbox">
                                 <div class="infoMedicine">
                                     <div class="medicine1">
-                                        <h2><?php echo $medicine['medicineName']; ?></h2>
+                                        <h2>Tên: <?php echo $medicine['medicineName']; ?></h2>
                                         <p>Công dụng: <?php echo $medicine['uses']; ?></p>
                                         <p>Số lượng: <?php if(isset($medicine['amount'])){echo $medicine['amount'];}else{echo 0;}?></p>
                                     </div> 
@@ -316,7 +316,7 @@ if(!isset($_SESSION['user'])){
                             <div class="listbox">
                                 <div class="infoMedicine">
                                     <div class="medicine1">
-                                        <h2><?php echo $medicine['medicineName']; ?></h2>
+                                        <h2>Tên: <?php echo $medicine['medicineName']; ?></h2>
                                         <p>Công dụng: <?php echo $medicine['uses']; ?></p>
                                         <p>Số lượng: <?php if(isset($medicine['amount'])){echo $medicine['amount'];}else{echo 0;}?></p>
                                     </div> 

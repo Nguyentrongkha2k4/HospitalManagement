@@ -47,7 +47,8 @@
     flex-direction: column;
 }
 .buttonFunc button{
-    margin: 5px;
+    margin: 5.5px;
+    height: 35px;
 }
 .buttonFunc form button{
     margin: 5px;

@@ -9,7 +9,7 @@ if(!isset($_SESSION['user'])){
 <!DOCTYPE html>
 <html>
     <head>
-        <title>liên lạc</title>
+        <title>Thông tin liên lạc</title>
         <link rel="stylesheet" href="contact.css">
         <link rel="stylesheet" href="general.css">
         <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
@@ -75,8 +75,14 @@ if(!isset($_SESSION['user'])){
                 <div>
                     <h2>Bệnh viện Đại học Bách Khoa - cơ sở 1</h2>
                     <p class="address">268 Lý Thường Kiệt, Q.10, Tp.HCM</p>
-                    <p class="phone-contact">SĐT: 19001213</p>
-                    <p class="email">Email: hotro1.bkhospital@bk.com.vn</p>
+                    <p>
+                        <span>SĐT: </span>
+                        <span class="phone-contact">19001213</span>
+                    </p>
+                    <p>
+                        <span>Email: </span>
+                        <span class="email">hotro1.bkhospital@bk.com.vn</span>
+                    </p>
                 </div>
             </div>
             <p>&nbsp;</p> 
@@ -87,8 +93,14 @@ if(!isset($_SESSION['user'])){
                 <div>
                     <h2>Bệnh viện Đại học Bách Khoa - cơ sở 2</h2>
                     <p class="address">268 Lý Thường Kiệt, phường 14, Quận 10, TP. HCM</p>
-                    <p class="phone-contact"> SĐT: 19001214</p>
-                    <p class="email">Email: hotro2.bkhospital@bk.com.vn</p>
+                    <p>
+                        <span>SĐT: </span>
+                        <span class="phone-contact">19001214</span>
+                    </p>
+                    <p>
+                        <span>Email: </span>
+                        <span class="email">hotro2.bkhospital@bk.com.vn</span>
+                    </p>
                 </div>
             </div>
         </div>

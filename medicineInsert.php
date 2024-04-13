@@ -9,7 +9,7 @@ $rdb = new firebaseRDB($databaseURL);
 $retrieve = $rdb->retrieve("/medicineManager/medicine", "medicineName", "EQUAL", $medicineName);
 $data = json_decode($retrieve, 1);
 if(count($data) > 0){
-    $_SESSION['wrong'] = "Thuốc đã tồn tại!";
+    $_SESSION['wrong'] = "Thuốc này đã tồn tại.";
     header("location: medicine.php");
 }else{
     $insert = $rdb->insert("/medicineManager/medicine",
@@ -20,10 +20,10 @@ if(count($data) > 0){
     ]);
     $result = json_decode($insert, 1);
     if(isset($result['name'])){
-        $_SESSION['success'] = "Thêm thành công!";
+        $_SESSION['success'] = "Thêm thuốc mới thành công.";
         header("location: medicine.php");
     }else{
-        $_SESSION['wrong'] = "Thêm thất bại!";
+        $_SESSION['wrong'] = "Thêm thuốc mới thất bại.";
         header("location: medicine.php");
     }
 }

@@ -34,32 +34,13 @@ if(count($data) > 0){
             $rdb->update("/deviceManager/device", $id, [
                 "amount" => $amount
             ]);
-            $_SESSION['success'] = "Thêm thành công!";
+            $_SESSION['success'] = "Thêm thiết bị thành công.";
         }else{
-            $_SESSION['wrong'] = "Thêm thất bại!";
+            $_SESSION['wrong'] = "Thêm thiết bị thất bại!";
         }
     }
-    // $retrieve = $rdb->retrieve("deviceManager/maintenance", "code", "EQUAL", $code);
-    // $data = json_decode($retrieve, 1);
-    // if(count($data) > 0){
-    //     $delete = $rdb->delete("deviceManager/maintenance", array_keys($data)[0]);
-    //     $result = json_decode($delete, 1);
-        
-    //     if(!isset($result['name'])){
-    //         $amount = $amount - 1;
-    //         $rdb->update("/deviceManager/device", $id, [
-    //             "amount" => $amount
-    //         ]);
-    //         $_SESSION['success'] = "Xóa thành công!";
-    //     }else{
-    //         $_SESSION['wrong'] = "Xóa thất bại!";
-    //     }
-    // }else{
-    //     $_SESSION['wrong'] = "Mã máy không khớp!";
-    // }
 }else{
     $_SESSION['wrong'] = "Lỗi hệ thống!";
 }
 header("location: device.php");
 
-?>

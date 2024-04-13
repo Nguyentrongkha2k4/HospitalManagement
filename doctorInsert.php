@@ -7,7 +7,7 @@ if($obj == "doctor"){
     $ID = $_POST['ID'];
     $doctorName = $_POST['doctorName'];
     $CCCD = $_POST['CCCD'];
-    $dateofborn = $_POST['dateofborn'];
+    $dateofborn = date('j-m-Y', strtotime($_POST['dateofborn']));
     $address = $_POST['address'];
     $degree = $_POST['degree'];
     $khoa = $_POST['khoa'];
@@ -61,9 +61,9 @@ if($obj == "doctor"){
                     ]);
                 }
 
-                $_SESSION['success'] = "Thêm thành công!";
+                $_SESSION['success'] = "Thêm bác sĩ thành công!";
             }else{
-                $_SESSION['wrong'] = "Thêm thất bại!";
+                $_SESSION['wrong'] = "Thêm bác sĩ thất bại!";
             }
         }
     }
@@ -71,7 +71,7 @@ if($obj == "doctor"){
     $ID = $_POST['ID'];
     $nurseName = $_POST['nurseName'];
     $CCCD = $_POST['CCCD'];
-    $dateofborn = $_POST['dateofborn'];
+    $dateofborn = date('j-m-Y', strtotime($_POST['dateofborn']));
     $address = $_POST['address'];
     $degree = $_POST['degree'];
     
@@ -121,9 +121,9 @@ if($obj == "doctor"){
                     ]);
                 }
 
-                $_SESSION['success'] = "Thêm thành công!";
+                $_SESSION['success'] = "Thêm y tá thành công!";
             }else{
-                $_SESSION['wrong'] = "Thêm thất bại!";
+                $_SESSION['wrong'] = "Thêm y tá thất bại!";
             }
         }
     }
@@ -131,7 +131,7 @@ if($obj == "doctor"){
     $ID = $_POST['ID'];
     $supportName = $_POST['supportName'];
     $CCCD = $_POST['CCCD'];
-    $dateofborn = $_POST['dateofborn'];
+    $dateofborn = date('j-m-Y', strtotime($_POST['dateofborn']));
     $address = $_POST['address'];
     $degree = $_POST['degree'];
     $position = $_POST['position'];
@@ -161,9 +161,9 @@ if($obj == "doctor"){
             
             $result = json_decode($insert, 1);
             if(isset($result['name'])){
-                $_SESSION['success'] = "Thêm thành công!";
+                $_SESSION['success'] = "Thêm nhân viên hỗ trợ thành công.";
             }else{
-                $_SESSION['wrong'] = "Thêm thất bại!";
+                $_SESSION['wrong'] = "Thêm nhân viên hỗ trợ thất bại.";
             }
         }
     }
@@ -171,4 +171,3 @@ if($obj == "doctor"){
 
 header("location: doctor.php");
 
-?>

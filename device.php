@@ -10,7 +10,7 @@ if(!isset($_SESSION['user'])){
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Quản lý thiết bị</title>
+        <title>Quản lý thiết bị y tế</title>
         <link rel="stylesheet" href="device.css">
         <link rel="stylesheet" href="general.css">
         <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
@@ -213,7 +213,7 @@ if(!isset($_SESSION['user'])){
                             <div class="listbox">
                                 <div class="infoStaff">
                                     <div class="staff1">
-                                        <h2><?php echo $device['deviceName'];?></h2>
+                                        <h2>Tên: <?php echo $device['deviceName'];?></h2>
                                         <p>Số lượng: <?php if(isset($device['amount'])){echo $device['amount'];}else{echo 0;}?></p>
                                         <p>Công dụng: <?php echo $device['purpose'];?></p>
                                         <p>Mục đích sử dụng: <?php echo $device['uses'];?></p>
@@ -355,7 +355,7 @@ if(!isset($_SESSION['user'])){
                             <div class="listbox">
                                 <div class="infoStaff">
                                     <div class="staff1">
-                                        <h2><?php echo $device['deviceName'];?></h2>
+                                        <h2>Tên: <?php echo $device['deviceName'];?></h2>
                                         <p>Số lượng: <?php if(isset($device['amount'])){echo $device['amount'];}else{echo 0;}?></p>
                                         <p>Công dụng: <?php echo $device['purpose'];?></p>
                                         <p>Mục đích sử dụng: <?php echo $device['uses'];?></p>

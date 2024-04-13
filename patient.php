@@ -232,7 +232,7 @@ if(!isset($_SESSION['user'])){
             <div class="listbox">
                 <div class="infoPatient">
                     <div class="patient1">
-                        <h2><?php echo $patient['patientName']; ?></h2> 
+                        <h2>Tên: <?php echo $patient['patientName']; ?></h2> 
                         <p>CCCD: <?php echo $patient['CCCD']; ?> </p>
                         <p>Năm sinh: <?php echo $patient['dateofborn']?></p>
                         <p>Khoa điều trị: <?php echo $patient['recipient-name'] ?></p>
@@ -260,7 +260,7 @@ if(!isset($_SESSION['user'])){
                     <div class="listbox">
                         <div class="infoPatient">
                             <div class="patient1">
-                                <h2><?php echo $patient['patientName']; ?></h2> 
+                                <h2>Tên: <?php echo $patient['patientName']; ?></h2> 
                                 <p>CCCD: <?php echo $patient['CCCD']; ?> </p>
                                 <p>Năm sinh: <?php echo $patient['dateofborn']?></p>
                                 <p>Khoa điều trị: <?php echo $patient['recipient-name'] ?></p>

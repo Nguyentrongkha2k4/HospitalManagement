@@ -20,7 +20,7 @@ $doctor = $data[$id];
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>detail-doctor</title>
+    <title>Quản lý nhân viên y tế | <?php echo $doctor['doctorName']; ?></title>
     <link rel="stylesheet" href="general.css">
     <link rel="stylesheet" href="doctorInfo.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
@@ -121,10 +121,10 @@ $doctor = $data[$id];
                 <div>THÔNG TIN LIÊN HỆ</div>
             </button>
             <button onclick="treatment()" class="treatment">
-                <div>QUẢN LÝ BÁC SĨ</div>
+                <div>QUẢN LÝ NHÂN VIÊN</div>
             </button>
             <button onclick="patient()" class="patient">
-                <div>QUẢN LÝ NGƯỜI BỆNH</div>
+                <div>QUẢN LÝ BỆNH NHÂN</div>
             </button>
             <button onclick="medicine()" class="medicine">
                 <div>QUẢN LÝ THUỐC</div>
@@ -330,8 +330,8 @@ $doctor = $data[$id];
                                     <div style="padding:5px 0 5px 10px; border: 0.5px solid; border-radius: 5px;"><?php echo $doctor['CCCD']; ?></div>
                                 </div>
                                 <div class="mb-3">
-                                    <label class="col-form-label">Năm sinh:</label>
-                                    <input type="text" class="form-control" id="recipient-name" name="dateofborn" value="<?php echo $doctor['dateofborn']; ?>" required>
+                                    <label class="col-form-label">Năm sinh:</label><?php echo $doctor['dateofborn']; ?>
+                                    <input type="date" class="form-control" id="recipient-name" name="dateofborn" value="<?php echo $doctor['dateofborn']; ?>" required>
                                 </div>
                                 <div class="mb-3">
                                     <label class="col-form-label">Địa chỉ:</label>
@@ -355,7 +355,7 @@ $doctor = $data[$id];
                                     <input type="text" class="form-control" id="recipient-name" name="degree" value="<?php echo $doctor['degree']; ?>" required>
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="submit" class="btn btn-primary" value="<?php echo $doctor['ID'] ?>" name="ID">Lưu thay đổi</button>
+                                    <button type="submit" class="btn btn-primary" value="<?php echo $id; ?>" name="id">Lưu thay đổi</button>
                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
                                 </div>
                             </form>

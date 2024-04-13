@@ -10,7 +10,7 @@ $retrieve = $rdb->retrieve("/deviceManager/device", "deviceName", "EQUAL", $devi
 $data = json_decode($retrieve, 1);
 
 if(count($data) > 0){
-    $_SESSION['wrong'] = "Thiết bị đã tồn tại!";
+    $_SESSION['wrong'] = "Thiết bị đã tồn tại.";
 }else{
     if((int)$amount > 0){
         $insert = $rdb->insert("/deviceManager/device",[
@@ -22,9 +22,9 @@ if(count($data) > 0){
         ]);
         $result = json_decode($insert, 1);
         if(isset($result['name'])){
-            $_SESSION['success'] = "Thêm thành công!";
+            $_SESSION['success'] = "Thêm thiết bị mới thành công.";
         }else{
-            $_SESSION['wrong'] = "Thêm thất bại!";
+            $_SESSION['wrong'] = "Thêm thiết bị mới thất bại.";
         }
     }else{
         $insert = $rdb->insert("/deviceManager/device",[
@@ -36,12 +36,11 @@ if(count($data) > 0){
         ]);
         $result = json_decode($insert, 1);
         if(isset($result['name'])){
-            $_SESSION['success'] = "Thêm thành công!";
+            $_SESSION['success'] = "Thêm thiết bị mới thành công.";
         }else{
-            $_SESSION['wrong'] = "Thêm thất bại!";
+            $_SESSION['wrong'] = "Thêm thiết bị mới thất bại.";
         }
     }
 }
 header("location: device.php");
 
-?>

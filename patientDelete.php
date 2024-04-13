@@ -34,9 +34,9 @@ if(!isset($result['name'])){
             ]);
         }
     }
-    $_SESSION['success'] = "Xóa thành công!";
+    $_SESSION['success'] = "Xóa bệnh nhân thành công.";
 }else{
-    $_SESSION['wrong'] = "Xóa thất bại!";
+    $_SESSION['wrong'] = "Xóa bệnh nhân thất bại.";
 }
 header("location: patient.php");
 

@@ -27,8 +27,9 @@ h1{
 }
 h2{
     margin-bottom: 50px;
+    font-size: 22px;
 }
-.main p, .sub p{
+.main span ,p, .sub p, span{
     font-family: system-ui, -apple-system, 'SFProDisplay', Arial, sans-serif;
     margin-bottom: 30px;
     font-size: 20px;

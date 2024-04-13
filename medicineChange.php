@@ -8,7 +8,7 @@ $amount = $_POST['amount'];
 $date = $_POST['date'];
 
 if($amount <= 0){
-    $_SESSION['wrong'] = "Số lượng không hợp lệ!";
+    $_SESSION['wrong'] = "Số lượng không hợp lệ.";
 }else{
     $rdb = new firebaseRDB($databaseURL);
     $retrieve = $rdb->retrieve("/medicineManager/medicine", "medicineName", "EQUAL", $medicineName);
@@ -30,10 +30,11 @@ if($amount <= 0){
             [
                 "amount" => $amount
             ]);
+        $_SESSION['success'] = "Nhập kho thành công.";
     }else{
         $amount2 = $data[$id]['amount'] - $amount;
         if((int)$amount2 < 0){
-            $_SESSION['wrong'] = "Số lượng không hợp lệ!";
+            $_SESSION['wrong'] = "Số lượng không hợp lệ.";
         }else{
             $insert = $rdb->insert("/medicineManager/storehouse",
             [
@@ -47,6 +48,7 @@ if($amount <= 0){
             [
                 "amount" => $amount2
             ]);
+            $_SESSION['success'] = "Xuất kho thành công.";
         }
     }
 }

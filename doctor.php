@@ -10,9 +10,10 @@ if(!isset($_SESSION['user'])){
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Quản lý bác sĩ</title>
+        <title>Quản lý nhân viên y tế</title>
         <link rel="stylesheet" href="doctor.css">
         <link rel="stylesheet" href="general.css">
+        <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
         <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
@@ -256,7 +257,7 @@ if(!isset($_SESSION['user'])){
             <div class="listbox">
                 <div class="infoStaff">
                     <div class="staff1">
-                        <h2><?php echo $doctor['doctorName']; ?></h2> 
+                        <h2>Tên: <?php echo $doctor['doctorName']; ?></h2> 
                         <p>CCCD: <?php echo $doctor['CCCD']; ?> </p>
                         <p>Năm sinh: <?php echo $doctor['dateofborn']?></p>
                         <p>Khoa điều trị: <?php echo $doctor['khoa'] ?></p>
@@ -284,7 +285,7 @@ if(!isset($_SESSION['user'])){
                     <div class="listbox">
                         <div class="infoStaff">
                             <div class="staff1">
-                                <h2><?php echo $doctor['doctorName']; ?></h2> 
+                                <h2>Tên: <?php echo $doctor['doctorName']; ?></h2> 
                                 <p>CCCD: <?php echo $doctor['CCCD']; ?> </p>
                                 <p>Năm sinh: <?php echo $doctor['dateofborn']?></p>
                                 <p>Khoa điều trị: <?php echo $doctor['khoa'] ?></p>
@@ -377,7 +378,7 @@ if(!isset($_SESSION['user'])){
             <div class="listbox">
                 <div class="infoStaff">
                     <div class="staff1">
-                        <h2><?php echo $nurse['nurseName']; ?></h2> 
+                        <h2>Tên: <?php echo $nurse['nurseName']; ?></h2> 
                         <p>CCCD: <?php echo $nurse['CCCD']; ?> </p>
                         <p>Năm sinh: <?php echo $nurse['dateofborn']?></p>
                     </div>
@@ -404,7 +405,7 @@ if(!isset($_SESSION['user'])){
                     <div class="listbox">
                         <div class="infoStaff">
                             <div class="staff1">
-                                <h2><?php echo $nurse['nurseName']; ?></h2> 
+                                <h2>Tên: <?php echo $nurse['nurseName']; ?></h2> 
                                 <p>CCCD: <?php echo $nurse['CCCD']; ?> </p>
                                 <p>Năm sinh: <?php echo $nurse['dateofborn']?></p>
                             </div>
@@ -506,7 +507,7 @@ if(!isset($_SESSION['user'])){
             <div class="listbox">
                 <div class="infoStaff">
                     <div class="staff1">
-                        <h2><?php echo $support['supportName']; ?></h2> 
+                        <h2>Tên: <?php echo $support['supportName']; ?></h2> 
                         <p>CCCD: <?php echo $support['CCCD']; ?> </p>
                         <p>Năm sinh: <?php echo $support['dateofborn']?></p>
                     </div>
@@ -533,7 +534,7 @@ if(!isset($_SESSION['user'])){
                     <div class="listbox">
                         <div class="infoStaff">
                             <div class="staff1">
-                                <h2><?php echo $support['supportName']; ?></h2> 
+                                <h2>Tên: <?php echo $support['supportName']; ?></h2> 
                                 <p>CCCD: <?php echo $support['CCCD']; ?> </p>
                                 <p>Năm sinh: <?php echo $support['dateofborn']?></p>
                             </div>

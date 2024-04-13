@@ -9,7 +9,7 @@ if(!isset($_SESSION['user'])){
 <!DOCTYPE html>
 <html>
     <head>
-        <title>general</title>
+        <title>Tổng quan về bệnh viện</title>
         <link rel="stylesheet" href="generalPage.css">
         <link rel="stylesheet" href="general.css">
         <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
