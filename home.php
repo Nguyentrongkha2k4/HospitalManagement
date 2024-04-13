@@ -71,12 +71,6 @@ if(!isset($_SESSION['user'])){
         <div class="body-of-page">
             <p class="hello">Chào mừng đến với bệnh viện đại học Bách Khoa</p>
             <div class="ima-container">
-                <!-- <form action="home.php" method="get">
-                    <input class="search-bar" type = "text" placeholder="Tìm kiếm" name="Tìm kiếm">
-                </form> -->
-                <!-- <button class="search-button">
-                    <img class="search-icon" src="icon/search-replace.png">
-                </button> -->
             </div>
             <div class="infor">
                 <p class="begin">Bệnh viện Đại học Bách Khoa không chỉ là một cơ sở y tế tiên tiến, mà còn là biểu tượng của sự chất lượng và
@@ -103,7 +97,7 @@ if(!isset($_SESSION['user'])){
             </div>
             <div class="phone">
                 <i class='bx bxs-phone'></i>
-                <p class="adver">0385484729</p>
+                <p class="adver">19001214</p>
                 <p class="adver-detail">Kết nối chăm sóc sức khỏe mọi lúc, mọi nơi: Bệnh viện luôn sẵn lòng lắng nghe và hỗ trợ.</p>
             </div>
         </div>

@@ -32,10 +32,11 @@
     padding-left: 40px;
 }
 .staff1 h2{
-    padding-top: 20px;
+    padding: 10px 0;
+    font-size: 25px;
 }
 .staff1 p{
-    padding-top: 10px;
+    font-size: 14px;
 }
 .buttonFunc{
     padding: 0 20px;

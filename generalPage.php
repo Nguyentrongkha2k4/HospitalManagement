@@ -110,7 +110,7 @@ if(!isset($_SESSION['user'])){
             </div>
             <div class="phone">
                 <i class='bx bxs-phone'></i>
-                <p class="adver">0385484729</p>
+                <p class="adver">19001214</p>
                 <p class="adver-detail">Kết nối chăm sóc sức khỏe mọi lúc, mọi nơi: Bệnh viện luôn sẵn lòng lắng nghe và hỗ trợ.</p>
             </div>
         </div>  

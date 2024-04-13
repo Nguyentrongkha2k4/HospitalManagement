@@ -8,19 +8,19 @@ if(!isset($_SESSION['user'])){
 
 $ID = $_POST['ID'];
 $rdb = new firebaseRDB($databaseURL);
-$retrieve = $rdb->retrieve("/staffManager/doctor", "ID", "EQUAL", $ID);
+$retrieve = $rdb->retrieve("/staffManager/nurse", "ID", "EQUAL", $ID);
 $data = json_decode($retrieve, 1);
 
 $id = array_keys($data)[0];
 
-$doctor = $data[$id];
+$nurse = $data[$id];
 
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>detail-doctor</title>
+    <title>detail-nurse</title>
     <link rel="stylesheet" href="general.css">
     <link rel="stylesheet" href="doctorInfo.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
@@ -161,14 +161,12 @@ $doctor = $data[$id];
         <div class="info">
             <div class="info basic">
                 <div><img src="" alt="none" width="120px" height="120px" style="border-radius: 100%;"></div>
-                <div>ID: <?php echo $doctor['ID']; ?></div>
-                <div>Họ và tên: <?php echo $doctor['doctorName']; ?></div>
-                <div>CCCD: <?php echo $doctor['CCCD']; ?></div>
-                <div>Năm sinh: <?php echo $doctor['dateofborn']; ?></div>
-                <div>Địa chỉ: <?php echo $doctor['address']; ?></div>
-                <div>Khoa điều trị: <?php echo $doctor['khoa']; ?></div>
-                <div>Chức vụ: <?php echo $doctor['position']; ?></div>
-                <div>Bằng cấp: <?php echo $doctor['degree']; ?></div>
+                <div>ID: <?php echo $nurse['ID']; ?></div>
+                <div>Họ và tên: <?php echo $nurse['nurseName']; ?></div>
+                <div>CCCD: <?php echo $nurse['CCCD']; ?></div>
+                <div>Năm sinh: <?php echo $nurse['dateofborn']; ?></div>
+                <div>Địa chỉ: <?php echo $nurse['address']; ?></div>
+                <div>Bằng cấp: <?php echo $nurse['degree']; ?></div>
             </div>
             <div class="info button">
                 <button type="button" data-bs-toggle="modal" data-bs-target="#change-info">Chỉnh sửa</button>
@@ -177,9 +175,9 @@ $doctor = $data[$id];
         </div>
         <div class="detail">
             <div class="detail test">
-                <h5>Bệnh nhân đang chữa trị:</h5>
+                <h5>Bệnh nhân đang hỗ trợ:</h5>
                 <div><?php
-                    $retrieve = $rdb->retrieve("/vicManager", "doctorID", "EQUAL", $doctor['ID']);
+                    $retrieve = $rdb->retrieve("/vicManager", "nurseID", "EQUAL", $nurse['ID']);
                     $data = json_decode($retrieve, 1);
                     if(count($data)){?>
                         <table class="table">
@@ -298,8 +296,8 @@ $doctor = $data[$id];
                         <div class="modal-body">
                             <div class="mb-3">Xác nhận xóa</div>
                             <div class="modal-footer">
-                                <form action="doctorDelete.php" method="post">
-                                    <button type="submit" class="btn btn-primary" value="<?php echo $doctor['ID']; ?>" name="ID">Xóa</button>
+                                <form action="nurseDelete.php" method="post">
+                                    <button type="submit" class="btn btn-primary" value="<?php echo $nurse['ID']; ?>" name="ID">Xóa</button>
                                 </form>      
                             </div>
                         </div>
@@ -312,50 +310,37 @@ $doctor = $data[$id];
                 <div class="modal-dialog modal-xl modal-dialog-scrollable">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h1 class="modal-title fs-5" id="exampleModalLabel">Chỉnh sửa thông tin bác sĩ</h1>
+                            <h1 class="modal-title fs-5" id="exampleModalLabel">Chỉnh sửa thông tin y tá</h1>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            <form action="doctorChange.php" method="post">
+                            <form action="nurseChange.php" method="post">
                                 <div class="mb-3">
                                     <label class="col-form-label">ID:</label>
-                                    <div style="padding:5px 0 5px 10px; border: 0.5px solid; border-radius: 5px;"><?php echo $doctor['ID']; ?></div>
+                                    <div style="padding:5px 0 5px 10px; border: 0.5px solid; border-radius: 5px;"><?php echo $nurse['ID']; ?></div>
                                 </div>
                                 <div class="mb-3">
                                     <label class="col-form-label">Họ và tên:</label>
-                                    <div style="padding:5px 0 5px 10px; border: 0.5px solid; border-radius: 5px;"> <?php echo $doctor['doctorName']; ?></div>
+                                    <div style="padding:5px 0 5px 10px; border: 0.5px solid; border-radius: 5px;"> <?php echo $nurse['nurseName']; ?></div>
                                 </div>
                                 <div class="mb-3">
                                     <label class="col-form-label">CCCD:</label>
-                                    <div style="padding:5px 0 5px 10px; border: 0.5px solid; border-radius: 5px;"><?php echo $doctor['CCCD']; ?></div>
+                                    <div style="padding:5px 0 5px 10px; border: 0.5px solid; border-radius: 5px;"><?php echo $nurse['CCCD']; ?></div>
                                 </div>
                                 <div class="mb-3">
                                     <label class="col-form-label">Năm sinh:</label>
-                                    <input type="text" class="form-control" id="recipient-name" name="dateofborn" value="<?php echo $doctor['dateofborn']; ?>" required>
+                                    <input type="text" class="form-control" id="recipient-name" name="dateofborn" value="<?php echo $nurse['dateofborn']; ?>" required>
                                 </div>
                                 <div class="mb-3">
                                     <label class="col-form-label">Địa chỉ:</label>
-                                    <input type="text" class="form-control" id="recipient-name" name="address" value="<?php echo $doctor['address']; ?>" required>
-                                </div>
-                                <div class="mb-3">
-                                    <label class="col-form-label">Khoa điều trị:</label>
-                                    <div style="padding:5px 0 5px 10px; border: 0.5px solid; border-radius: 5px;"><?php echo $doctor['khoa']; ?></div>
-                                </div>
-                                <div class="mb-3">
-                                    <label class="col-form-label">Chức vụ:</label>
-                                    <select name="position" class="form-control" id="recipient-name">
-                                        <option value="<?php echo $doctor['position']; ?>"><?php echo $doctor['position']; ?></option>
-                                        <?php if($doctor['position'] != "Viện Trưởng") ?><option value="Viện trưởng">Viện trưởng</option>
-                                        <?php if($doctor['position'] != "Trưởng khoa")?><option value="Trưởng Khoa">Trưởng Khoa</option>
-                                        <?php if($doctor['position'] != "Bác sĩ")?><option value="Bác sĩ">Bác sĩ</option>
-                                    </select>
+                                    <input type="text" class="form-control" id="recipient-name" name="address" value="<?php echo $nurse['address']; ?>" required>
                                 </div>
                                 <div class="mb-3">
                                     <label class="col-form-label">Bằng cấp:</label>
-                                    <input type="text" class="form-control" id="recipient-name" name="degree" value="<?php echo $doctor['degree']; ?>" required>
+                                    <input type="text" class="form-control" id="recipient-name" name="degree" value="<?php echo $nurse['degree']; ?>" required>
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="submit" class="btn btn-primary" value="<?php echo $doctor['ID'] ?>" name="ID">Lưu thay đổi</button>
+                                    <button type="submit" class="btn btn-primary" value="<?php echo $nurse['ID'] ?>" name="ID">Lưu thay đổi</button>
                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
                                 </div>
                             </form>

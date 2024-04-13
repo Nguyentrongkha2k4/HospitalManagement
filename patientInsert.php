@@ -61,7 +61,7 @@ if(count($data) > 0){
 
         $retrieve = $rdb->retrieve("/staffManager/nurse");
         $data = json_decode($retrieve, 1);
-        if(count($data) > 0){
+        if($data != ""){
             // find a min patientNum of nurse
             $nurse = $data[array_keys($data)[0]];
             foreach($data as $nurse2){

@@ -69,7 +69,7 @@ body{
     width: 200px;
 }
 .login{
-    font-size: 17px;
+    font-size: 15px;
     color: rgb(58, 8, 8);
     height: 30px;
     width: 100%;
@@ -175,15 +175,6 @@ body{
     justify-content: right;
     align-items: center;
 }
-/* .insertMedicine{
-    height: 100%;
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    margin: 0 20%;
-} */
 
 .insert-but{
     color: white;
@@ -201,7 +192,7 @@ body{
     background-color: rgb(87, 26, 26);
 }
 .box-list{
-    max-height: 500px;
+    max-height: 400px;
     overflow-x: hidden;
     overflow-y: scroll;
     display: flex;
@@ -216,3 +207,106 @@ body{
     justify-content: center;
     margin: 10px;
 }
+#toast1 {
+    position: fixed;
+    top: 75px;
+    right: 10px;
+    z-index: 999999;
+}
+.toast1 {
+    display: flex;
+    align-items: center;
+    background-color: #fff;
+    border-radius: 2px;
+    padding: 10px 0;
+    min-width: 400px;
+    max-width: 450px;
+    border-left: 4px solid;
+    box-shadow: 0 5px 8px rgba(0, 0, 0, 0.08);
+    transition: all linear 0.3s;
+}
+
+@keyframes slideInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(calc(100% + 32px));
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes fadeOut {
+    to {
+        opacity: 0;
+    }
+}
+
+.toast1--success {
+    border-color: #47d864;
+}
+
+.toast1--success .toast1__icon {
+    color: #47d864;
+}
+
+.toast1--info {
+    border-color: #2f86eb;
+}
+
+.toast1--info .toast1__icon {
+    color: #2f86eb;
+}
+
+.toast1--warning {
+    border-color: #ffc021;
+}
+
+.toast1--warning .toast1__icon {
+    color: #ffc021;
+}
+
+.toast1--error {
+    border-color: #ff623d;
+}
+
+.toast1--error .toast1__icon {
+    color: #ff623d;
+}
+
+.toast1 + .toast1 {
+    margin-top: 24px;
+}
+
+.toast1__icon {
+    font-size: 24px;
+}
+
+.toast1__icon, .toast1__close {
+    padding: 0 16px;
+}
+
+.toast1__body {
+    flex-grow: 1;
+}
+
+.toast1__title {
+    font-size: 16px;
+    font-weight: 600;
+    color: #333;
+}
+
+.toast1__msg {
+    font-size: 14px;
+    color: #888;
+    margin-top: 6px;
+    line-height: 1.5;
+}
+
+.toast1__close {
+    font-size: 20px;
+    color: rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+}
+  

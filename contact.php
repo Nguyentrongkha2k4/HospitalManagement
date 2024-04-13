@@ -75,8 +75,8 @@ if(!isset($_SESSION['user'])){
                 <div>
                     <h2>Bệnh viện Đại học Bách Khoa - cơ sở 1</h2>
                     <p class="address">268 Lý Thường Kiệt, Q.10, Tp.HCM</p>
-                    <p class="phone-contact">SĐT: 03854847298</p>
-                    <p class="email">Email: nphunghcmut.edu.vn</p>
+                    <p class="phone-contact">SĐT: 19001213</p>
+                    <p class="email">Email: hotro1.bkhospital@bk.com.vn</p>
                 </div>
             </div>
             <p>&nbsp;</p> 
@@ -87,8 +87,8 @@ if(!isset($_SESSION['user'])){
                 <div>
                     <h2>Bệnh viện Đại học Bách Khoa - cơ sở 2</h2>
                     <p class="address">268 Lý Thường Kiệt, phường 14, Quận 10, TP. HCM</p>
-                    <p class="phone-contact"> SĐT: 08283479234</p>
-                    <p class="email">Email: nphung.hcmut@gmail.com</p>
+                    <p class="phone-contact"> SĐT: 19001214</p>
+                    <p class="email">Email: hotro2.bkhospital@bk.com.vn</p>
                 </div>
             </div>
         </div>
@@ -115,7 +115,7 @@ if(!isset($_SESSION['user'])){
             </div>
             <div class="phone">
                 <i class='bx bxs-phone'></i>
-                <p class="adver">0385484729</p>
+                <p class="adver">19001214</p>
                 <p class="adver-detail">Kết nối chăm sóc sức khỏe mọi lúc, mọi nơi: Bệnh viện luôn sẵn lòng lắng nghe và hỗ trợ.</p>
             </div>
         </div>
