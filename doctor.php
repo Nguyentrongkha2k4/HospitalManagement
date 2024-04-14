@@ -156,20 +156,20 @@ if(!isset($_SESSION['user'])){
         <div class="findfirst">
             <h2>TÌM BÁC SĨ</h2>
             <p>Vui lòng chọn chuyên khoa cần khám hoặc tìm kiếm để nhanh hơn</p> <br>
-            <form class="search-form" action="doctor-action.php" method="post">
+            <form class="search-form" action="doctorSearch.php" method="post">
                 <input type = "text" placeholder="Tìm kiếm ID" name="ID">
                 <input type = "text" placeholder="Tìm kiếm tên bác sĩ" name="doctorName">
                 <select name="khoa">
-                    <option >Khoa</option>
-                    <option value="khoa ngoại tổng hợp">Khoa ngoại tổng hợp</option>
-                    <option value="khoa nội tổng hợp">Khoa nội tổng hợp</option>
-                    <option value="khoa răng-hàm-mặt">Khoa răng-hàm-mặt</option>
-                    <option value="khoa tai-mũi-họng">Khoa tai-mũi-họng</option>
-                    <option value="khoa da liễu">Khoa da liễu</option>
-                    <option value="khoa thần kinh">Khoa thần kinh</option>
+                    <option value = "">Khoa</option>
+                    <option value="Khoa ngoại tổng hợp">Khoa ngoại tổng hợp</option>
+                    <option value="Khoa nội tổng hợp">Khoa nội tổng hợp</option>
+                    <option value="Khoa răng-hàm-mặt">Khoa răng-hàm-mặt</option>
+                    <option value="Khoa tai-mũi-họng">Khoa tai-mũi-họng</option>
+                    <option value="Khoa da liễu">Khoa da liễu</option>
+                    <option value="Khoa thần kinh">Khoa thần kinh</option>
                 </select>
                 <select name="position">
-                    <option>Chức vụ</option>
+                    <option value = "">Chức vụ</option>
                     <option value="Viện trưởng">Viện Trưởng</option>
                     <option value="Trưởng khoa">Trưởng Khoa</option>
                     <option value="Bác sĩ">Bác sĩ</option>
@@ -370,8 +370,8 @@ if(!isset($_SESSION['user'])){
         <div class="box-list">
             <?php
             if(isset($_SESSION['nurseList'])){
-                if(isset($_SESSION['undefind'])){?>
-                <div class="listbox"><h2><?php echo $_SESSION['undefind']; ?></h2></div><?php
+                if(isset($_SESSION['undefind2'])){?>
+                <div class="listbox"><h2><?php echo $_SESSION['undefind2']; ?></h2></div><?php
             } else{
                 foreach($_SESSION['nurseList'] as $nurse){?>
                 <!-- <?php echo $doctor; ?> -->
@@ -420,7 +420,7 @@ if(!isset($_SESSION['user'])){
                         }
                     }
                 }
-                unset($_SESSION['undefind']);
+                unset($_SESSION['undefind2']);
                 unset($_SESSION['doctorList']);
                 ?>
             
@@ -429,11 +429,11 @@ if(!isset($_SESSION['user'])){
         <div class="find">
             <h2>TÌM NHÂN VIÊN HỖ TRỢ</h2>
             <p>Vui lòng điền thông tin để tìm kiếm nhanh hơn</p> <br>
-            <form class="search-form" action="doctor-action.php" method="post">
+            <form class="search-form" action="doctorSupportSearch.php" method="post">
                 <input type = "text" placeholder="Tìm kiếm ID" name="ID">
                 <input type = "text" placeholder="Tìm kiếm tên nhân viên" name="supportName">
                 <select name="position">
-                    <option>Bộ phận</option>
+                    <option value = "">Bộ phận</option>
                     <option value="leader">Nhân viên hỗ trợ kỹ thuật</option>
                     <option value="resident">Nhân viên vệ sinh</option>
                     <option value="doctor">Nhân viên bảo vệ</option>
@@ -500,8 +500,8 @@ if(!isset($_SESSION['user'])){
         <div class="box-list">
             <?php
             if(isset($_SESSION['supportList'])){
-                if(isset($_SESSION['undefind'])){?>
-                <div class="listbox"><h2><?php echo $_SESSION['undefind']; ?></h2></div><?php
+                if(isset($_SESSION['undefind3'])){?>
+                <div class="listbox"><h2><?php echo $_SESSION['undefind3']; ?></h2></div><?php
             } else{
                 foreach($_SESSION['supportList'] as $support){?>
             <div class="listbox">
@@ -549,7 +549,7 @@ if(!isset($_SESSION['user'])){
                         }
                     }
                 }
-                unset($_SESSION['undefind']);
+                unset($_SESSION['undefind3']);
                 unset($_SESSION['doctorList']);
                 ?>
             
