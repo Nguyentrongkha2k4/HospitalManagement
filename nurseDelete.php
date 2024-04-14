@@ -57,5 +57,5 @@ if(!isset($result['name'])){
 }else{
     $_SESSION['wrong'] = "Xóa y tá thất bại.";
 }
-header("location: doctor.php");
+header("location: nurse.php");
 ?>

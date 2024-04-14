@@ -13,7 +13,7 @@ if( $nurseID == "" && $nurseName == ""){
     if(count($data) == 0){
         $_SESSION["undefind2"] = "undefind";
     }
-    header("location: doctor.php");
+    header("location: nurse.php");
 }
 else if( $nurseID == "" && $nurseName != ""){
     $rdb = new firebaseRDB($databaseURL);
@@ -29,7 +29,7 @@ else if( $nurseID == "" && $nurseName != ""){
     if(count($_SESSION['nurseList']) == 0){
         $_SESSION["undefind2"] = "undefind1";
     }
-    header("location: doctor.php");
+    header("location: nurse.php");
 }
 else if( $nurseID != "" && $nurseName == ""){
     $rdb = new firebaseRDB($databaseURL);
@@ -39,7 +39,7 @@ else if( $nurseID != "" && $nurseName == ""){
     if(count($_SESSION["nurseList"]) == 0){
         $_SESSION["undefind2"] = "undefind2";
     }
-    header("location: doctor.php");
+    header("location: nurse.php");
 }
 else {
     $rdb = new firebaseRDB($databaseURL);
@@ -54,6 +54,6 @@ else {
     if(count($_SESSION["nurseList"]) == 0){
         $_SESSION["undefind2"] = "undefind3";
     }
-    header("location: doctor.php");
+    header("location: nurse.php");
 }
 

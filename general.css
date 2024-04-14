@@ -309,4 +309,31 @@ body{
     color: rgba(0, 0, 0, 0.3);
     cursor: pointer;
 }
-  
+.treatment li a{
+    color: rgb(58, 8, 8);
+    display: block;
+    padding: 18px 20px;
+    text-decoration: none;
+    text-align: left;
+}
+
+.treatment ul.sub-menu{
+    z-index: 1;
+    width: 270px;
+    background-color: rgb(255, 255, 255);
+    position: absolute;
+    list-style: none;
+    padding: 15px 0 0;
+    display: none;
+}
+.treatment:hover ul.sub-menu{
+    display: block;
+}
+.treatment ul.sub-menu a{
+    padding: 20px;
+    border-bottom: 1px solid #cecece;
+}
+
+.treatment ul.sub-menu li:hover{
+    background-color: rgb(223, 223, 223);
+}

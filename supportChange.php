@@ -8,7 +8,7 @@ $address = $_POST['address'];
 $degree = $_POST['degree'];
 
 $rdb = new firebaseRDB($databaseURL);
-$update = $rdb->update("/staffManager/nurse", $id,[
+$update = $rdb->update("/staffManager/support", $id,[
     "datofborn" => $dateofborn,
     "address" => $address,
     "degree" => $degree
@@ -19,4 +19,4 @@ if(!isset($result['name'])){
 }else{
     $_SESSION['wrong'] = "Lưu thất bại.";
 }
-header("location: nurse.php");
+header("location: support.php");

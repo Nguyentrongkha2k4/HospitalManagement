@@ -24,7 +24,7 @@ if(!isset($_SESSION['user'])){
                 }
             </script>
             <div class="middle">
-                <div></div>
+            <div></div>
                 <button onclick="general()" class="general">
                     <div>TỔNG QUAN</div>
                 </button>
@@ -32,10 +32,15 @@ if(!isset($_SESSION['user'])){
                     <div>THÔNG TIN LIÊN HỆ</div>
                 </button>
                 <button onclick="treatment()" class="treatment">
-                    <div>QUẢN LÝ BÁC SĨ</div>
+                    <div>QUẢN LÝ NHÂN VIÊN</div>
+                    <ul class="sub-menu">
+                        <li><a href="doctor.php">QUẢN LÝ BÁC SĨ</a></li>
+                        <li><a href="nurse.php">QUẢN LÝ Y TÁ</a></li>
+                        <li><a href="support.php">QUẢN LÝ NHÂN VIÊN HỖ TRỢ</a></li>
+                    </ul>
                 </button>
                 <button onclick="patient()" class="patient">
-                    <div>QUẢN LÝ NGƯỜI BỆNH</div>
+                    <div>QUẢN LÝ BỆNH NHÂN</div>
                 </button>
                 <button onclick="medicine()" class="medicine">
                     <div>QUẢN LÝ THUỐC</div>
@@ -51,7 +56,7 @@ if(!isset($_SESSION['user'])){
                         window.location = "contact.php";
                     }
                     function treatment(){
-                        window.location = "doctor.php";
+                        window.location = "staff.php";
                     }
                     function patient(){
                         window.location = "patient.php";

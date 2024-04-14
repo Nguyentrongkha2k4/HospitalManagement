@@ -14,7 +14,7 @@ if( $supportID == "" && $supportName == "" && $supportPosition == ""  ){
     if(count($data) == 0){
         $_SESSION["undefind3"] = "undefind";
     }
-    header("location: doctor.php");
+    header("location: support.php");
 }
 else if( $supportID != "" && $supportName == "" && $supportPosition == ""  ){
     $rdb = new firebaseRDB($databaseURL);
@@ -24,7 +24,7 @@ else if( $supportID != "" && $supportName == "" && $supportPosition == ""  ){
         $_SESSION["undefind3"] = "undefind1";
     }
     $_SESSION["supportList"] = $data;
-    header("location: doctor.php");
+    header("location: support.php");
 }
 else if( $supportID == "" && $supportName != "" && $supportPosition == "" ){
     $rdb = new firebaseRDB($databaseURL);
@@ -41,7 +41,7 @@ else if( $supportID == "" && $supportName != "" && $supportPosition == "" ){
         $_SESSION["undefind3"] = "undefind2";
     }
 
-    header("location: doctor.php");
+    header("location: support.php");
 }
 else if( $supportID == "" && $supportName == "" && $supportPosition != "" ){
     $rdb = new firebaseRDB($databaseURL);
@@ -57,7 +57,7 @@ else if( $supportID == "" && $supportName == "" && $supportPosition != "" ){
     if(count($_SESSION["supportList"]) == 0){
         $_SESSION["undefind3"] = "undefind3";
     }
-    header("location: doctor.php");
+    header("location: support.php");
 }
 
 /////// ID HANDLING
@@ -74,7 +74,7 @@ else if( $supportID != "" && $supportName != "" && $supportPosition == ""  ){
     if(count($_SESSION["supportList"]) == 0){
         $_SESSION["undefind3"] = "undefind4";
     }
-    header("location: doctor.php");
+    header("location: support.php");
 }
 
 else if( $supportID != "" && $supportName == "" && $supportPosition != ""  ){
@@ -90,7 +90,7 @@ else if( $supportID != "" && $supportName == "" && $supportPosition != ""  ){
     if(count($_SESSION["supportList"]) == 0){
         $_SESSION["undefind3"] = "undefind5";
     }
-    header("location: doctor.php");
+    header("location: support.php");
 }
 
 else if( $supportID != "" && $supportName != "" && $supportPosition != ""  ){
@@ -106,7 +106,7 @@ else if( $supportID != "" && $supportName != "" && $supportPosition != ""  ){
     if(count($_SESSION["supportList"]) == 0){
         $_SESSION["undefind3"] = "undefind6";
     }
-    header("location: doctor.php");
+    header("location: support.php");
 }
 
 ///////// NAME HANDLING
@@ -125,7 +125,7 @@ else{
         $_SESSION["undefind3"] = "undefind7";
     }
 
-    header("location: doctor.php");
+    header("location: support.php");
 }
 
 ?>

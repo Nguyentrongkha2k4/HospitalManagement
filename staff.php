@@ -106,7 +106,7 @@ if(!isset($_SESSION['user'])){
                 }
             </script>
             <div class="middle">
-            <div></div>
+                <div></div>
                 <button onclick="general()" class="general">
                     <div>TỔNG QUAN</div>
                 </button>
@@ -307,6 +307,252 @@ if(!isset($_SESSION['user'])){
                     }
                 }
                 unset($_SESSION['undefind']);
+                unset($_SESSION['doctorList']);
+                ?>
+            
+        </div>
+
+<!-- Nurse -->
+        <div class="find">
+            <h2>TÌM Y TÁ</h2>
+            <p>Vui lòng chọn chuyên khoa cần khám hoặc tìm kiếm để nhanh hơn</p> <br>
+            <form class="search-form" action="doctorNurseSearch.php" method="post">
+                <input type = "text" placeholder="Tìm kiếm ID" name="ID">
+                <input type = "text" placeholder="Tìm kiếm tên y tá" name="nurseName">
+                <button type="submit" class="search-button" title="Tìm kiếm">
+                    <img class="search-icon" src="icon/search-replace.png">
+                </button>
+            </form>
+        </div>
+        
+        <div class="insertMedicine">
+        <button type="button" class="insert-but" data-bs-toggle="modal" data-bs-target="#addnurse" data-bs-whatever="Tên thuốc">Thêm y tá</button>
+            <div class="modal fade" id="addnurse" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" >
+            <div class="modal-dialog modal-xl modal-dialog-scrollable" s>
+                <div class="modal-content" style="margin-top: 0;">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Thêm y tá</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form action="doctorInsert.php" method="post">
+                    <div class="mb-3">
+                        <label for="recipient-name" class="col-form-label">ID:</label>
+                        <input type="text" class="form-control" id="recipient-name" name="ID" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="recipient-name" class="col-form-label">Họ và tên:</label>
+                        <input type="text" class="form-control" id="recipient-name" name="nurseName" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="recipient-name" class="col-form-label">CCCD:</label>
+                        <input type="text" class="form-control" id="recipient-name" name="CCCD" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="recipient-name" class="col-form-label">Ngày sinh:</label>
+                        <input type="date" class="form-control" id="recipient-name" name="dateofborn" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="recipient-name" class="col-form-label">Địa chỉ:</label>
+                        <input type="text" class="form-control" id="recipient-name" name="address" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="recipient-name" class="col-form-label">Bằng cấp:</label>
+                        <input type="text" class="form-control" id="recipient-name" name="degree" required>
+                    </div>             
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                        <button type="submit" class="btn btn-primary" name="obj" value="nurse">Lưu</button>
+                    </div>
+                </form>
+            </div>
+                </div>
+            </div>
+            </div>
+        </div>
+
+
+        <div class="box-list">
+            <?php
+            if(isset($_SESSION['nurseList'])){
+                if(isset($_SESSION['undefind2'])){?>
+                <div class="listbox"><h2><?php echo $_SESSION['undefind2']; ?></h2></div><?php
+            } else{
+                foreach($_SESSION['nurseList'] as $nurse){?>
+                <!-- <?php echo $doctor; ?> -->
+            <div class="listbox">
+                <div class="infoStaff">
+                    <div class="staff1">
+                        <h2>Tên: <?php echo $nurse['nurseName']; ?></h2> 
+                        <p>ID: <?php echo $nurse['ID']; ?> </p>
+                    </div>
+                </div>
+                <div class="buttonFunc">
+                    <form action="doctorNurseInfo.php" method="post">
+                        <button type="submit" class="insert-but" name="ID" value ="<?php echo $nurse['ID'];?>">Thông tin chi tiết</button>
+                    </form>
+                </div>
+            </div>
+            <?php
+                }
+            }
+        }
+        else{
+            $rdb = new firebaseRDB($databaseURL);
+            $retrieve = $rdb->retrieve('/staffManager/nurse');
+            $data = json_decode($retrieve,1);
+            if($data == ""){?>
+                <div class="listbox"><h2>Undefind</h2></div><?php
+            }
+            else{
+                foreach($data as $nurse){?>
+                    <div class="listbox">
+                        <div class="infoStaff">
+                            <div class="staff1">
+                                <h2>Tên: <?php echo $nurse['nurseName']; ?></h2> 
+                                <p>ID: <?php echo $nurse['ID']; ?> </p>
+                            </div>
+                        </div>
+                        <div class="buttonFunc">
+                            <form action="doctorNurseInfo.php" method="post">
+                                <button type="submit" class="insert-but" name="ID" value ="<?php echo $nurse['ID'];?>">Thông tin chi tiết</button>
+                            </form>
+                        </div>
+                    </div>
+                    <?php
+                        }
+                    }
+                }
+                unset($_SESSION['undefind2']);
+                unset($_SESSION['doctorList']);
+                ?>
+            
+        </div>
+<!-- Support -->
+        <div class="find">
+            <h2>TÌM NHÂN VIÊN HỖ TRỢ</h2>
+            <p>Vui lòng điền thông tin để tìm kiếm nhanh hơn</p> <br>
+            <form class="search-form" action="doctorSupportSearch.php" method="post">
+                <input type = "text" placeholder="Tìm kiếm ID" name="ID">
+                <input type = "text" placeholder="Tìm kiếm tên nhân viên" name="supportName">
+                <select name="position">
+                    <option value = "">Bộ phận</option>
+                    <option value="leader">Nhân viên hỗ trợ kỹ thuật</option>
+                    <option value="resident">Nhân viên vệ sinh</option>
+                    <option value="doctor">Nhân viên bảo vệ</option>
+                </select>
+                <button type="submit" class="search-button" title="Tìm kiếm">
+                    <img class="search-icon" src="icon/search-replace.png">
+                </button>
+            </form>
+        </div>
+        
+        <div class="insertMedicine">
+        <button type="button" class="insert-but" data-bs-toggle="modal" data-bs-target="#addsupporter" data-bs-whatever="Tên thuốc">Thêm nhân viên hỗ trợ</button>
+            <div class="modal fade" id="addsupporter" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" >
+            <div class="modal-dialog modal-xl modal-dialog-scrollable" s>
+                <div class="modal-content" style="margin-top: 0;">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Thêm nhân viên hỗ trợ</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form action="doctorInsert.php" method="post">
+                    <div class="mb-3">
+                        <label for="recipient-name" class="col-form-label">ID:</label>
+                        <input type="text" class="form-control" id="recipient-name" name="ID" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="recipient-name" class="col-form-label">Họ và tên:</label>
+                        <input type="text" class="form-control" id="recipient-name" name="supportName" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="recipient-name" class="col-form-label">CCCD:</label>
+                        <input type="text" class="form-control" id="recipient-name" name="CCCD" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="recipient-name" class="col-form-label">Ngày sinh:</label>
+                        <input type="date" class="form-control" id="recipient-name" name="dateofborn" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="recipient-name" class="col-form-label">Địa chỉ:</label>
+                        <input type="text" class="form-control" id="recipient-name" name="address" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="recipient-name" class="col-form-label">Bằng cấp:</label>
+                        <input type="text" class="form-control" id="recipient-name" name="degree" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="recipient-name" class="col-form-label">Bộ phận:</label>
+                        <select name="position" class="form-control" id="recipient-name">
+                            <option value="Nhân viên hỗ trợ kỹ thuật">Nhân viên hỗ trợ kỹ thuật</option>
+                            <option value="Nhân viên vệ sinh">Nhân viên vệ sinh</option>
+                            <option value="Nhân viên bảo vệ">Nhân viên bảo vệ</option>
+                        </select>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                        <button type="submit" class="btn btn-primary" name="obj" value="support">Lưu</button>
+                    </div>
+                </form>
+            </div>
+                </div>
+            </div>
+            </div>
+        </div>
+        <div class="box-list">
+            <?php
+            if(isset($_SESSION['supportList'])){
+                if(isset($_SESSION['undefind3'])){?>
+                <div class="listbox"><h2><?php echo $_SESSION['undefind3']; ?></h2></div><?php
+            } else{
+                foreach($_SESSION['supportList'] as $support){?>
+            <div class="listbox">
+                <div class="infoStaff">
+                    <div class="staff1">
+                        <h2>Tên: <?php echo $support['supportName']; ?></h2> 
+                        <p>ID: <?php echo $support['ID']; ?> </p>
+                        <p>Bộ phận: <?php echo $support['position']?></p>
+                    </div>
+                </div>
+                <div class="buttonFunc">
+                    <form action="supportInfo.php" method="post">
+                        <button type="submit" class="insert-but" name="ID" value ="<?php echo $support['ID'];?>">Thông tin chi tiết</button>
+                    </form>
+                </div>
+            </div>
+            <?php
+                }
+            }
+        }
+        else{
+            $rdb = new firebaseRDB($databaseURL);
+            $retrieve = $rdb->retrieve('/staffManager/support');
+            $data = json_decode($retrieve,1);
+            if($data == ""){?>
+                <div class="listbox"><h2>Undefind</h2></div><?php
+            }
+            else{
+                foreach($data as $support){?>
+                    <div class="listbox">
+                        <div class="infoStaff">
+                            <div class="staff1">
+                                <h2>Tên: <?php echo $support['supportName']; ?></h2> 
+                                <p>ID: <?php echo $support['ID']; ?> </p>
+                                <p>Bộ phận: <?php echo $support['position']?></p>
+                            </div>
+                        </div>
+                        <div class="buttonFunc">
+                            <form action="supportInfo.php" method="post">
+                                <button type="submit" class="insert-but" name="ID" value ="<?php echo $support['ID'];?>">Thông tin chi tiết</button>
+                            </form>
+                        </div>
+                    </div>
+                    <?php
+                        }
+                    }
+                }
+                unset($_SESSION['undefind3']);
                 unset($_SESSION['doctorList']);
                 ?>
             
