@@ -7,6 +7,7 @@ $patientName = $_POST['patientName'];
 $patientBDate = $_POST['dateofborn'];
 $patientAddress = $_POST['address'];
 $patientKhoa = $_POST['recipient-name'];
+$patientImage = $_POST['image'];
 $patientDoctor = null;
 
 $rdb = new firebaseRDB($databaseURL);
@@ -22,6 +23,7 @@ if(count($data) > 0){
         "dateofborn" => date('j-m-Y', strtotime($patientBDate)),
         "address"=> $patientAddress,
         "recipient-name" => $patientKhoa,
+        "image_url" => $patientImage,
         "doctorID"=> "N/A", //// => $patientDoctor
         "nurseID" => "N/A",
         "result" => "",
