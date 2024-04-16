@@ -19,7 +19,7 @@ else if( $patientCCCD != "" && $patientName == "" && $patientBDate == ""  && $pa
     $retrieve = $rdb->retrieve("/vicManager","CCCD","EQUAL",$patientCCCD);
     $data = json_decode($retrieve,1);
     if(count($data) == 0){
-        $_SESSION["undefind"] = "undefind1";
+        $_SESSION["undefind"] = "Undefind";
     }
     $_SESSION["patientList"] = $data;
     header("location: patient.php");
@@ -35,8 +35,8 @@ else if( $patientCCCD == "" && $patientName != "" && $patientBDate == "" && $pat
             unset($_SESSION["patientList"][$key]);
         }
     }
-    if(count($_SESSION["patientList"]) == 0){
-        $_SESSION["undefind"] = "undefind2";
+    if($_SESSION["patientList"] and count($_SESSION["patientList"]) == 0){
+        $_SESSION["undefind"] = "Undefind";
     }
 
     header("location: patient.php");
@@ -52,8 +52,8 @@ else if( $patientCCCD == "" && $patientName == "" && $patientBDate != "" && $pat
             unset($_SESSION["patientList"][$key]);
         }
     }
-    if(count($_SESSION["patientList"]) == 0){
-        $_SESSION["undefind"] = "undefind3";
+    if($_SESSION["patientList"] and count($_SESSION["patientList"]) == 0){
+        $_SESSION["undefind"] = "Undefind";
     }
     header("location: patient.php");
 }
@@ -68,8 +68,8 @@ else if( $patientCCCD == "" && $patientName == "" && $patientBDate == "" && $pat
             unset($_SESSION["patientList"][$key]);
         }
     }
-    if(count($_SESSION["patientList"]) == 0){
-        $_SESSION["undefind"] = "undefind4";
+    if($_SESSION["patientList"] and count($_SESSION["patientList"]) == 0){
+        $_SESSION["undefind"] = "Undefind";
     }
     header("location: patient.php");
 }
@@ -85,8 +85,8 @@ else if( $patientCCCD != "" && $patientName != "" && $patientBDate == ""  && $pa
             unset($_SESSION["patientList"][$key]);
         }
     }
-    if(count($_SESSION["patientList"]) == 0){
-        $_SESSION["undefind"] = "undefind5";
+    if($_SESSION["patientList"] and count($_SESSION["patientList"]) == 0){
+        $_SESSION["undefind"] = "Undefind";
     }
     header("location: patient.php");
 }
@@ -101,8 +101,8 @@ else if( $patientCCCD != "" && $patientName == "" && $patientBDate != ""  && $pa
             unset($_SESSION["patientList"][$key]);
         }
     }
-    if(count($_SESSION["patientList"]) == 0){
-        $_SESSION["undefind"] = "undefind6";
+    if($_SESSION["patientList"] and count($_SESSION["patientList"]) == 0){
+        $_SESSION["undefind"] = "Undefind";
     }
     header("location: patient.php");
 }
@@ -117,8 +117,8 @@ else if( $patientCCCD != "" && $patientName == "" && $patientBDate == ""  && $pa
             unset($_SESSION["patientList"][$key]);
         }
     }
-    if(count($_SESSION["patientList"]) == 0){
-        $_SESSION["undefind"] = "undefind7";
+    if($_SESSION["patientList"] and count($_SESSION["patientList"]) == 0){
+        $_SESSION["undefind"] = "Undefind";
     }
     header("location: patient.php");
 }
@@ -133,8 +133,8 @@ else if( $patientCCCD != "" && $patientName != "" && $patientBDate != ""  && $pa
             unset($_SESSION["patientList"][$key]);
         }
     }
-    if(count($_SESSION["patientList"]) == 0){
-        $_SESSION["undefind"] = "undefind8";
+    if($_SESSION["patientList"] and count($_SESSION["patientList"]) == 0){
+        $_SESSION["undefind"] = "Undefind";
     }
     header("location: patient.php");
 }
@@ -149,8 +149,8 @@ else if( $patientCCCD != "" && $patientName == "" && $patientBDate != ""  && $pa
             unset($_SESSION["patientList"][$key]);
         }
     }
-    if(count($_SESSION["patientList"]) == 0){
-        $_SESSION["undefind"] = "undefind9";
+    if($_SESSION["patientList"] and count($_SESSION["patientList"]) == 0){
+        $_SESSION["undefind"] = "Undefind";
     }
     header("location: patient.php");
 }
@@ -165,8 +165,8 @@ else if( $patientCCCD != "" && $patientName != "" && $patientBDate == ""  && $pa
             unset($_SESSION["patientList"][$key]);
         }
     }
-    if(count($_SESSION["patientList"]) == 0){
-        $_SESSION["undefind"] = "undefind10";
+    if($_SESSION["patientList"] and count($_SESSION["patientList"]) == 0){
+        $_SESSION["undefind"] = "Undefind";
     }
     header("location: patient.php");
 }
@@ -181,8 +181,8 @@ else if( $patientCCCD != "" && $patientName != "" && $patientBDate != ""  && $pa
             unset($_SESSION["patientList"][$key]);
         }
     }
-    if(count($_SESSION["patientList"]) == 0){
-        $_SESSION["undefind"] = "undefind11";
+    if($_SESSION["patientList"] and count($_SESSION["patientList"]) == 0){
+        $_SESSION["undefind"] = "Undefind";
     }
     header("location: patient.php");
 }
@@ -199,8 +199,8 @@ else if( $patientCCCD == "" && $patientName != "" && $patientBDate != "" && $pat
             unset($_SESSION["patientList"][$key]);
         }
     }
-    if(count($_SESSION["patientList"]) == 0){
-        $_SESSION["undefind"] = "undefind12";
+    if($_SESSION["patientList"] and count($_SESSION["patientList"]) == 0){
+        $_SESSION["undefind"] = "Undefind";
     }
 
     header("location: patient.php");
@@ -217,8 +217,8 @@ else if( $patientCCCD == "" && $patientName != "" && $patientBDate == "" && $pat
             unset($_SESSION["patientList"][$key]);
         }
     }
-    if(count($_SESSION["patientList"]) == 0){
-        $_SESSION["undefind"] = "undefind13";
+    if($_SESSION["patientList"] and count($_SESSION["patientList"]) == 0){
+        $_SESSION["undefind"] = "Undefind";
     }
 
     header("location: patient.php");
@@ -235,8 +235,8 @@ else if( $patientCCCD == "" && $patientName != "" && $patientBDate != "" && $pat
             unset($_SESSION["patientList"][$key]);
         }
     }
-    if(count($_SESSION["patientList"]) == 0){
-        $_SESSION["undefind"] = "undefind14";
+    if($_SESSION["patientList"] and count($_SESSION["patientList"]) == 0){
+        $_SESSION["undefind"] = "Undefind";
     }
 
     header("location: patient.php");
@@ -253,8 +253,8 @@ else{
             unset($_SESSION["patientList"][$key]);
         }
     }
-    if(count($_SESSION["patientList"]) == 0){
-        $_SESSION["undefind"] = "undefind15";
+    if($_SESSION["patientList"] and count($_SESSION["patientList"]) == 0){
+        $_SESSION["undefind"] = "Undefind";
     }
     header("location: patient.php");
 }

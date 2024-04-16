@@ -12,8 +12,8 @@ if( $doctorID == "" && $doctorName == "" && $doctorPosition == ""  && $doctorKho
     $retrieve = $rdb->retrieve("/staffManager/doctor");
     $data = json_decode($retrieve,1);
     $_SESSION['doctorList'] = $data;
-    if(count($data) == 0){
-        $_SESSION["undefind"] = "undefind";
+    if($data and count($data) == 0){
+        $_SESSION["undefind"] = "Undefind";
     }
     header("location: doctor.php");
 }
@@ -22,7 +22,7 @@ else if( $doctorID != "" && $doctorName == "" && $doctorPosition == ""  && $doct
     $retrieve = $rdb->retrieve("/staffManager/doctor","ID","EQUAL",$doctorID);
     $data = json_decode($retrieve,1);
     if(count($data) == 0){
-        $_SESSION["undefind"] = "undefind1";
+        $_SESSION["undefind"] = "Undefind";
     }
     $_SESSION["doctorList"] = $data;
     header("location: doctor.php");
@@ -39,7 +39,7 @@ else if( $doctorID == "" && $doctorName != "" && $doctorPosition == "" && $docto
         }
     }
     if(count($_SESSION["doctorList"]) == 0){
-        $_SESSION["undefind"] = "undefind2";
+        $_SESSION["undefind"] = "Undefind";
     }
 
     header("location: doctor.php");
@@ -56,7 +56,7 @@ else if( $doctorID == "" && $doctorName == "" && $doctorPosition != "" && $docto
         }
     }
     if(count($_SESSION["doctorList"]) == 0){
-        $_SESSION["undefind"] = "undefind3";
+        $_SESSION["undefind"] = "Undefind";
     }
     header("location: doctor.php");
 }
@@ -72,7 +72,7 @@ else if( $doctorID == "" && $doctorName == "" && $doctorPosition == "" && $docto
         }
     }
     if(count($_SESSION["doctorList"]) == 0){
-        $_SESSION["undefind"] = "undefind4";
+        $_SESSION["undefind"] = "Undefind";
     }
     header("location: doctor.php");
 }
@@ -89,7 +89,7 @@ else if( $doctorID != "" && $doctorName != "" && $doctorPosition == ""  && $doct
         }
     }
     if(count($_SESSION["doctorList"]) == 0){
-        $_SESSION["undefind"] = "undefind5";
+        $_SESSION["undefind"] = "Undefind";
     }
     header("location: doctor.php");
 }
@@ -105,7 +105,7 @@ else if( $doctorID != "" && $doctorName == "" && $doctorPosition != ""  && $doct
         }
     }
     if(count($_SESSION["doctorList"]) == 0){
-        $_SESSION["undefind"] = "undefind6";
+        $_SESSION["undefind"] = "Undefind";
     }
     header("location: doctor.php");
 }
@@ -121,7 +121,7 @@ else if( $doctorID != "" && $doctorName == "" && $doctorPosition == ""  && $doct
         }
     }
     if(count($_SESSION["doctorList"]) == 0){
-        $_SESSION["undefind"] = "undefind7";
+        $_SESSION["undefind"] = "Undefind";
     }
     header("location: doctor.php");
 }
@@ -137,7 +137,7 @@ else if( $doctorID != "" && $doctorName != "" && $doctorPosition != ""  && $doct
         }
     }
     if(count($_SESSION["doctorList"]) == 0){
-        $_SESSION["undefind"] = "undefind8";
+        $_SESSION["undefind"] = "Undefind";
     }
     header("location: doctor.php");
 }
@@ -153,7 +153,7 @@ else if( $doctorID != "" && $doctorName == "" && $doctorPosition != ""  && $doct
         }
     }
     if(count($_SESSION["doctorList"]) == 0){
-        $_SESSION["undefind"] = "undefind9";
+        $_SESSION["undefind"] = "Undefind";
     }
     header("location: doctor.php");
 }
@@ -169,7 +169,7 @@ else if( $doctorID != "" && $doctorName != "" && $doctorPosition == ""  && $doct
         }
     }
     if(count($_SESSION["doctorList"]) == 0){
-        $_SESSION["undefind"] = "undefind10";
+        $_SESSION["undefind"] = "Undefind";
     }
     header("location: doctor.php");
 }
@@ -185,7 +185,7 @@ else if( $doctorID != "" && $doctorName != "" && $doctorPosition != ""  && $doct
         }
     }
     if(count($_SESSION["doctorList"]) == 0){
-        $_SESSION["undefind"] = "undefind11";
+        $_SESSION["undefind"] = "Undefind";
     }
     header("location: doctor.php");
 }
@@ -203,7 +203,7 @@ else if( $doctorID == "" && $doctorName != "" && $doctorPosition != "" && $docto
         }
     }
     if(count($_SESSION["doctorList"]) == 0){
-        $_SESSION["undefind"] = "undefind12";
+        $_SESSION["undefind"] = "Undefind";
     }
 
     header("location: doctor.php");
@@ -221,7 +221,7 @@ else if( $doctorID == "" && $doctorName != "" && $doctorPosition == "" && $docto
         }
     }
     if(count($_SESSION["doctorList"]) == 0){
-        $_SESSION["undefind"] = "undefind13";
+        $_SESSION["undefind"] = "Undefind";
     }
 
     header("location: doctor.php");
@@ -239,7 +239,7 @@ else if( $doctorID == "" && $doctorName != "" && $doctorPosition != "" && $docto
         }
     }
     if(count($_SESSION["doctorList"]) == 0){
-        $_SESSION["undefind"] = "undefind14";
+        $_SESSION["undefind"] = "Undefind";
     }
 
     header("location: doctor.php");
@@ -257,7 +257,7 @@ else{
         }
     }
     if(count($_SESSION["doctorList"]) == 0){
-        $_SESSION["undefind"] = "undefind15";
+        $_SESSION["undefind"] = "Undefind";
     }
     header("location: doctor.php");
 }

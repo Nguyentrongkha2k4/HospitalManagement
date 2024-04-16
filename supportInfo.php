@@ -14,7 +14,7 @@ $data = json_decode($retrieve, 1);
 $id = array_keys($data)[0];
 
 $support = $data[$id];
-$schedule = $support['schedual'];
+$schedule = $support['schedule'];
 $st2 = false;
 $st3 = false;
 $st4 = false;

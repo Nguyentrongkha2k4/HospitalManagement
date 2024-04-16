@@ -2,7 +2,7 @@
 include ("config.php");
 include ("firebaseRDB.php");
 
-$UserName = $_POST['Username'];
+$UserName = $_POST['Email'];
 $Password = $_POST['Password'];
 
 $rdb = new firebaseRDB($databaseURL);

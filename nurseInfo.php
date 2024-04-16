@@ -282,7 +282,7 @@ for($i = 0; $i < 6; ++$i){
             <div class="detail test">
                 <h5>Lịch làm việc:</h5>
                 <div class="schedule">
-                    <table class="table" style="height: 100%;">
+                    <table class="table" style="height: 50%;">
                         <thead>
                             <tr>
                                 <th>Thời gian</th>

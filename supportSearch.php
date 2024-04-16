@@ -11,8 +11,8 @@ if( $supportID == "" && $supportName == "" && $supportPosition == ""  ){
     $retrieve = $rdb->retrieve("/staffManager/support");
     $data = json_decode($retrieve,1);
     $_SESSION['supportList'] = $data;
-    if(count($data) == 0){
-        $_SESSION["undefind3"] = "undefind";
+    if($data and count($data) == 0){
+        $_SESSION["undefind3"] = "Undefind";
     }
     header("location: support.php");
 }
@@ -21,7 +21,7 @@ else if( $supportID != "" && $supportName == "" && $supportPosition == ""  ){
     $retrieve = $rdb->retrieve("/staffManager/support","ID","EQUAL",$supportID);
     $data = json_decode($retrieve,1);
     if(count($data) == 0){
-        $_SESSION["undefind3"] = "undefind1";
+        $_SESSION["undefind3"] = "Undefind";
     }
     $_SESSION["supportList"] = $data;
     header("location: support.php");
@@ -37,8 +37,8 @@ else if( $supportID == "" && $supportName != "" && $supportPosition == "" ){
             unset($_SESSION["supportList"][$key]);
         }
     }
-    if(count($_SESSION["supportList"]) == 0){
-        $_SESSION["undefind3"] = "undefind2";
+    if($_SESSION['$supportList'] and count($_SESSION["supportList"]) == 0){
+        $_SESSION["undefind3"] = "Undefind";
     }
 
     header("location: support.php");
@@ -54,8 +54,8 @@ else if( $supportID == "" && $supportName == "" && $supportPosition != "" ){
             unset($_SESSION["supportList"][$key]);
         }
     }
-    if(count($_SESSION["supportList"]) == 0){
-        $_SESSION["undefind3"] = "undefind3";
+    if($_SESSION['$supportList'] and count($_SESSION["supportList"]) == 0){
+        $_SESSION["undefind3"] = "Undefind";
     }
     header("location: support.php");
 }
@@ -71,8 +71,8 @@ else if( $supportID != "" && $supportName != "" && $supportPosition == ""  ){
             unset($_SESSION["supportList"][$key]);
         }
     }
-    if(count($_SESSION["supportList"]) == 0){
-        $_SESSION["undefind3"] = "undefind4";
+    if($_SESSION['$supportList'] and count($_SESSION["supportList"]) == 0){
+        $_SESSION["undefind3"] = "Undefind";
     }
     header("location: support.php");
 }
@@ -87,8 +87,8 @@ else if( $supportID != "" && $supportName == "" && $supportPosition != ""  ){
             unset($_SESSION["supportList"][$key]);
         }
     }
-    if(count($_SESSION["supportList"]) == 0){
-        $_SESSION["undefind3"] = "undefind5";
+    if($_SESSION['$supportList'] and count($_SESSION["supportList"]) == 0){
+        $_SESSION["undefind3"] = "Undefind";
     }
     header("location: support.php");
 }
@@ -103,8 +103,8 @@ else if( $supportID != "" && $supportName != "" && $supportPosition != ""  ){
             unset($_SESSION["supportList"][$key]);
         }
     }
-    if(count($_SESSION["supportList"]) == 0){
-        $_SESSION["undefind3"] = "undefind6";
+    if($_SESSION['$supportList'] and count($_SESSION["supportList"]) == 0){
+        $_SESSION["undefind3"] = "Undefind";
     }
     header("location: support.php");
 }
@@ -121,8 +121,8 @@ else{
             unset($_SESSION["supportList"][$key]);
         }
     }
-    if(count($_SESSION["supportList"]) == 0){
-        $_SESSION["undefind3"] = "undefind7";
+    if($_SESSION['$supportList'] and count($_SESSION["supportList"]) == 0){
+        $_SESSION["undefind3"] = "Undefind";
     }
 
     header("location: support.php");

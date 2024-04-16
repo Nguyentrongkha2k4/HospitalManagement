@@ -10,8 +10,8 @@ if( $nurseID == "" && $nurseName == ""){
     $retrieve = $rdb->retrieve("/staffManager/nurse");
     $data = json_decode($retrieve,1);
     $_SESSION['nurseList'] = $data;
-    if(count($data) == 0){
-        $_SESSION["undefind2"] = "undefind";
+    if($data and count($data) == 0){
+        $_SESSION["undefind2"] = "Undefind";
     }
     header("location: nurse.php");
 }
@@ -27,7 +27,7 @@ else if( $nurseID == "" && $nurseName != ""){
         }
     }
     if(count($_SESSION['nurseList']) == 0){
-        $_SESSION["undefind2"] = "undefind1";
+        $_SESSION["undefind2"] = "Undefind";
     }
     header("location: nurse.php");
 }
@@ -37,7 +37,7 @@ else if( $nurseID != "" && $nurseName == ""){
     $data = json_decode($retrieve,1);
     $_SESSION["nurseList"] = $data;
     if(count($_SESSION["nurseList"]) == 0){
-        $_SESSION["undefind2"] = "undefind2";
+        $_SESSION["undefind2"] = "Undefind";
     }
     header("location: nurse.php");
 }
@@ -52,7 +52,7 @@ else {
         }
     }
     if(count($_SESSION["nurseList"]) == 0){
-        $_SESSION["undefind2"] = "undefind3";
+        $_SESSION["undefind2"] = "Undefind";
     }
     header("location: nurse.php");
 }

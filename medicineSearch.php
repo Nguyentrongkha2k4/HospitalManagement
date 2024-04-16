@@ -20,7 +20,7 @@ if($medicineName == ""){
         }
     }
     if(count($_SESSION['medicineList']) == 0){
-        $_SESSION['undefind'] = "undefind";
+        $_SESSION['undefind'] = "Undefind";
     }
     header("location: medicine.php");
 }

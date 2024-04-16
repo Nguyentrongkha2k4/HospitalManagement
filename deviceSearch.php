@@ -24,7 +24,7 @@ else if( $devicePurpose == "" && $deviceName != ""){
         }
     }
     if(count($_SESSION['deviceList']) == 0){
-        $_SESSION["undefind"] = "undefind1";
+        $_SESSION["undefind"] = "Undefind";
     }
     header("location: device.php");
 }
@@ -40,7 +40,7 @@ else if( $devicePurpose != "" && $deviceName == ""){
         }
     }
     if(count($_SESSION["deviceList"]) == 0){
-        $_SESSION["undefind"] = "undefind2";
+        $_SESSION["undefind"] = "Undefind";
     }
 
     header("location: device.php");
@@ -56,7 +56,7 @@ else {
         }
     }
     if(count($_SESSION["deviceList"]) == 0){
-        $_SESSION["undefind"] = "undefind3";
+        $_SESSION["undefind"] = "Undefind";
     }
     header("location: device.php");
 }

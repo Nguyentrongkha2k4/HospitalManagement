@@ -138,7 +138,7 @@ if(!isset($_SESSION['user'])){
                         window.location = "contact.php";
                     }
                     function treatment(){
-                        window.location = "doctor.php";
+                        window.location = "staff.php";
                     }
                     function patient(){
                         window.location = "patient.php";
