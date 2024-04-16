@@ -62,7 +62,6 @@ if(count($data) > 0){
                     }
                 }
                 $amountinday = $schedule[$day] + 1;
-                echo $amountinday;
                 $rdb->update("/staffManager/doctor/".$doctorkey,"schedule", [
                     $day => $amountinday
                 ]);
@@ -95,21 +94,21 @@ if(count($data) > 0){
                 $rdb->update("/staffManager/nurse", array_keys($data)[0],[
                     "patientNum" => $patientNum
                 ]);
-                $nursekey = array_keys($data)[0];
-                $retrieve = $rdb->retrieve("/staffManager/doctor/".$nursekey."/schedule");
-                $schedule = json_decode($retrieve, 1);
-                $day = array_keys($schedule)[0];
-                    for($i = 1; $i < 6; ++$i){
-                        if($schedule[array_keys($schedule)[$i]] < $schedule[$day]){
-                            $day = array_keys($schedule)[$i];
-                        }
-                    }
+                // $nursekey = array_keys($data)[0];
+                // $retrieve = $rdb->retrieve("/staffManager/nurse/".$nursekey."/schedule");
+                // $schedule = json_decode($retrieve, 1);
+                // $day = array_keys($schedule)[0];
+                //     for($i = 1; $i < 6; ++$i){
+                //         if($schedule[array_keys($schedule)[$i]] < $schedule[$day]){
+                //             $day = array_keys($schedule)[$i];
+                //         }
+                //     }
                 
-                $amountinday = $schedule[$day] + 1;
-                echo $amountinday;
-                $rdb->update("/staffManager/doctor/".$doctorkey,"schedule", [
-                    $day => $amountinday
-                ]);
+                // $amountinday = $schedule[$day] + 1;
+                // echo $amountinday;
+                // $rdb->update("/staffManager/nurse/".$nursekey,"schedule", [
+                //     $day => $amountinday
+                // ]);
                 // update doctor in patient
                 $retrieve = $rdb->retrieve("/vicManager", "CCCD", "EQUAL", $patientCCCD);
                 $data = json_decode($retrieve, 1);

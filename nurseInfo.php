@@ -247,14 +247,14 @@ for($i = 0; $i < 6; ++$i){
                     $retrieve = $rdb->retrieve("/vicManager", "nurseID", "EQUAL", $nurse['ID']);
                     $data = json_decode($retrieve, 1);
                     if(count($data)){?>
-                        <table class="table">
-                            <thead>
+                        <div style="height: 250px; overflow: auto;">
+                        <table class="table table-striped">
+                            <thead class="table-info" style="position: sticky;top: 0">
                                 <tr>
-                                    <th>CCCD</th>
-                                    <th>Họ và tên</th>
-                                    <th>Ngày tháng năm sinh</th>
-                                    <th>Khám định kỳ hằng tuần</th>
-                                    <th>Thông tin chi tiết</th>
+                                    <th style="position: sticky;top: 0" scope="col;">CCCD</th>
+                                    <th style="position: sticky;top: 0" scope="col;">Họ và tên</th>
+                                    <th style="position: sticky;top: 0" scope="col;">Ngày tháng năm sinh</th>
+                                    <th style="position: sticky;top: 0" scope="col;">Thông tin chi tiết</th>
                                 </tr>
                             </thead>
                             <tbody style="overflow-x: hidden; overflow-y: scroll;">
@@ -264,7 +264,6 @@ for($i = 0; $i < 6; ++$i){
                                         <td scope="row"><?php echo $patient['CCCD'];?></td>
                                         <td><?php echo $patient['patientName']; ?></td>
                                         <td><?php echo $patient['dateofborn']; ?></td>
-                                        <td><?php echo $patient['date']; ?></td>
                                         <td>
                                             <form action="patientInfo.php" method="post">
                                                 <button type="submit" name = "CCCD" value="<?php echo $patient['CCCD']; ?>">Thông tin chi tiết</button>
@@ -275,6 +274,7 @@ for($i = 0; $i < 6; ++$i){
                                 }?>
                             </tbody>
                         </table>
+                        </div>
                     <?php }
                     ?>
                 </div>

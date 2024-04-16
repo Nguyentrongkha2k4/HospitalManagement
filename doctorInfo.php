@@ -249,18 +249,19 @@ for($i = 0; $i < 6; ++$i){
                     $retrieve = $rdb->retrieve("/vicManager", "doctorID", "EQUAL", $doctor['ID']);
                     $data = json_decode($retrieve, 1);
                     if(count($data)){?>
-                        <table class="table">
-                            <thead>
+                    <div style="height: 250px; overflow: auto;">
+                        <table class="table table-striped">
+                            <thead class="table-info" style="position: sticky;top: 0">
                                 <tr>
-                                    <th>CCCD</th>
-                                    <th>Họ và tên</th>
-                                    <th>Ngày tháng năm sinh</th>
-                                    <th>Khám định kỳ hằng tuần</th>
-                                    <th>Thông tin chi tiết</th>
+                                    <th style="position: sticky;top: 0" scope="col;">CCCD</th>
+                                    <th style="position: sticky;top: 0" scope="col;">Họ và tên</th>
+                                    <th style="position: sticky;top: 0" scope="col;">Ngày tháng năm sinh</th>
+                                    <th style="position: sticky;top: 0" scope="col;">Khám định kỳ hằng tuần</th>
+                                    <th style="position: sticky;top: 0" scope="col;">Thông tin chi tiết</th>
                                 </tr>
                             </thead>
-                            <tbody style="overflow-x: hidden; overflow-y: scroll;">
-                                <?php 
+                            <tbody>
+                                    <?php 
                                 foreach($data as $patient){ ?>
                                     <tr>
                                         <td scope="row"><?php echo $patient['CCCD'];?></td>
@@ -275,8 +276,10 @@ for($i = 0; $i < 6; ++$i){
                                     </tr>
                                 <?php
                                 }?>
+                                
                             </tbody>
                         </table>
+                    </div>
                     <?php }
                     ?>
                 </div>
@@ -285,7 +288,7 @@ for($i = 0; $i < 6; ++$i){
                 <h5>Lịch làm việc:</h5>
                 <div class="schedule">
                     <table class="table" style="height: 100%;">
-                        <thead>
+                        <thead class="table-info">
                             <tr>
                                 <th>Thời gian</th>
                                 <th>Thứ hai</th>

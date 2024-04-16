@@ -78,8 +78,22 @@ if($obj == "doctor"){
                     for($i = 0; $i < count($data); ++$i){
                         if(($data[array_keys($data)[$i]]['recipient-name'] == $khoa and $count < 12)){
                             $count++;
+                            $doctorkey = $id;
+                            $retrieve = $rdb->retrieve("/staffManager/doctor/".$doctorkey."/schedule");
+                            $schedule = json_decode($retrieve, 1);
+                            $day = array_keys($schedule)[0];
+                            for($j = 1; $j < 6; ++$j){
+                                if($schedule[array_keys($schedule)[$j]] < $schedule[$day]){
+                                    $day = array_keys($schedule)[$j];
+                                }
+                            }
+                            $amountinday = $schedule[$day] + 1;
+                            $rdb->update("/staffManager/doctor/".$doctorkey,"schedule", [
+                                $day => $amountinday
+                            ]);
                             $rdb->update("/vicManager", array_keys($data)[$i], [
-                                "doctorID" => $doctor['ID']
+                                "doctorID" => $doctor['ID'],
+                                "date" => $day
                             ]);
                         }
                     }

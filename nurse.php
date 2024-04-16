@@ -159,7 +159,7 @@ if(!isset($_SESSION['user'])){
         <div class="findfirst">
             <h2>TÌM Y TÁ</h2>
             <p>Vui lòng chọn chuyên khoa cần khám hoặc tìm kiếm để nhanh hơn</p> <br>
-            <form class="search-form" action="doctorNurseSearch.php" method="post">
+            <form class="search-form" action="nurseSearch.php" method="post">
                 <input type = "text" placeholder="Tìm kiếm ID" name="ID">
                 <input type = "text" placeholder="Tìm kiếm tên y tá" name="nurseName">
                 <button type="submit" class="search-button" title="Tìm kiếm">
@@ -234,7 +234,7 @@ if(!isset($_SESSION['user'])){
                     </div>
                 </div>
                 <div class="buttonFunc">
-                    <form action="doctorNurseInfo.php" method="post">
+                    <form action="nurseInfo.php" method="post">
                         <button type="submit" class="insert-but" name="ID" value ="<?php echo $nurse['ID'];?>">Thông tin chi tiết</button>
                     </form>
                 </div>
@@ -260,7 +260,7 @@ if(!isset($_SESSION['user'])){
                             </div>
                         </div>
                         <div class="buttonFunc">
-                            <form action="doctorNurseInfo.php" method="post">
+                            <form action="nurseInfo.php" method="post">
                                 <button type="submit" class="insert-but" name="ID" value ="<?php echo $nurse['ID'];?>">Thông tin chi tiết</button>
                             </form>
                         </div>

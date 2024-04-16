@@ -159,7 +159,7 @@ if(!isset($_SESSION['user'])){
         <div class="findfirst">
             <h2>TÌM NHÂN VIÊN HỖ TRỢ</h2>
             <p>Vui lòng điền thông tin để tìm kiếm nhanh hơn</p> <br>
-            <form class="search-form" action="doctorSupportSearch.php" method="post">
+            <form class="search-form" action="supportSearch.php" method="post">
                 <input type = "text" placeholder="Tìm kiếm ID" name="ID">
                 <input type = "text" placeholder="Tìm kiếm tên nhân viên" name="supportName">
                 <select name="position">
