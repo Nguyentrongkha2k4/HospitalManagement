@@ -8,6 +8,7 @@ $patientBDate = $_POST['dateofborn'];
 $patientAddress = $_POST['address'];
 $patientKhoa = $_POST['recipient-name'];
 $patientDoctor = null;
+// $patientImage = $_POST['image_url'];
 
 $rdb = new firebaseRDB($databaseURL);
 $retrieve = $rdb->retrieve("/vicManager", "CCCD", "EQUAL", $patientCCCD);
@@ -25,7 +26,9 @@ if(count($data) > 0){
         "doctorID"=> "N/A", //// => $patientDoctor
         "nurseID" => "N/A",
         "result" => "",
-        "history" => ""
+        "history" => "",
+        "date" => "",
+        // "image" => $patientImage
     ]);
     $result = json_decode($insert, 1);
     if(isset($result['name'])){
@@ -49,12 +52,26 @@ if(count($data) > 0){
                 $rdb->update("/staffManager/doctor", array_keys($data)[0],[
                     "patientNum" => $patientNum
                 ]);
-    
+                $doctorkey = array_keys($data)[0];
+                $retrieve = $rdb->retrieve("/staffManager/doctor/".$doctorkey."/schedule");
+                $schedule = json_decode($retrieve, 1);
+                $day = array_keys($schedule)[0];
+                for($i = 1; $i < 6; ++$i){
+                    if($schedule[array_keys($schedule)[$i]] < $schedule[$day]){
+                        $day = array_keys($schedule)[$i];
+                    }
+                }
+                $amountinday = $schedule[$day] + 1;
+                echo $amountinday;
+                $rdb->update("/staffManager/doctor/".$doctorkey,"schedule", [
+                    $day => $amountinday
+                ]);
                 // update doctor in patient
                 $retrieve = $rdb->retrieve("/vicManager", "CCCD", "EQUAL", $patientCCCD);
                 $data = json_decode($retrieve, 1);
                 $rdb->update("/vicManager", array_keys($data)[0],[
-                    "doctorID" => $doctor['ID']
+                    "doctorID" => $doctor['ID'],
+                    "date" => $day
                 ]);
             }
         }
@@ -69,7 +86,7 @@ if(count($data) > 0){
                     $nurse = $nurse2;
                 }
             }
-
+            
             // update patient in nurse
             if($nurse['patientNum'] < 12){
                 $patientNum = $nurse['patientNum'] + 1;
@@ -78,7 +95,21 @@ if(count($data) > 0){
                 $rdb->update("/staffManager/nurse", array_keys($data)[0],[
                     "patientNum" => $patientNum
                 ]);
-    
+                $nursekey = array_keys($data)[0];
+                $retrieve = $rdb->retrieve("/staffManager/doctor/".$nursekey."/schedule");
+                $schedule = json_decode($retrieve, 1);
+                $day = array_keys($schedule)[0];
+                    for($i = 1; $i < 6; ++$i){
+                        if($schedule[array_keys($schedule)[$i]] < $schedule[$day]){
+                            $day = array_keys($schedule)[$i];
+                        }
+                    }
+                
+                $amountinday = $schedule[$day] + 1;
+                echo $amountinday;
+                $rdb->update("/staffManager/doctor/".$doctorkey,"schedule", [
+                    $day => $amountinday
+                ]);
                 // update doctor in patient
                 $retrieve = $rdb->retrieve("/vicManager", "CCCD", "EQUAL", $patientCCCD);
                 $data = json_decode($retrieve, 1);

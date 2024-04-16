@@ -198,7 +198,10 @@ if(!isset($_SESSION['user'])){
                     <form action="doctorInsert.php" method="post">
                     <div class="mb-3">
                         <label for="recipient-name" class="col-form-label">ID:</label>
-                        <input type="text" class="form-control" id="recipient-name" name="ID" required>
+                        <div style="display:flex; flex-direction:row;">
+                            <div class="form-control" style="width: 40px; border-top-right-radius: 0; border-bottom-right-radius: 0;">BS</div>
+                            <input style="border-top-left-radius: 0; border-bottom-left-radius: 0;" type="text" class="form-control" id="recipient-name" name="ID" required>
+                        </div>
                     </div>
                     <div class="mb-3">
                         <label for="recipient-name" class="col-form-label">Họ và tên:</label>
@@ -338,7 +341,10 @@ if(!isset($_SESSION['user'])){
                     <form action="doctorInsert.php" method="post">
                     <div class="mb-3">
                         <label for="recipient-name" class="col-form-label">ID:</label>
-                        <input type="text" class="form-control" id="recipient-name" name="ID" required>
+                        <div style="display:flex; flex-direction:row;">
+                            <div class="form-control" style="width: 40px; border-top-right-radius: 0; border-bottom-right-radius: 0;">YT</div>
+                            <input style="border-top-left-radius: 0; border-bottom-left-radius: 0;" type="text" class="form-control" id="recipient-name" name="ID" required>
+                        </div>
                     </div>
                     <div class="mb-3">
                         <label for="recipient-name" class="col-form-label">Họ và tên:</label>
@@ -459,8 +465,11 @@ if(!isset($_SESSION['user'])){
                 <div class="modal-body">
                     <form action="doctorInsert.php" method="post">
                     <div class="mb-3">
-                        <label for="recipient-name" class="col-form-label">ID:</label>
-                        <input type="text" class="form-control" id="recipient-name" name="ID" required>
+                        <label for="recipient-name" class="col-form-label">ID:</label><br>
+                        <div style="display:flex; flex-direction:row;">
+                            <div class="form-control" style="width: 40px; border-top-right-radius: 0; border-bottom-right-radius: 0;">SP</div>
+                            <input style="border-top-left-radius: 0; border-bottom-left-radius: 0;" type="text" class="form-control" id="recipient-name" name="ID" required>
+                        </div>
                     </div>
                     <div class="mb-3">
                         <label for="recipient-name" class="col-form-label">Họ và tên:</label>

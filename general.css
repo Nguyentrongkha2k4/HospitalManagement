@@ -62,8 +62,12 @@ body{
     flex: 1;
     display: flex;
     justify-content: space-between;
+    align-items: center;
     padding-left: 40px;
     padding-right:100px;
+}
+.middle button:hover{
+    background-color: #cecece;
 }
 .right{
     width: 200px;
@@ -323,8 +327,12 @@ body{
     background-color: rgb(255, 255, 255);
     position: absolute;
     list-style: none;
-    padding: 15px 0 0;
+    padding: 0;
+    margin-top: 24px;
     display: none;
+    border-bottom: 1px solid;
+    border-left: 1px solid;
+    border-right: 1px solid;
 }
 .treatment:hover ul.sub-menu{
     display: block;

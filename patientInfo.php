@@ -179,6 +179,7 @@ if(count($data))$nurse = $data[array_keys($data)[0]];
                 <div>Năm sinh: <?php echo $patient['dateofborn']; ?></div>
                 <div>Địa chỉ: <?php echo $patient['address']; ?></div>
                 <div>Khoa điều trị: <?php echo $patient['recipient-name']; ?></div>
+                <div>Khám định kỳ hằng tuần: <?php if($patient['date']) echo $patient['date']; else echo "Chưa xếp lịch"?></div>
                 <div>Bác sĩ điều trị: 
                     <?php if(isset($doctor)){ ?>
                     <form action="doctorInfo.php" method="post">

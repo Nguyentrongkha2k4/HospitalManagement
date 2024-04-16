@@ -14,7 +14,68 @@ $data = json_decode($retrieve, 1);
 $id = array_keys($data)[0];
 
 $support = $data[$id];
-
+$schedule = $support['schedual'];
+$st2 = false;
+$st3 = false;
+$st4 = false;
+$st5 = false;
+$st6 = false;
+$st7 = false;
+$st8 = false;
+$ct2 = false;
+$ct3 = false;
+$ct4 = false;
+$ct5 = false;
+$ct6 = false;
+$ct7 = false;
+$ct8 = false;
+foreach($schedule as $day){
+    switch($day){
+        case "Sáng thứ hai":
+            $st2 = true;
+            break;
+        case "Chiều thứ hai":
+            $ct2 = true;
+            break;
+        case "Sáng thứ ba":
+            $st3 = true;
+            break;
+        case "Chiều thứ ba":
+            $ct3 = true;
+            break;
+        case "Sáng thứ tư":
+            $st4 = true;
+            break;
+        case "Chiều thứ tư":
+            $ct4 = true;
+            break;
+        case "Sáng thứ năm":
+            $st5 = true;
+            break;
+        case "Chiều thứ năm":
+            $ct5 = true;
+            break;
+        case "Sáng thứ sáu":
+            $st6 = true;
+            break;
+        case "Chiều thứ sáu":
+            $ct6 = true;
+            break;
+        case "Sáng thứ bảy":
+            $st7 = true;
+            break;
+        case "Chiều thứ bảy":
+            $ct7 = true;
+            break;
+        case "Sáng chủ nhật":
+            $st8 = true;
+            break;
+        case "Chiều chủ nhật":
+            $ct8 = true;
+            break;
+        
+    }
+}
 ?>
 
 <!DOCTYPE html>
@@ -197,35 +258,35 @@ $support = $data[$id];
                             </tr>
                         </thead>
                         <tbody>
-                            <tr style="height:40%;">
+                        <tr style="height:40%;">
                                 <td scope="row">07:00 - 10:50</td>
-                                <td><div style="background-color:rgb(59, 169, 181);height:100%; width:50%;"></div></td>
-                                <td><div style="background-color:rgb(59, 169, 181);height:100%; width:50%;"></div></td>
-                                <td><div style="background-color:rgb(59, 169, 181);height:100%; width:50%;"></div></td>
-                                <td><div style="background-color:rgb(59, 169, 181);height:100%; width:50%;"></div></td>
-                                <td><div style="background-color:rgb(59, 169, 181);height:100%; width:50%;"></div></td>
-                                <td><div style="background-color:rgb(59, 169, 181);height:100%; width:50%;"></div></td>
-                                <td><div style="background-color:rgb(59, 169, 181);height:100%; width:50%;"></div></td>
+                                <td><?php if($st2){ ?><div style="background-color:rgb(59, 169, 181);height:100%; width:50%;"></div><?php } ?></td>
+                                <td><?php if($st3){ ?><div style="background-color:rgb(59, 169, 181);height:100%; width:50%;"></div><?php } ?></td>
+                                <td><?php if($st4){ ?><div style="background-color:rgb(59, 169, 181);height:100%; width:50%;"></div><?php } ?></td>
+                                <td><?php if($st5){ ?><div style="background-color:rgb(59, 169, 181);height:100%; width:50%;"></div><?php } ?></td>
+                                <td><?php if($st6){ ?><div style="background-color:rgb(59, 169, 181);height:100%; width:50%;"></div><?php } ?></td>
+                                <td><?php if($st7){ ?><div style="background-color:rgb(59, 169, 181);height:100%; width:50%;"></div><?php } ?></td>
+                                <td><?php if($st8){ ?><div style="background-color:rgb(59, 169, 181);height:100%; width:50%;"></div><?php } ?></td>
                             </tr>
                             <tr style="height:10%;">
                                 <td scope="row">11:00 - 13:00</td>
                                 <td></td>
                                 <td></td>
-                                <td></td>
-                                <td></td>
+                                <td>N   g   h   ỉ</td>
+                                <td>t   r   ư   a</td>
                                 <td></td>
                                 <td></td>
                                 <td></td>
                             </tr>
                             <tr style="height:40%;">
                                 <td scope="row">13:00 - 17:00</td>
-                                <td><div style="background-color:rgb(59, 169, 181);height:100%; width:50%;"></div></td>
-                                <td><div style="background-color:rgb(59, 169, 181);height:100%; width:50%;"></div></td>
-                                <td><div style="background-color:rgb(59, 169, 181);height:100%; width:50%;"></div></td>
-                                <td><div style="background-color:rgb(59, 169, 181);height:100%; width:50%;"></div></td>
-                                <td><div style="background-color:rgb(59, 169, 181);height:100%; width:50%;"></div></td>
-                                <td><div style="background-color:rgb(59, 169, 181);height:100%; width:50%;"></div></td>
-                                <td><div style="background-color:rgb(59, 169, 181);height:100%; width:50%;"></div></td>
+                                <td><?php if($ct2){ ?><div style="background-color:rgb(59, 169, 181);height:100%; width:50%;"></div><?php } ?></td>
+                                <td><?php if($ct3){ ?><div style="background-color:rgb(59, 169, 181);height:100%; width:50%;"></div><?php } ?></td>
+                                <td><?php if($ct4){ ?><div style="background-color:rgb(59, 169, 181);height:100%; width:50%;"></div><?php } ?></td>
+                                <td><?php if($ct5){ ?><div style="background-color:rgb(59, 169, 181);height:100%; width:50%;"></div><?php } ?></td>
+                                <td><?php if($ct6){ ?><div style="background-color:rgb(59, 169, 181);height:100%; width:50%;"></div><?php } ?></td>
+                                <td><?php if($ct7){ ?><div style="background-color:rgb(59, 169, 181);height:100%; width:50%;"></div><?php } ?></td>
+                                <td><?php if($ct8){ ?><div style="background-color:rgb(59, 169, 181);height:100%; width:50%;"></div><?php } ?></td>
                             </tr>
                         </tbody>
                     </table>
