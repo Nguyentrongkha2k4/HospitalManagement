@@ -2,9 +2,28 @@
 include("config.php");
 include("firebaseRDB.php");
 $obj = $_POST['obj'];
+$numbers = array(
+    0 => "Sáng thứ hai",
+    1 => "Chiều thứ hai",
+    2 => "Sáng thứ ba",
+    3 => "Chiều thứ ba",
+    4 => "Sáng thứ tư",
+    5 =>  "Chiều thứ tư",
+    6 => "Sáng thứ năm", 
+    7 => "Chiều thứ năm",
+    8 => "Sáng thứ sáu", 
+    9 => "Chiều thứ sáu",
+    10 => "Sáng thứ bảy", 
+    11 => "Chiều thứ bảy",
+    12 => "Sáng chủ nhật", 
+    13 => "Chiều chủ nhật"
+);
+shuffle($numbers);
+$schedule = array_slice($numbers, 0, 6);
 
+print_r($result); // In ra kết quả
 if($obj == "doctor"){
-    $ID = $_POST['ID'];
+    $ID = "BS".$_POST['ID'];
     $doctorName = $_POST['doctorName'];
     $CCCD = $_POST['CCCD'];
     $dateofborn = date('j-m-Y', strtotime($_POST['dateofborn']));
@@ -35,7 +54,15 @@ if($obj == "doctor"){
                 "degree" => $degree,
                 "khoa" => $khoa,
                 "position" => $position,
-                "patientNum" => 0
+                "patientNum" => 0,
+                "schedule" => [
+                    $schedule[0] => 0,
+                    $schedule[1] => 0,
+                    $schedule[2] => 0,
+                    $schedule[3] => 0,
+                    $schedule[4] => 0,
+                    $schedule[5] => 0,
+                ]
             ]);
             
             $result = json_decode($insert, 1);
@@ -51,8 +78,22 @@ if($obj == "doctor"){
                     for($i = 0; $i < count($data); ++$i){
                         if(($data[array_keys($data)[$i]]['recipient-name'] == $khoa and $count < 12)){
                             $count++;
+                            $doctorkey = $id;
+                            $retrieve = $rdb->retrieve("/staffManager/doctor/".$doctorkey."/schedule");
+                            $schedule = json_decode($retrieve, 1);
+                            $day = array_keys($schedule)[0];
+                            for($j = 1; $j < 6; ++$j){
+                                if($schedule[array_keys($schedule)[$j]] < $schedule[$day]){
+                                    $day = array_keys($schedule)[$j];
+                                }
+                            }
+                            $amountinday = $schedule[$day] + 1;
+                            $rdb->update("/staffManager/doctor/".$doctorkey,"schedule", [
+                                $day => $amountinday
+                            ]);
                             $rdb->update("/vicManager", array_keys($data)[$i], [
-                                "doctorID" => $doctor['ID']
+                                "doctorID" => $doctor['ID'],
+                                "date" => $day
                             ]);
                         }
                     }
@@ -67,8 +108,9 @@ if($obj == "doctor"){
             }
         }
     }
+    header("location: doctor.php");
 }else if($obj == "nurse"){
-    $ID = $_POST['ID'];
+    $ID = "YT".$_POST['ID'];
     $nurseName = $_POST['nurseName'];
     $CCCD = $_POST['CCCD'];
     $dateofborn = date('j-m-Y', strtotime($_POST['dateofborn']));
@@ -95,7 +137,15 @@ if($obj == "doctor"){
                 "dateofborn" => $dateofborn,
                 "address" => $address,
                 "degree" => $degree,
-                "patientNum" => 0
+                "patientNum" => 0,
+                "schedule" => [
+                    $schedule[0] => 0,
+                    $schedule[1] => 0,
+                    $schedule[2] => 0,
+                    $schedule[3] => 0,
+                    $schedule[4] => 0,
+                    $schedule[5] => 0,
+                ]
             ]);
             
             $result = json_decode($insert, 1);
@@ -127,8 +177,9 @@ if($obj == "doctor"){
             }
         }
     }
+    header("location: nurse.php");
 }else if($obj == "support"){
-    $ID = $_POST['ID'];
+    $ID = "SP".$_POST['ID'];
     $supportName = $_POST['supportName'];
     $CCCD = $_POST['CCCD'];
     $dateofborn = date('j-m-Y', strtotime($_POST['dateofborn']));
@@ -156,7 +207,8 @@ if($obj == "doctor"){
                 "dateofborn" => $dateofborn,
                 "address" => $address,
                 "degree" => $degree,
-                "position" => $position
+                "position" => $position,
+                "schedule" => $schedule
             ]);
             
             $result = json_decode($insert, 1);
@@ -167,7 +219,7 @@ if($obj == "doctor"){
             }
         }
     }
+    header("location: support.php");
 }
 
-header("location: doctor.php");
 

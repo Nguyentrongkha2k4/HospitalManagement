@@ -10,6 +10,7 @@ $data = json_decode($retrieve, 1);
 $id = array_keys($data)[0];
 $doctorID = $data[$id]['doctorID'];
 $nurseID = $data[$id]['nurseID'];
+$date = $data[$id]['date'];
 $delete = $rdb->delete("/vicManager", $id);
 $result = json_decode($delete, 1);
 
@@ -21,6 +22,13 @@ if(!isset($result['name'])){
             $patientNum = $data[array_keys($data)[0]]['patientNum'] - 1;
             $rdb->update("/staffManager/doctor", array_keys($data)[0], [
                 "patientNum" => $patientNum
+            ]);
+            $doctorkey = array_keys($data)[0];
+            $retrieve = $rdb->retrieve("/staffManager/doctor/".$doctorkey."/schedule");
+            $schedule = json_decode($retrieve, 1);
+            $amountinday = $schedule[$date] - 1;
+            $rdb->update("/staffManager/doctor/".$doctorkey,"schedule", [
+                $date => $amountinday
             ]);
         }
     }
