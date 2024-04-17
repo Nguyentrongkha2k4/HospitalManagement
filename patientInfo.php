@@ -198,7 +198,7 @@ if(count($data))$nurse = $data[array_keys($data)[0]];
     <div class="bodyPage">
         <div class="info">
             <div class="info basic">
-                <div><img src="<?php echo $patient['image_url']; ?>" alt="none" width="120px" height="120px" style="border-radius: 100%; border:1px solid;"></div>
+                <div><img src="<?php echo $patient['image_url']; ?>" alt="none" width="120px" height="120px" style="border-radius: 100%; border:1px solid; box-shadow: 1px;"></div>
                 <div>Họ và tên: <?php echo $patient['patientName']; ?></div>
                 <div>CCCD: <?php echo $patient['CCCD']; ?></div>
                 <div>Năm sinh: <?php echo $patient['dateofborn']; ?></div>

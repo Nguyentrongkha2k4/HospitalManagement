@@ -348,8 +348,10 @@ body{
 .info-but{
     padding: 0 5px;
     border: unset;
+    color: rgb(0, 81, 180);
+    text-decoration: underline;
 }
 .info-but:hover{
     text-decoration: underline;
-    color: blue;
+    color: rgb(0, 0, 255);
 }

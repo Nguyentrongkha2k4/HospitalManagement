@@ -234,6 +234,11 @@ if(!isset($_SESSION['user'])){
                         <label for="recipient-name" class="col-form-label">Họ và tên:</label>
                         <input type="text" class="form-control" id="recipient-name" name="patientName" required>
                     </div>
+                    <div class = "mb-3">
+                        <label for="">Vui lòng chọn ảnh bệnh nhân:</label>
+                        <input type ="file" name = "image" class="form-control" accept="image/png, image/jpeg" id = 'files' >
+                        <input type = "hidden" name = "image" id = "hiddenText">
+                    </div>
                     <div class="mb-3">
                         <label for="recipient-name" class="col-form-label">CCCD:</label>
                         <input type="text" class="form-control" id="recipient-name" name="CCCD" required>
@@ -256,11 +261,6 @@ if(!isset($_SESSION['user'])){
                             <option value="Khoa da liễu">Khoa da liễu</option>
                             <option value="Khoa thần kinh">Khoa thần kinh</option>
                         </select>
-                    </div>
-                    <div class = "mb-3">
-                        <label for="">Vui lòng chọn ảnh bệnh nhân:</label>
-                        <input type ="file" name = "image" class="form-control" accept="image/png, image/jpeg" id = 'files' >
-                        <input type = "hidden" name = "image" id = "hiddenText">
                     </div>
                 </div>
                 <div class="modal-footer">
