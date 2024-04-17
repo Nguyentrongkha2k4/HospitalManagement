@@ -8,14 +8,26 @@ $dateofborn = date('j-m-Y', strtotime($_POST['dateofborn']));
 $address = $_POST['address'];
 $result = $_POST['result'];
 $history = $_POST['history'];
+$image = $_POST['image'];
 
 $rdb = new firebaseRDB($databaseURL);
-$update = $rdb->update("/vicManager", $id,[
-    "datofborn" => $dateofborn,
-    "address" => $address,
-    "result" => $result,
-    "history" => $history
-]);
+if ($image != "") {
+    $update = $rdb->update("/vicManager", $id,[
+        "datofborn" => $dateofborn,
+        "address" => $address,
+        "result" => $result,
+        "history" => $history,       
+        "image_url" => $image
+    ]);
+}
+else{
+    $update = $rdb->update("/vicManager", $id,[
+        "datofborn" => $dateofborn,
+        "address" => $address,
+        "result" => $result,
+        "history" => $history
+    ]);
+}
 $result = json_decode($update, 1);
 if(!isset($result['name'])){
     $_SESSION['success'] = "Lưu thành công.";

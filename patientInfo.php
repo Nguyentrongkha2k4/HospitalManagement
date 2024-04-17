@@ -59,6 +59,23 @@ if(count($data))$nurse = $data[array_keys($data)[0]];
     // Initialize Firebase
     firebase.initializeApp(firebaseConfig);
     const storage = firebase.storage();
+    function getFileUrl(filename) {
+        //create a storage reference
+        var storage = firebase.storage().ref(filename);
+        //get file url
+        storage
+            .getDownloadURL()
+            .then(function(url) {
+            console.log(url);
+            document.getElementById('hiddenText').value = url;
+            document.getElementById('formChange').submit();
+            
+            });
+            // .catch(function(error) {
+            //   console.log("error encountered");
+            // });
+        }
+
     </script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
         <script>
@@ -318,10 +335,17 @@ if(count($data))$nurse = $data[array_keys($data)[0]];
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            <form action="patientChange.php" method="post">
+                            <form id ="formChange" action="patientChange.php" method="post" enctype="multipart/form-data">
                                 <div class="mb-3">
                                     <label class="col-form-label">Họ và tên:</label>
                                     <div style="padding:5px 0 5px 10px; border: 0.5px solid; border-radius: 5px;"><?php echo $patient['patientName'];?></div>
+                                </div>
+                                <div class = "mb-3">
+                                    <label for="">Cập nhật ảnh bệnh nhân:</label>
+                                    <input type ="file" name = "image" class="form-control" accept="image/png, image/jpeg" id = 'files' >
+                                    <input type = "hidden" name = "image" id = "hiddenText">
+                                    <input type = "hidden" value="<?php echo $id; ?>" name="id" id="patientID">
+                                    <input type = "hidden" value="<?php echo $patient['CCCD']; ?>" id="patientCCCD">
                                 </div>
                                 <div class="mb-3">
                                     <label class="col-form-label">CCCD:</label>
@@ -348,10 +372,91 @@ if(count($data))$nurse = $data[array_keys($data)[0]];
                                     <textarea type="text" class="form-control" id="recipient-name" name="history" value="<?php echo $patient['history'];?>" ><?php echo $patient['history'];?></textarea>
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="submit" class="btn btn-primary" value="<?php echo $id; ?>" name="id">Lưu thay đổi</button>
+                                    <button type="submit" class="btn btn-primary">Lưu thay đổi</button>
                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
                                 </div>
                             </form>
+                            <script type="text/javascript">
+                            var files = [];
+                            var CCCD;
+                            var filename;
+                            const new_storage = firebase.storage();
+                            document.getElementById("files").addEventListener("change", function(e) {
+                            files = e.target.files;
+                            for (let i = 0; i < files.length; i++) {
+                                console.log(files[i]);
+                            }
+                            });
+
+                            document.getElementById('formChange').addEventListener("submit", function(event) {
+                            event.preventDefault(); // Prevent default form submission
+                            
+                            CCCD = document.getElementById('patientCCCD').value
+                            // // Get the form data
+                            // var form = event.target;
+                            // var formData = new FormData(form);
+
+                            // // Convert form data to an object
+                            // var postData = {};
+                            // for (var pair of formData.entries()) {
+                            //     postData[pair[0]] = pair[1];
+                            // }
+                            
+                            // // Access the form data
+                            // var doctorName = postData.doctorName;
+                            // CCCD = postData.CCCD;
+                            // var dateofborn = postData.dateofborn;
+                            // var address = postData.address;
+                            // console.log(postData);
+                            if (files.length != 0) {
+                            //Delete old file
+                                var deleteImage = CCCD + ".png";
+                                const fileRef = new_storage.ref().child(deleteImage);
+                                //Delete the file
+                                fileRef.delete().then(() =>{
+                                    //File deleted successfully
+                                    console.log("done!");
+                                    // document.getElementById('delete').submit();
+                                                                //Loops through all the selected files
+                            for (let i = 0; i < files.length; i++) {
+                                //create a storage reference
+                                filename = CCCD + ".png";
+                                var storage = firebase.storage().ref(filename);
+
+                                // upload file
+                                var upload = storage.put(files[i]);
+
+                                // Monitor upload progress
+                                upload.on(
+                                "state_changed",
+                                function(snapshot) {
+                                    // Track upload progress here if needed
+                                    var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+                                    console.log("Upload progress: " + progress + "%");
+                                },
+                                function(error) {
+                                    // Handle upload error here
+                                    console.log("Upload error:", error);
+                                },
+                                function() {
+                                    // Upload complete, get file URL
+                                    getFileUrl(filename);
+                                }
+                                );
+                            }
+                                }).catch((error) =>{
+                                    //Handling
+                                    console.log("delete failed!");
+                                })
+
+                            } else {
+                            //alert("Chưa có ảnh");
+                            document.getElementById('hiddenText').value = "";
+                            document.getElementById('formChange').submit();
+                            }
+                            });
+
+                            </script>
                         </div>
                     </div>
                 </div>
