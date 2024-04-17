@@ -288,6 +288,22 @@ if(count($data))$nurse = $data[array_keys($data)[0]];
                                 })
                             </script>   
                             </div>
+                            <script>
+                                document.getElementById("delete").addEventListener("click", function(event){
+                                    var deleteSubmit = event.target;
+                                    var deleteImage = deleteSubmit.value + ".png";
+                                    const fileRef = storage.ref().child(deleteImage);
+                                    //Delete the file
+                                    fileRef.delete().then(() =>{
+                                        //File deleted successfully
+                                        console.log("done!");
+                                        // document.getElementById('delete').submit();
+                                    }).catch((error) =>{
+                                        //Handling
+                                        console.log("delete failed!");
+                                    })
+                                })
+                            </script>
                         </div>
                         
                     </div>
