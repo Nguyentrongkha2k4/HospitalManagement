@@ -18,6 +18,48 @@ if(!isset($_SESSION['user'])){
         <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
         <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> -->
+        <!-- The core Firebase JS SDK is always required and must be listed first -->
+        <script src="https://www.gstatic.com/firebasejs/7.13.1/firebase-app.js"></script>
+
+        <!-- TODO: Add SDKs for Firebase products that you want to use -->
+        <script src="https://www.gstatic.com/firebasejs/7.13.1/firebase-storage.js"></script>
+
+        <!-- TODO: Add jQuery library -->
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+        <script type="text/javascript">
+            // Your web app's Firebase configuration
+            var firebaseConfig = {
+                apiKey: "AIzaSyA-EGv-5uIaxHyp9wOJOnlZY76PvsQ_880",
+                authDomain: "btl-advanceprogram.firebaseapp.com",
+                databaseURL: "https://btl-advanceprogram-default-rtdb.asia-southeast1.firebasedatabase.app",
+                projectId: "btl-advanceprogram",
+                storageBucket: "btl-advanceprogram.appspot.com",
+                messagingSenderId: "396274368225",
+                appId: "1:396274368225:web:22bdb7c28c6371ffad01a0",
+                measurementId: "G-TGVYSSWNHB"
+            };
+            // Initialize Firebase
+            firebase.initializeApp(firebaseConfig);
+
+            function getFileUrl(filename) {
+            //create a storage reference
+            var storage = firebase.storage().ref(filename);
+            //get file url
+            storage
+                .getDownloadURL()
+                .then(function(url) {
+                console.log(url);
+                document.getElementById('hiddenText').value = url;
+                document.getElementById('formInsert').submit();
+                
+                });
+                // .catch(function(error) {
+                //   console.log("error encountered");
+                // });
+            }
+            // firebase.app().delete();
+        </script>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
         <script>
             function showSuccessToast(mess) {
@@ -182,6 +224,7 @@ if(!isset($_SESSION['user'])){
                 <button type="submit" class="search-button" title="Tìm kiếm">
                     <img class="search-icon" src="icon/search-replace.png">
                 </button>
+
             </form>
         </div>
         
@@ -195,7 +238,12 @@ if(!isset($_SESSION['user'])){
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body" style="height: 90%;">
-                    <form action="doctorInsert.php" method="post">
+                    <form action="doctorInsert.php" method="post" id = "formInsert" enctype= "multipart/form-data">
+                    <div class = "mb-3">
+                        <label for="">Vui lòng chọn ảnh bác sĩ:</label>
+                        <input type ="file" name = "image" class="form-control" accept="image/png, image/jpeg" id = 'files' required>
+                        <input type = "hidden" name = "image" id = "hiddenText" required>
+                    </div>
                     <div class="mb-3">
                         <label for="recipient-name" class="col-form-label">ID:</label>
                         <div style="display:flex; flex-direction:row;">
@@ -242,11 +290,79 @@ if(!isset($_SESSION['user'])){
                             <option value="Bác sĩ">Bác sĩ</option>
                         </select>
                     </div>
+                    <div style="display: none;">
+                        <input name="obj" value="doctor"></input>
+                    </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
-                        <button type="submit" class="btn btn-primary" name="obj" value="doctor">Lưu</button>
+                        <button type="submit" class="btn btn-primary">Lưu</button>
                     </div>
                 </form>
+                <script type="text/javascript">
+                var files = [];
+                var CCCD;
+                var filename;
+
+                document.getElementById("files").addEventListener("change", function(e) {
+                files = e.target.files;
+                for (let i = 0; i < files.length; i++) {
+                    console.log(files[i]);
+                }
+                });
+
+                document.getElementById('formInsert').addEventListener("submit", function(event) {
+                event.preventDefault(); // Prevent default form submission
+
+                // Get the form data
+                var form = event.target;
+                var formData = new FormData(form);
+
+                // Convert form data to an object
+                var postData = {};
+                for (var pair of formData.entries()) {
+                    postData[pair[0]] = pair[1];
+                }
+
+                // Access the form data
+                var doctorName = postData.doctorName;
+                CCCD = postData.CCCD;
+                var dateofborn = postData.dateofborn;
+                var address = postData.address;
+
+                if (files.length != 0) {
+                //Loops through all the selected files
+                for (let i = 0; i < files.length; i++) {
+                    //create a storage reference
+                    filename = CCCD + ".png";
+                    var storage = firebase.storage().ref(filename);
+
+                    // upload file
+                    var upload = storage.put(files[i]);
+
+                    // Monitor upload progress
+                    upload.on(
+                    "state_changed",
+                    function(snapshot) {
+                        // Track upload progress here if needed
+                        var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+                        console.log("Upload progress: " + progress + "%");
+                    },
+                    function(error) {
+                        // Handle upload error here
+                        console.log("Upload error:", error);
+                    },
+                    function() {
+                        // Upload complete, get file URL
+                        getFileUrl(filename);
+                    }
+                    );
+                }
+                } else {
+                alert("Chưa có ảnh");
+                }
+                });
+
+                </script>
             </div>
                 </div>
             </div>

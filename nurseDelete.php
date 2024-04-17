@@ -2,13 +2,13 @@
 include("config.php");
 include("firebaseRDB.php");
 
-$ID = $_POST['ID'];
+$CCCD = $_POST['CCCD'];
 
 $rdb = new firebaseRDB($databaseURL);
-$retrieve = $rdb->retrieve("/staffManager/nurse", "ID", "EQUAL", $ID);
+$retrieve = $rdb->retrieve("/staffManager/nurse", "CCCD", "EQUAL", $CCCD);
 $data = json_decode($retrieve, 1);
 $id = array_keys($data)[0];
-
+$ID = $data[$id]['ID'];
 $delete = $rdb->delete("/staffManager/nurse", $id);
 $result = json_decode($delete, 1);
 if(!isset($result['name'])){

@@ -88,6 +88,31 @@ for($i = 0; $i < 6; ++$i){
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/7.13.1/firebase-app.js"></script>
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use -->
+    <script src="https://www.gstatic.com/firebasejs/7.13.1/firebase-storage.js"></script>
+
+    <!-- TODO: Add jQuery library -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <script type="text/javascript">
+    // Your web app's Firebase configuration
+    var firebaseConfig = {
+        apiKey: "AIzaSyA-EGv-5uIaxHyp9wOJOnlZY76PvsQ_880",
+        authDomain: "btl-advanceprogram.firebaseapp.com",
+        databaseURL: "https://btl-advanceprogram-default-rtdb.asia-southeast1.firebasedatabase.app",
+        projectId: "btl-advanceprogram",
+        storageBucket: "btl-advanceprogram.appspot.com",
+        messagingSenderId: "396274368225",
+        appId: "1:396274368225:web:22bdb7c28c6371ffad01a0",
+        measurementId: "G-TGVYSSWNHB"
+    };
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    const storage = firebase.storage();
+    </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
         <script>
@@ -227,7 +252,7 @@ for($i = 0; $i < 6; ++$i){
     <div class="bodyPage">
         <div class="info">
             <div class="info basic">
-                <div><img src="" alt="none" width="120px" height="120px" style="border-radius: 100%;"></div>
+                <div><img src="<?php echo $doctor['image_url']; ?>" alt="none" width="120px" height="120px" style="border-radius: 100%; border:1px solid;"></div>
                 <div>ID: <?php echo $doctor['ID']; ?></div>
                 <div>Họ và tên: <?php echo $doctor['doctorName']; ?></div>
                 <div>CCCD: <?php echo $doctor['CCCD']; ?></div>
@@ -257,7 +282,7 @@ for($i = 0; $i < 6; ++$i){
                                     <th style="position: sticky;top: 0" scope="col;">Họ và tên</th>
                                     <th style="position: sticky;top: 0" scope="col;">Ngày tháng năm sinh</th>
                                     <th style="position: sticky;top: 0" scope="col;">Khám định kỳ hằng tuần</th>
-                                    <th style="position: sticky;top: 0" scope="col;">Thông tin chi tiết</th>
+                                    <th style="position: sticky;top: 0" scope="col;">Thông tin</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -270,7 +295,7 @@ for($i = 0; $i < 6; ++$i){
                                         <td><?php echo $patient['date']; ?></td>
                                         <td>
                                             <form action="patientInfo.php" method="post">
-                                                <button type="submit" name = "CCCD" value="<?php echo $patient['CCCD']; ?>">Thông tin chi tiết</button>
+                                                <button class="info-but" type="submit" name = "CCCD" value="<?php echo $patient['CCCD']; ?>">Thông tin chi tiết</button>
                                             </form>
                                         </td>
                                     </tr>
@@ -371,8 +396,24 @@ for($i = 0; $i < 6; ++$i){
                             <div class="mb-3">Xác nhận xóa</div>
                             <div class="modal-footer">
                                 <form action="doctorDelete.php" method="post">
-                                    <button type="submit" class="btn btn-primary" value="<?php echo $doctor['ID']; ?>" name="ID">Xóa</button>
-                                </form>      
+                                    <button type="submit" class="btn btn-primary" value="<?php echo $doctor['CCCD']; ?>" name="CCCD" id="delete">Xóa</button>
+                                </form>    
+                                <script>
+                                document.getElementById("delete").addEventListener("click", function(event){
+                                    var deleteSubmit = event.target;
+                                    var deleteImage = deleteSubmit.value + ".png";
+                                    const fileRef = storage.ref().child(deleteImage);
+                                    //Delete the file
+                                    fileRef.delete().then(() =>{
+                                        //File deleted successfully
+                                        console.log("done!");
+                                        // document.getElementById('delete').submit();
+                                    }).catch((error) =>{
+                                        //Handling
+                                        console.log("delete failed!");
+                                    })
+                                })
+                            </script>  
                             </div>
                         </div>
                         

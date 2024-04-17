@@ -2,10 +2,10 @@
 include("config.php");
 include("firebaseRDB.php");
 
-$ID = $_POST['ID'];
+$CCCD = $_POST['CCCD'];
 
 $rdb = new firebaseRDB($databaseURL);
-$retrieve = $rdb->retrieve("/staffManager/support", "ID", "EQUAL", $ID);
+$retrieve = $rdb->retrieve("/staffManager/support", "CCCD", "EQUAL", $CCCD);
 $data = json_decode($retrieve, 1);
 $id = array_keys($data)[0];
 

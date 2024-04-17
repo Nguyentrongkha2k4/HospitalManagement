@@ -2,6 +2,7 @@
 include("config.php");
 include("firebaseRDB.php");
 $obj = $_POST['obj'];
+$image_url = $_POST['image'];
 $numbers = array(
     0 => "Sáng thứ hai",
     1 => "Chiều thứ hai",
@@ -20,8 +21,6 @@ $numbers = array(
 );
 shuffle($numbers);
 $schedule = array_slice($numbers, 0, 6);
-
-print_r($result); // In ra kết quả
 if($obj == "doctor"){
     $ID = "BS".$_POST['ID'];
     $doctorName = $_POST['doctorName'];
@@ -62,7 +61,8 @@ if($obj == "doctor"){
                     $schedule[3] => 0,
                     $schedule[4] => 0,
                     $schedule[5] => 0,
-                ]
+                ],
+                "image_url" => $image_url
             ]);
             
             $result = json_decode($insert, 1);
@@ -145,7 +145,8 @@ if($obj == "doctor"){
                     $schedule[3] => 0,
                     $schedule[4] => 0,
                     $schedule[5] => 0,
-                ]
+                ],
+                "image_url" => $image_url
             ]);
             
             $result = json_decode($insert, 1);
@@ -208,7 +209,8 @@ if($obj == "doctor"){
                 "address" => $address,
                 "degree" => $degree,
                 "position" => $position,
-                "schedule" => $schedule
+                "schedule" => $schedule,
+                "image_url" =>$image_url
             ]);
             
             $result = json_decode($insert, 1);

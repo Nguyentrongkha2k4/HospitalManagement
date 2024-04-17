@@ -345,3 +345,11 @@ body{
 .treatment ul.sub-menu li:hover{
     background-color: rgb(223, 223, 223);
 }
+.info-but{
+    padding: 0 5px;
+    border: unset;
+}
+.info-but:hover{
+    text-decoration: underline;
+    color: blue;
+}

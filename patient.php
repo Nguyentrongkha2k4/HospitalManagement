@@ -258,7 +258,7 @@ if(!isset($_SESSION['user'])){
                         </select>
                     </div>
                     <div class = "mb-3">
-                        <label for="">Upload Profile image:</label>
+                        <label for="">Vui lòng chọn ảnh bệnh nhân:</label>
                         <input type ="file" name = "image" class="form-control" accept="image/png, image/jpeg" id = 'files' >
                         <input type = "hidden" name = "image" id = "hiddenText">
                     </div>
