@@ -445,7 +445,7 @@ for($i = 0; $i < 6; ++$i){
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            <form id ="formChange" action="doctorChange.php" method="post">
+                            <form id ="formChange" action="doctorChange.php" method="post" enctype="multipart/form-data">
                                 <div class="mb-3">
                                     <label class="col-form-label">ID:</label>
                                     <div style="padding:5px 0 5px 10px; border: 0.5px solid; border-radius: 5px;"><?php echo $doctor['ID']; ?></div>
