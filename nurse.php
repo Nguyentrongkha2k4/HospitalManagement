@@ -222,11 +222,6 @@ if(!isset($_SESSION['user'])){
                 </div>
                 <div class="modal-body">
                     <form action="doctorInsert.php" method="post" id = "formInsert" enctype= "multipart/form-data">
-                        <div class = "mb-3">
-                            <label for="">Vui lòng chọn ảnh y tá:</label>
-                            <input type ="file" name = "image" class="form-control" accept="image/png, image/jpeg" id = 'files' required>
-                            <input type = "hidden" name = "image" id = "hiddenText" required>
-                        </div>
                         <div class="mb-3">
                             <label for="recipient-name" class="col-form-label">ID:</label>
                             <div style="display:flex; flex-direction:row;">
@@ -237,6 +232,11 @@ if(!isset($_SESSION['user'])){
                         <div class="mb-3">
                             <label for="recipient-name" class="col-form-label">Họ và tên:</label>
                             <input type="text" class="form-control" id="recipient-name" name="nurseName" required>
+                        </div>
+                        <div class = "mb-3">
+                            <label for="">Vui lòng chọn ảnh y tá:</label>
+                            <input type ="file" name = "image" class="form-control" accept="image/png, image/jpeg" id = 'files' required>
+                            <input type = "hidden" name = "image" id = "hiddenText" required>
                         </div>
                         <div class="mb-3">
                             <label for="recipient-name" class="col-form-label">CCCD:</label>

@@ -239,22 +239,22 @@ if(!isset($_SESSION['user'])){
                 </div>
                 <div class="modal-body" style="height: 90%;">
                     <form action="doctorInsert.php" method="post" id = "formInsert" enctype= "multipart/form-data">
-                    <div class = "mb-3">
-                        <label for="">Vui lòng chọn ảnh bác sĩ:</label>
-                        <input type ="file" name = "image" class="form-control" accept="image/png, image/jpeg" id = 'files' required>
-                        <input type = "hidden" name = "image" id = "hiddenText" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="recipient-name" class="col-form-label">ID:</label>
-                        <div style="display:flex; flex-direction:row;">
-                            <div class="form-control" style="width: 40px; border-top-right-radius: 0; border-bottom-right-radius: 0;">BS</div>
-                            <input style="border-top-left-radius: 0; border-bottom-left-radius: 0;" type="text" class="form-control" id="recipient-name" name="ID" required>
+                        <div class="mb-3">
+                            <label for="recipient-name" class="col-form-label">ID:</label>
+                            <div style="display:flex; flex-direction:row;">
+                                <div class="form-control" style="width: 40px; border-top-right-radius: 0; border-bottom-right-radius: 0;">BS</div>
+                                <input style="border-top-left-radius: 0; border-bottom-left-radius: 0;" type="text" class="form-control" id="recipient-name" name="ID" required>
+                            </div>
                         </div>
-                    </div>
-                    <div class="mb-3">
-                        <label for="recipient-name" class="col-form-label">Họ và tên:</label>
-                        <input type="text" class="form-control" id="recipient-name" name="doctorName" required>
-                    </div>
+                        <div class="mb-3">
+                            <label for="recipient-name" class="col-form-label">Họ và tên:</label>
+                            <input type="text" class="form-control" id="recipient-name" name="doctorName" required>
+                        </div>
+                        <div class = "mb-3">
+                            <label for="">Vui lòng chọn ảnh bác sĩ:</label>
+                            <input type ="file" name = "image" class="form-control" accept="image/png, image/jpeg" id = 'files' required>
+                            <input type = "hidden" name = "image" id = "hiddenText" required>
+                        </div>
                     <div class="mb-3">
                         <label for="recipient-name" class="col-form-label">CCCD:</label>
                         <input type="text" class="form-control" id="recipient-name" name="CCCD" required>

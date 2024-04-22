@@ -180,12 +180,13 @@ if(!isset($_SESSION['user'])){
                         <label class="col-form-label">Công dụng:</label>
                         <textarea type="text" class="form-control" id="message-text" name="uses" required></textarea>
                     </div>
-                    
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
-                    <button type="submit" class="btn btn-primary">Lưu</button>
-                </div></form>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                        <button type="submit" class="btn btn-primary">Lưu</button>
+                    </div>
+                </form>
+                
+            </div>
                 </div>
             </div>
             </div>

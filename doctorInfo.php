@@ -467,7 +467,7 @@ for($i = 0; $i < 6; ++$i){
                                 </div>
                                 <div class="mb-3">
                                     <label class="col-form-label">Năm sinh:</label><?php echo $doctor['dateofborn']; ?>
-                                    <input type="date" class="form-control" id="recipient-name" name="dateofborn" value="<?php echo $doctor['dateofborn']; ?>" required>
+                                    <input type="date" class="form-control" id="recipient-name" name="dateofborn" value="<?php echo $doctor['dateofborn']; ?>" >
                                 </div>
                                 <div class="mb-3">
                                     <label class="col-form-label">Địa chỉ:</label>
