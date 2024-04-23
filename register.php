@@ -101,7 +101,7 @@ include("firebaseRDB.php");
                     <i class='bx bxs-envelope'></i>
                 </div>
                 <div class="input-box">
-                    <input type="password" placeholder="Mật khẩu" required name="Password">
+                    <input type="password" placeholder="Mật khẩu" required name="Password" minlength="6">
                     <i class='bx bxs-lock-alt'></i> 
                 </div>
                 <div class="remember-forgot">
