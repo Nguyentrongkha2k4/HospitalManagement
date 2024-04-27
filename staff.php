@@ -260,6 +260,12 @@ if(!isset($_SESSION['user'])){
                         <input type="text" class="form-control" id="recipient-name" name="CCCD" required>
                     </div>
                     <div class="mb-3">
+                        <label for="" class="col-form-label">Giới tính:</label>
+                        <input name="gender" style="height: 15px; width:15px;margin-left: 10px;" type="radio" value="Nam" /> Nam
+                        <input name="gender" style="height: 15px; width:15px;margin-left: 10px;" type="radio" value="Nữ" /> Nữ
+                        <input name="gender" style="height: 15px; width:15px;margin-left: 10px;" type="radio" value="Khác" /> Khác
+                    </div>
+                    <div class="mb-3">
                         <label for="recipient-name" class="col-form-label">Ngày sinh:</label>
                         <input type="date" class="form-control" id="recipient-name" name="dateofborn" required>
                     </div>
@@ -473,6 +479,12 @@ if(!isset($_SESSION['user'])){
                         <input type="text" class="form-control" id="recipient-name" name="CCCD" required>
                     </div>
                     <div class="mb-3">
+                        <label for="" class="col-form-label">Giới tính:</label>
+                        <input name="gender" style="height: 15px; width:15px;margin-left: 10px;" type="radio" value="Nam" /> Nam
+                        <input name="gender" style="height: 15px; width:15px;margin-left: 10px;" type="radio" value="Nữ" /> Nữ
+                        <input name="gender" style="height: 15px; width:15px;margin-left: 10px;" type="radio" value="Khác" /> Khác
+                    </div>
+                    <div class="mb-3">
                         <label for="recipient-name" class="col-form-label">Ngày sinh:</label>
                         <input type="date" class="form-control" id="recipient-name" name="dateofborn" required>
                     </div>
@@ -666,6 +678,12 @@ if(!isset($_SESSION['user'])){
                     <div class="mb-3">
                         <label for="recipient-name" class="col-form-label">CCCD:</label>
                         <input type="text" class="form-control" id="recipient-name" name="CCCD" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="" class="col-form-label">Giới tính:</label>
+                        <input name="gender" style="height: 15px; width:15px;margin-left: 10px;" type="radio" value="Nam" /> Nam
+                        <input name="gender" style="height: 15px; width:15px;margin-left: 10px;" type="radio" value="Nữ" /> Nữ
+                        <input name="gender" style="height: 15px; width:15px;margin-left: 10px;" type="radio" value="Khác" /> Khác
                     </div>
                     <div class="mb-3">
                         <label for="recipient-name" class="col-form-label">Ngày sinh:</label>

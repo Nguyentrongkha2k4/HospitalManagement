@@ -22,6 +22,7 @@ $numbers = array(
 shuffle($numbers);
 $schedule = array_slice($numbers, 0, 6);
 if($obj == "doctor"){
+    $gender = $_POST['gender'];
     $ID = "BS".$_POST['ID'];
     $doctorName = $_POST['doctorName'];
     $CCCD = $_POST['CCCD'];
@@ -48,6 +49,7 @@ if($obj == "doctor"){
                 "ID" => $ID,
                 "doctorName" => $doctorName,
                 "CCCD" => $CCCD,
+                "gender" => $gender,
                 "dateofborn" => $dateofborn,
                 "address" => $address,
                 "degree" => $degree,
@@ -113,6 +115,7 @@ if($obj == "doctor"){
     $ID = "YT".$_POST['ID'];
     $nurseName = $_POST['nurseName'];
     $CCCD = $_POST['CCCD'];
+    $gender = $_POST['gender'];
     $dateofborn = date('j-m-Y', strtotime($_POST['dateofborn']));
     $address = $_POST['address'];
     $degree = $_POST['degree'];
@@ -134,6 +137,7 @@ if($obj == "doctor"){
                 "ID" => $ID,
                 "nurseName" => $nurseName,
                 "CCCD" => $CCCD,
+                "gender" => $gender,
                 "dateofborn" => $dateofborn,
                 "address" => $address,
                 "degree" => $degree,
@@ -183,6 +187,7 @@ if($obj == "doctor"){
     $ID = "SP".$_POST['ID'];
     $supportName = $_POST['supportName'];
     $CCCD = $_POST['CCCD'];
+    $gender = $_POST['gender'];
     $dateofborn = date('j-m-Y', strtotime($_POST['dateofborn']));
     $address = $_POST['address'];
     $degree = $_POST['degree'];
@@ -205,6 +210,7 @@ if($obj == "doctor"){
                 "ID" => $ID,
                 "supportName" => $supportName,
                 "CCCD" => $CCCD,
+                "gender" => $gender,
                 "dateofborn" => $dateofborn,
                 "address" => $address,
                 "degree" => $degree,

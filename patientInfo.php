@@ -217,6 +217,7 @@ if(count($data))$nurse = $data[array_keys($data)[0]];
             <div class="info basic">
                 <div><img src="<?php echo $patient['image_url']; ?>" alt="none" width="120px" height="120px" style="border-radius: 100%; border:1px solid; box-shadow: 1px;"></div>
                 <div>Họ và tên: <?php echo $patient['patientName']; ?></div>
+                <div>Giới tính: <?php echo $patient['gender']; ?></div>
                 <div>CCCD: <?php echo $patient['CCCD']; ?></div>
                 <div>Năm sinh: <?php echo $patient['dateofborn']; ?></div>
                 <div>Địa chỉ: <?php echo $patient['address']; ?></div>
@@ -350,6 +351,12 @@ if(count($data))$nurse = $data[array_keys($data)[0]];
                                 <div class="mb-3">
                                     <label class="col-form-label">CCCD:</label>
                                     <div style="padding:5px 0 5px 10px; border: 0.5px solid; border-radius: 5px;" name ="CCCD" value="<?php echo $patient['CCCD'];?>"><?php echo $patient['CCCD'];?></div>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="" class="col-form-label">Giới tính:</label>
+                                    <input name="gender" <?php if($patient['gender'] == "Nam"){ echo "checked"; } ?> style="height: 15px; width:15px;margin-left: 10px;" type="radio" value="Nam" /> Nam
+                                    <input name="gender" <?php if($patient['gender'] == "Nữ"){ echo "checked"; } ?> style="height: 15px; width:15px;margin-left: 10px;" type="radio" value="Nữ" /> Nữ
+                                    <input name="gender" <?php if($patient['gender'] == "Khác"){ echo "checked"; } ?>style="height: 15px; width:15px;margin-left: 10px;" type="radio" value="Khác" /> Khác
                                 </div>
                                 <div class="mb-3">
                                     <label class="col-form-label">Năm sinh: <?php echo $patient['dateofborn'];?></label>

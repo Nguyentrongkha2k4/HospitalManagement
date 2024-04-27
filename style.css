@@ -11,8 +11,10 @@ body{
     justify-content: center;
     align-items: center;
     min-height: 100vh;
+    /* background-color: #2f86eb; */
     background: rgb(125, 118, 118);
-    background: url(imagine/OIG2.jpg) no-repeat;
+    background: url(imagine/OIG4.jpg) no-repeat;
+    /* background-size: 80%; */
     background-size: contain;
     background-position: center;
 }

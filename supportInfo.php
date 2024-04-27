@@ -269,6 +269,7 @@ foreach($schedule as $day){
                 <div><img src="<?php echo $support['image_url']; ?>" alt="none" width="120px" height="120px" style="border-radius: 100%; border:1px solid;"></div>
                 <div>ID: <?php echo $support['ID']; ?></div>
                 <div>Họ và tên: <?php echo $support['supportName']; ?></div>
+                <div>Giới tính: <?php echo $support['gender']; ?></div>
                 <div>CCCD: <?php echo $support['CCCD']; ?></div>
                 <div>Năm sinh: <?php echo $support['dateofborn']; ?></div>
                 <div>Địa chỉ: <?php echo $support['address']; ?></div>
@@ -422,8 +423,14 @@ foreach($schedule as $day){
                                     <div style="padding:5px 0 5px 10px; border: 0.5px solid; border-radius: 5px;"><?php echo $support['CCCD']; ?></div>
                                 </div>
                                 <div class="mb-3">
+                                    <label for="" class="col-form-label">Giới tính:</label>
+                                    <input name="gender" <?php if($support['gender'] == "Nam"){ echo "checked"; } ?> style="height: 15px; width:15px;margin-left: 10px;" type="radio" value="Nam" /> Nam
+                                    <input name="gender" <?php if($support['gender'] == "Nữ"){ echo "checked"; } ?> style="height: 15px; width:15px;margin-left: 10px;" type="radio" value="Nữ" /> Nữ
+                                    <input name="gender" <?php if($support['gender'] == "Khác"){ echo "checked"; } ?>style="height: 15px; width:15px;margin-left: 10px;" type="radio" value="Khác" /> Khác
+                                </div>
+                                <div class="mb-3">
                                     <label class="col-form-label">Năm sinh: </label><?php echo $support['dateofborn']; ?>
-                                    <input type="date" class="form-control" id="recipient-name" name="dateofborn" value="<?php echo $support['dateofborn']; ?>" required>
+                                    <input type="date" class="form-control" id="recipient-name" name="dateofborn" value="<?php echo $support['dateofborn']; ?>">
                                 </div>
                                 <div class="mb-3">
                                     <label class="col-form-label">Địa chỉ:</label>

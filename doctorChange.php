@@ -3,6 +3,7 @@ include ("config.php");
 include ("firebaseRDB.php");
 
 $id = $_POST['id'];
+$gender = $_POST['gender'];
 $dateofborn = date('j-m-Y', strtotime($_POST['dateofborn']));
 $address = $_POST['address'];
 $position = $_POST['position'];
@@ -12,6 +13,7 @@ $image = $_POST['image'];
 $rdb = new firebaseRDB($databaseURL);
 if($image != ""){
 $update = $rdb->update("/staffManager/doctor", $id,[
+    "gender" => $gender,
     "datofborn" => $dateofborn,
     "address" => $address,
     "position" => $position,
@@ -21,6 +23,7 @@ $update = $rdb->update("/staffManager/doctor", $id,[
 }
 else{
 $update = $rdb->update("/staffManager/doctor", $id,[
+    "gender" => $gender,
     "datofborn" => $dateofborn,
     "address" => $address,
     "position" => $position,

@@ -270,6 +270,7 @@ for($i = 0; $i < 6; ++$i){
                 <div><img src="<?php echo $nurse['image_url'] ?>" alt="none" width="120px" height="120px" style="border-radius: 100%; border:1px solid;"></div>
                 <div>ID: <?php echo $nurse['ID']; ?></div>
                 <div>Họ và tên: <?php echo $nurse['nurseName']; ?></div>
+                <div>Giới tính: <?php echo $nurse['gender']; ?></div>
                 <div>CCCD: <?php echo $nurse['CCCD']; ?></div>
                 <div>Năm sinh: <?php echo $nurse['dateofborn']; ?></div>
                 <div>Địa chỉ: <?php echo $nurse['address']; ?></div>
@@ -322,8 +323,8 @@ for($i = 0; $i < 6; ++$i){
             <div class="detail test">
                 <h5>Lịch làm việc:</h5>
                 <div class="schedule">
-                    <table class="table" style="height: 50%;">
-                        <thead>
+                    <table class="table" style="height: 100%;">
+                        <thead class="table-info">
                             <tr>
                                 <th>Thời gian</th>
                                 <th>Thứ hai</th>
@@ -458,6 +459,12 @@ for($i = 0; $i < 6; ++$i){
                                 <div class="mb-3">
                                     <label class="col-form-label">CCCD:</label>
                                     <div style="padding:5px 0 5px 10px; border: 0.5px solid; border-radius: 5px;"><?php echo $nurse['CCCD']; ?></div>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="" class="col-form-label">Giới tính:</label>
+                                    <input name="gender" <?php if($nurse['gender'] == "Nam"){ echo "checked"; } ?> style="height: 15px; width:15px;margin-left: 10px;" type="radio" value="Nam" /> Nam
+                                    <input name="gender" <?php if($nurse['gender'] == "Nữ"){ echo "checked"; } ?> style="height: 15px; width:15px;margin-left: 10px;" type="radio" value="Nữ" /> Nữ
+                                    <input name="gender" <?php if($nurse['gender'] == "Khác"){ echo "checked"; } ?>style="height: 15px; width:15px;margin-left: 10px;" type="radio" value="Khác" /> Khác
                                 </div>
                                 <div class="mb-3">
                                     <label class="col-form-label">Năm sinh:</label>

@@ -271,6 +271,7 @@ for($i = 0; $i < 6; ++$i){
                 <div><img src="<?php echo $doctor['image_url']; ?>" alt="none" width="120px" height="120px" style="border-radius: 100%; border:1px solid;"></div>
                 <div>ID: <?php echo $doctor['ID']; ?></div>
                 <div>Họ và tên: <?php echo $doctor['doctorName']; ?></div>
+                <div>Giới tính: <?php echo $doctor['gender']; ?></div>
                 <div>CCCD: <?php echo $doctor['CCCD']; ?></div>
                 <div>Năm sinh: <?php echo $doctor['dateofborn']; ?></div>
                 <div>Địa chỉ: <?php echo $doctor['address']; ?></div>
@@ -460,6 +461,12 @@ for($i = 0; $i < 6; ++$i){
                                     <input type = "hidden" name = "image" id = "hiddenText">
                                     <input type = "hidden" value="<?php echo $id; ?>" name="id" id="doctorID">
                                     <input type = "hidden" value="<?php echo $doctor['CCCD']; ?>" id="doctorCCCD">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="" class="col-form-label">Giới tính:</label>
+                                    <input name="gender" <?php if($doctor['gender'] == "Nam"){ echo "checked"; } ?> style="height: 15px; width:15px;margin-left: 10px;" type="radio" value="Nam" /> Nam
+                                    <input name="gender" <?php if($doctor['gender'] == "Nữ"){ echo "checked"; } ?> style="height: 15px; width:15px;margin-left: 10px;" type="radio" value="Nữ" /> Nữ
+                                    <input name="gender" <?php if($doctor['gender'] == "Khác"){ echo "checked"; } ?>style="height: 15px; width:15px;margin-left: 10px;" type="radio" value="Khác" /> Khác
                                 </div>
                                 <div class="mb-3">
                                     <label class="col-form-label">CCCD:</label>

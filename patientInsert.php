@@ -3,6 +3,7 @@ include("config.php");
 include("firebaseRDB.php");
 
 $patientCCCD = $_POST['CCCD'];
+$gender = $_POST['gender'];
 $patientName = $_POST['patientName'];
 $patientBDate = $_POST['dateofborn'];
 $patientAddress = $_POST['address'];
@@ -21,6 +22,7 @@ if(count($data) > 0){
     [
         "CCCD" => $patientCCCD,
         "patientName" => $patientName,
+        "gender" => $gender,
         "dateofborn" => date('j-m-Y', strtotime($patientBDate)),
         "address"=> $patientAddress,
         "recipient-name" => $patientKhoa,

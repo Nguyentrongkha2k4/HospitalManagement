@@ -352,8 +352,10 @@ body{
     border: unset;
     color: rgb(0, 81, 180);
     text-decoration: underline;
+    background-color: inherit;
 }
 .info-but:hover{
+    background-color: inherit;
     text-decoration: underline;
     color: rgb(0, 0, 255);
 }
