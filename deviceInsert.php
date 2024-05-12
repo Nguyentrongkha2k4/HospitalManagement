@@ -18,7 +18,6 @@ if(count($data) > 0){
             "purpose" => $purpose,
             "uses" => $uses,
             "amount" => 0,
-            "maintenance" => ""
         ]);
         $result = json_decode($insert, 1);
         if(isset($result['name'])){
@@ -32,7 +31,6 @@ if(count($data) > 0){
             "purpose" => $purpose,
             "uses" => $uses,
             "amount" => 0,
-            "maintenance" => ""
         ]);
         $result = json_decode($insert, 1);
         if(isset($result['name'])){
