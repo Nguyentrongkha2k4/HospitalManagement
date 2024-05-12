@@ -296,9 +296,12 @@ if(!isset($_SESSION['user'])){
                             <option value="Bác sĩ">Bác sĩ</option>
                         </select>
                     </div>
+                    <div style="display: none;">
+                        <input name="obj" value="doctor"></input>
+                    </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
-                        <button type="submit" class="btn btn-primary" name="obj" value="doctor">Lưu</button>
+                        <button type="submit" class="btn btn-primary">Lưu</button>
                     </div>
                 </form>
                 <script type="text/javascript">
@@ -496,10 +499,13 @@ if(!isset($_SESSION['user'])){
                         <label for="recipient-name" class="col-form-label">Bằng cấp:</label>
                         <input type="text" class="form-control" id="recipient-name" name="degree" required>
                     </div>             
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
-                        <button type="submit" class="btn btn-primary" name="obj" value="nurse">Lưu</button>
-                    </div>
+                    <div style="display: none;">
+                            <input name="obj" value="nurse"></input>
+                        </div>      
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                            <button type="submit" class="btn btn-primary">Lưu</button>
+                        </div>
                 </form>
                 <script type="text/javascript">
                 var files = [];
@@ -705,9 +711,12 @@ if(!isset($_SESSION['user'])){
                             <option value="Nhân viên bảo vệ">Nhân viên bảo vệ</option>
                         </select>
                     </div>
+                    <div style="display: none;">
+                        <input name="obj" value="support"></input>
+                    </div>  
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
-                        <button type="submit" class="btn btn-primary" name="obj" value="support">Lưu</button>
+                        <button type="submit" class="btn btn-primary">Lưu</button>
                     </div>
                 </form>
                 <script type="text/javascript">
