@@ -85,7 +85,7 @@ Giúp bệnh viện đưa ra quyết định tốt hơn.
 <a href=""><img src="https://img.shields.io/badge/PHP-777BB4?style=for-the-badge&logo=php&logoColor=white" alt="PHP" /></a>
 <a href=""><img src="https://img.shields.io/badge/Firebase-FFCA28?style=for-the-badge&logo=firebase&logoColor=black" alt="Firebase" /></a>
 <a href=""><img src="https://img.shields.io/badge/CSS-1572B6?style=for-the-badge&logo=css3&logoColor=white" alt="CSS" /></a>
-
+<a href=""><img src="https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white" alt="Docker" /></a>
 ## Liên hệ
 Nếu bạn có bất kỳ thắc mắc, góp ý, hoặc cần báo lỗi liên quan đến ứng dụng, vui lòng liên hệ qua email: trongkha08022k4@gmail.com, hoặc ghé thăm GitHub cá nhân của từng thành viên trong nhóm. Chúng tôi rất mong nhận được phản hồi từ bạn để cải thiện ứng dụng tốt hơn!
   </br>
